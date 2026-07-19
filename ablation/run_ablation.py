@@ -26,11 +26,26 @@ def add_shared_args(parser):
     parser.add_argument(
         "-d", "--dataset", type=str, required=True, choices=["gazecom", "hmr"]
     )
-    parser.add_argument("--data_path",     type=str,   default=None)
-    parser.add_argument("--stride",        type=int,   default=None)
-    parser.add_argument("--frequency",     type=int,   default=None)
-    parser.add_argument("--window_length", type=float, default=1.0)
-    parser.add_argument("--offset",        type=int,   default=0)
+    parser.add_argument(
+        "--data_path", type=str, default=None,
+        help=(
+            "Direct path to preprocessed dataset folder. "
+            "If omitted, path is auto-constructed from dataset/stride/freq/window/offset. "
+            "Example (Kaggle): --data_path /kaggle/input/.../gazecom_s10_f250_w1.0_o0"
+        )
+    )
+    parser.add_argument(
+        "--stride", type=int, default=None,
+        help="Preprocessing stride override (default: 10 for gazecom, 8 for hmr)"
+    )
+    parser.add_argument(
+        "--frequency", type=int, default=None,
+        help="Sampling frequency in Hz (default: 250 for gazecom, 200 for hmr)"
+    )
+    parser.add_argument("--window_length", type=float, default=1.0,
+        help="Sliding window length in seconds (default: 1.0)")
+    parser.add_argument("--offset", type=int, default=0,
+        help="Label offset relative to last sample of window (default: 0)")
 
     # Model — fixed to conv_attention for ablation
     parser.add_argument(
@@ -54,6 +69,19 @@ def add_shared_args(parser):
     parser.add_argument("--n_splits",   type=int, default=5)
     parser.add_argument("--start_fold", type=int, default=0)
     parser.add_argument("--max_folds",  type=int, default=5)
+
+    # Checkpoint & resume
+    parser.add_argument(
+        "--checkpoint", action="store_true", default=False,
+        help="Save model checkpoints per epoch (default: off for ablation)"
+    )
+    parser.add_argument(
+        "--resume", action="store_true", default=False,
+        help=(
+            "Skip combos that already have a metrics CSV on disk. "
+            "Useful for continuing a partial run without re-running completed combos."
+        )
+    )
 
     # WandB
     parser.add_argument("--use_wandb", action="store_true")
