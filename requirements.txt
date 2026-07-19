@@ -1,0 +1,15 @@
+numpy
+pandas
+matplotlib
+seaborn
+tqdm
+scikit-learn
+torch
+torchmetrics
+torchinfo
+ptflops
+optuna
+wandb
+psutil
+python-dotenv
+torch-directml #for Windows users with AMD GPU
