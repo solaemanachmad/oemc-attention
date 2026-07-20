@@ -14,6 +14,9 @@ from contextlib import contextmanager
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
+from dotenv import load_dotenv
+load_dotenv()
+
 import utils.helpers as _helpers
 from data.preprocessor import Preprocessor
 from train import main_kfold

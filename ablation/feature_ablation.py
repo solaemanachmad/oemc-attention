@@ -25,6 +25,9 @@ from contextlib import contextmanager
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
+from dotenv import load_dotenv
+load_dotenv()   # load WANDB_API_KEY and other env vars from .env
+
 import pandas as pd
 import utils.helpers as _helpers
 from data.preprocessor import Preprocessor

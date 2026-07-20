@@ -153,7 +153,7 @@ def train_model(
     lr=0.001, kernel_size=3, num_heads=4, patience=10,
     tcn_kernel_size=5, tcn_channel_size=30, tcn_num_levels=4,
     optimizer_type=None, scheduler_type=None, loss_type=None,
-    loader_mode="lookahead",
+    loader_mode="lookback",
     close_wandb=True, model_type="conv_attention", model_params=None,
     wandb_project=None, run_name=None, checkpoint=True,
     plot_result=True, save_model_artifact=True,
