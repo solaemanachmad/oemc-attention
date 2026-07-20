@@ -87,7 +87,7 @@ def eval_step(model, x, y):
 # ------------------------------------------------------------------ #
 
 def _make_loader(X, Y, timesteps, stride, batch_size, shuffle,
-                 loader_mode="lookahead"):
+                 loader_mode="lookback"):
     """
     lookahead : forward window [i : i+timesteps], label = Y[i+timesteps-1]
     lookback  : backward window [i-timesteps : i], label = Y[i-1]

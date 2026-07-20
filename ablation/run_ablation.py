@@ -73,6 +73,17 @@ def add_shared_args(parser):
     parser.add_argument("--start_fold", type=int, default=0)
     parser.add_argument("--max_folds",  type=int, default=5)
 
+    # Loader mode
+    parser.add_argument(
+        "--loader_mode", type=str, default="lookahead",
+        choices=["lookahead", "lookback"],
+        help=(
+            "Windowing strategy for the data loader. "
+            "'lookahead' (default): forward window [i:i+timesteps], label=Y[i+timesteps-1]. "
+            "'lookback': backward window [i-timesteps:i], label=Y[i-1] (Bai et al. style)."
+        )
+    )
+
     # Checkpoint & resume
     parser.add_argument(
         "--checkpoint", action="store_true", default=False,
