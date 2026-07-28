@@ -255,6 +255,17 @@ def train_model(
         if "input_size" not in params:
             params["input_size"] = input_size
         params["output_size"] = len(class_names)
+        # conv_attention needs the actual window length to correctly size
+        # its learnable positional_encoding. This is injected here (not
+        # earlier in model_params) because model_params is also spread
+        # into wandb_config via **model_params alongside an explicit
+        # timesteps=timesteps kwarg — adding it there causes
+        # "dict() got multiple values for keyword argument 'timesteps'".
+        # Without this injection, Conv_Attention silently falls back to
+        # its constructor default (timesteps=5) for any other window
+        # length, causing a size mismatch (or a silently wrong encoding).
+        if model_type == "conv_attention" and "timesteps" not in params:
+            params["timesteps"] = timesteps
 
         model = get_model(model_type, params).to(device)
         if model_type == "cnn_bilstm":

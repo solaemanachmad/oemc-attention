@@ -121,11 +121,20 @@ Examples:
   # Run only specific combos
   python ablation/run_ablation.py feature -d gazecom --combos sp dir sp_dir sp_dir_std_dis
 
-  # Run timestep ablation (planned)
+  # Run full predefined timestep grid for a dataset
   python ablation/run_ablation.py timestep -d gazecom
+  python ablation/run_ablation.py timestep -d hmr
+
+  # Run only specific timestep values (free choice, dataset-specific ms)
+  python ablation/run_ablation.py timestep -d gazecom --values 5 10 25
+  python ablation/run_ablation.py timestep -d hmr --values 4 8 20
+
+  # Include the full-window anchor point (~1000 ms) alongside short contexts
+  python ablation/run_ablation.py timestep -d gazecom --values 5 25 250
 
   # With kfold and WandB
   python ablation/run_ablation.py feature -d gazecom --use_kfold --use_wandb
+  python ablation/run_ablation.py timestep -d gazecom --use_kfold --use_wandb
         """
     )
 
@@ -155,9 +164,14 @@ Examples:
     ts_parser.add_argument(
         "--values", type=int, nargs="+", default=None, metavar="T",
         help=(
-            "Run only specific timestep values. "
-            "E.g. --values 5 10 25. "
-            "If omitted, runs all values [1, 5, 10, 15, 20, 25]."
+            "Run only specific timestep values (free choice — any int). "
+            "Values are dataset-specific since context length in ms depends "
+            "on sampling frequency (GazeCom: 4 ms/step, HMR: 5 ms/step). "
+            "E.g. --values 5 10 25 (gazecom) or --values 4 8 20 (hmr). "
+            "If omitted, runs the predefined grid for the chosen dataset: "
+            "gazecom=[1,2,5,10,20,25,250], hmr=[1,2,4,8,16,20,200] "
+            "(the last value in each grid is the ~1000 ms full-window "
+            "anchor matching the original Elmadjian et al. setup)."
         )
     )
 

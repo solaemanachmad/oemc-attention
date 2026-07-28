@@ -176,11 +176,18 @@ def _save_summary(df, path, dataset, model_type):
 def _already_done(tag, model_type):
     """
     Check if this combo already has a metrics CSV on disk.
-    Used for resume — skip combos that completed successfully.
+    A metrics CSV is only written after a combo completes successfully,
+    so its presence = combo finished. Checkpoint files alone do not count.
+    Folder: results/ablation/<model_type>/features/<model_type>/
+    Pattern: *_<tag>_*_metrics.csv
     """
     folder  = os.path.join(_ablation_dir(model_type), model_type)
-    pattern = os.path.join(folder, f"*_{tag}_*metrics.csv")
-    return bool(glob.glob(pattern))
+    pattern = os.path.join(folder, f"*_{tag}_*_metrics.csv")
+    found   = glob.glob(pattern)
+    if found:
+        logger.info(f"  [resume] Found existing result for [{tag}]: "
+                    f"{os.path.basename(found[0])}")
+    return bool(found)
 
 
 # ------------------------------------------------------------------ #
@@ -230,6 +237,16 @@ def run(args, combos=None):
                 + (f", {len(skipped)} skipped (already done)" if skipped else ""))
     if skipped:
         logger.info(f"Skipped   : {skipped}")
+    logger.info(f"Loader    : {args.loader_mode}")
+    logger.info(f"Validation: hold-out 80/20 (stratified) — ablation always "
+                f"uses hold-out, never k-fold, for speed across many runs")
+    if getattr(args, "use_kfold", False):
+        logger.warning(
+            "--use_kfold was passed but is IGNORED by this ablation script. "
+            "Ablation studies intentionally always use a single stratified "
+            "hold-out split for speed. Run main.py directly if you need "
+            "k-fold results for the final reported numbers."
+        )
     logger.info(f"WandB     : {'ON — ' + wandb_project if args.use_wandb else 'OFF'}")
     logger.info(f"Checkpoint: {'ON' if args.checkpoint else 'OFF'}")
     logger.info("=" * 60)
@@ -263,6 +280,7 @@ def run(args, combos=None):
                     kernel_size=args.kernel_size,
                     dropout=args.dropout,
                     lr=args.lr,
+                    loader_mode=args.loader_mode,
                     epochs=args.epochs,
                     batch_size=args.batch_size,
                     patience=args.patience,

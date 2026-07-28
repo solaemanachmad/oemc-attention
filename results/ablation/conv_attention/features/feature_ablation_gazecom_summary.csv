@@ -1,0 +1,5 @@
+feature_tag,features,n_features,F1_avg,F1_Fixation,F1_Saccade,F1_Pursuit,F1_Blink,ev_F1_avg,ev_F1_Fixation,ev_F1_Saccade,ev_F1_Pursuit,ev_F1_Blink,roc_auc_macro,roc_auc_micro,val_loss,train_loss,epochs_run,Prec_Fixation,Prec_Saccade,Prec_Pursuit,Prec_Blink,Rec_Fixation,Rec_Saccade,Rec_Pursuit,Rec_Blink
+sp_dir_std_dis,speed+direction+stddev+displacement,40,0.8684,0.9620,0.8513,0.8722,0.7881,0.8696,0.9104,0.8667,0.8946,0.8069,0.9809,0.9913,0.2094,0.1941,300,0.9477,0.8627,0.9049,0.8842,0.9767,0.8402,0.8417,0.7109
+sp_dir_dis,speed+direction+displacement,30,0.8647,0.9608,0.8518,0.8663,0.7798,0.8672,0.9091,0.8675,0.8921,0.8001,0.9801,0.9909,0.2144,0.2004,297,0.9469,0.8627,0.8952,0.8777,0.9750,0.8412,0.8393,0.7015
+sp_dir_std,speed+direction+stddev,30,0.8605,0.9592,0.8499,0.8582,0.7746,0.8627,0.9052,0.8664,0.8844,0.7946,0.9790,0.9904,0.2214,0.2053,300,0.9444,0.8601,0.8917,0.8786,0.9745,0.8399,0.8272,0.6926
+sp_dir,speed+direction,20,0.8579,0.9585,0.8511,0.8544,0.7676,0.8601,0.9038,0.8673,0.8819,0.7874,0.9782,0.9900,0.2257,0.2066,295,0.9436,0.8615,0.8871,0.8732,0.9739,0.8409,0.8240,0.6848
