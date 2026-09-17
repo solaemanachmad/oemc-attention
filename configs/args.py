@@ -70,7 +70,7 @@ def get_args():
     # ------------------------------------------------------------------ #
     parser.add_argument(
         '-m', '--model_type', type=str, required=True,
-        choices=["conv_attention", "tcn", "cnn_lstm", "cnn_bilstm"],
+        choices=["conv_attention", "tcn", "cnn_lstm", "cnn_bilstm", "skip_attseqnet"],
         help="Model architecture to train (required)"
     )
     parser.add_argument(
@@ -119,6 +119,18 @@ def get_args():
     )
 
     # ------------------------------------------------------------------ #
+    # SKIP-ATTSEQNET-SPECIFIC HYPERPARAMETERS  (Wang et al. 2025, BSPC)
+    # ------------------------------------------------------------------ #
+    parser.add_argument(
+        '--skip_cnn_dropout', type=float, default=0.2,
+        help="Dropout after each encoder conv block for Skip-AttSeqNet (paper default: 0.2)"
+    )
+    parser.add_argument(
+        '--skip_rnn_dropout', type=float, default=0.3,
+        help="Dropout on the BLSTM decoder for Skip-AttSeqNet (paper default: 0.3)"
+    )
+
+    # ------------------------------------------------------------------ #
     # TRAINING HYPERPARAMETERS
     # ------------------------------------------------------------------ #
     parser.add_argument(
@@ -137,6 +149,32 @@ def get_args():
         '--patience', type=int, default=10,
         help="Early-stopping patience (epochs without val_loss improvement)"
     )
+    parser.add_argument(
+        '--grad_clip_norm', type=float, default=1.0,
+        help=(
+            "Max gradient norm for gradient clipping (applied every "
+            "training step, all models). Stabilizes training for "
+            "LSTM-based models (cnn_lstm, cnn_bilstm, skip_attseqnet), "
+            "which can otherwise collapse to predicting only the "
+            "majority class on some folds. Set to a large value "
+            "(e.g. 1e9) to effectively disable clipping."
+        )
+    )
+    parser.add_argument(
+        '--warmup_epochs', type=int, default=1,
+        help=(
+            "Number of initial epochs to linearly ramp up the learning "
+            "rate from a small fraction of --lr to --lr, before the "
+            "normal scheduler takes over. Mitigates adaptive-optimizer "
+            "(e.g. RMSprop) cold-start instability, which can push an "
+            "LSTM-based model's gates into saturation early on and "
+            "cause a fold-dependent collapse to the majority class — a "
+            "failure mode that gradient clipping alone does not fix, "
+            "since it is caused by an overly large *effective* step "
+            "size early in training, not by a large raw gradient norm. "
+            "Set to 0 to disable warmup entirely."
+        )
+    )
 
     # ------------------------------------------------------------------ #
     # OPTIMIZER
@@ -146,7 +184,7 @@ def get_args():
     # ------------------------------------------------------------------ #
     parser.add_argument(
         '--optimizer', type=str, default=None,
-        choices=["adamw", "adamax", "rmsprop"],
+        choices=["adamw", "adamax", "rmsprop", "adam"],
         help=(
             "Optimizer to use. When omitted the default is chosen per model: "
             "adamw for all models except TCN paper-replication (adamax). "
@@ -158,15 +196,17 @@ def get_args():
     # LR SCHEDULER
     # Defaults per model family:
     #   most models  : cosine  (CosineAnnealingLR)
-    #   tcn + paper  : plateau (ReduceLROnPlateau, factor=0.5, patience=3)
+    #   tcn + paper  : elmadjian (exact paper replication of the
+    #                  manual lr/=2-on-plateau rule; see train.py)
     # ------------------------------------------------------------------ #
     parser.add_argument(
         '--scheduler', type=str, default=None,
-        choices=["cosine", "plateau", "step"],
+        choices=["cosine", "plateau", "step", "elmadjian"],
         help=(
             "LR scheduler. When omitted the default is chosen per model: "
-            "cosine for all models, plateau for TCN paper-replication. "
-            "Override explicitly to experiment across models."
+            "cosine for conv_attention, elmadjian for TCN/CNN-LSTM/"
+            "CNN-BiLSTM paper-replication baselines. Override explicitly "
+            "to experiment across models."
         )
     )
 
@@ -216,8 +256,13 @@ def get_args():
         help="First fold index to run (useful for resuming)"
     )
     parser.add_argument(
-        '--max_folds', type=int, default=4,
-        help="Maximum number of folds to run"
+        '--max_folds', type=int, default=None,
+        help=(
+            "Maximum number of folds to actually run out of --n_splits. "
+            "Defaults to --n_splits (i.e. run ALL folds) when omitted — "
+            "set this lower only if you deliberately want a partial run "
+            "(e.g. quick smoke test on fold 1-2 only)."
+        )
     )
     parser.add_argument(
         '--wandb_project', type=str, default="oemc_project",
@@ -228,4 +273,12 @@ def get_args():
         help="Enable experiment logging to Weights & Biases"
     )
 
-    return parser.parse_args()
+    args = parser.parse_args()
+
+    # max_folds defaults to n_splits (run ALL folds) unless explicitly
+    # overridden — previously this silently defaulted to a hardcoded 4,
+    # causing kfold runs to stop early even when --n_splits 5 was passed.
+    if args.max_folds is None:
+        args.max_folds = args.n_splits
+
+    return args

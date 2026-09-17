@@ -81,23 +81,37 @@ def _summary_path(model_type, dataset):
 # ------------------------------------------------------------------ #
 
 @contextmanager
-def ablation_output_dir(base_dir):
+def ablation_output_dir(base_dir, dataset=None):
     """
     Temporarily patch utils.helpers.set_folder_path and
     utils.metrics.set_folder_path so all save_* and plot_* calls
-    write to base_dir instead of the default 'results/'.
-    Restored automatically on exit — no permanent changes.
+    write to base_dir/<dataset>/<model_type>/ instead of the default
+    'results/'. Restored automatically on exit — no permanent changes.
+
+    IMPORTANT: the incoming `base_dir` from callers (e.g. train.py's
+    save_model/save_csv, which always pass train_model()'s own
+    base_dir="results" default positionally) is deliberately IGNORED
+    here — it is captured in _ablation_base/_ablation_dataset as plain
+    closure variables instead of as default parameter values, so it
+    cannot be overridden by whatever base_dir happens to flow through
+    the normal (non-ablation) call chain.
     """
+    _ablation_base    = base_dir
+    _ablation_dataset = dataset
     original_fn = _helpers.set_folder_path
 
-    def _patched(use_kfold=False, fold_idx=None,
-                 base_dir=base_dir, model_type=None):
+    def _patched(use_kfold=False, fold_idx=None, base_dir=None, model_type=None,
+                 dataset=None):
+        # base_dir / dataset params above exist only to match
+        # set_folder_path()'s call signature — their incoming values
+        # are intentionally discarded in favor of the closure ones.
+        path = os.path.join(_ablation_base, _ablation_dataset or "")
         if use_kfold:
-            path = os.path.join(base_dir, "kfold", model_type or "")
+            path = os.path.join(path, "kfold", model_type or "")
             if fold_idx is not None:
                 path = os.path.join(path, f"fold_{fold_idx + 1}")
         else:
-            path = os.path.join(base_dir, model_type or "")
+            path = os.path.join(path, model_type or "")
         os.makedirs(path, exist_ok=True)
         return path
 
@@ -161,6 +175,8 @@ def _save_summary(df, path, dataset, model_type):
     # Reorder columns — feature info first, then key metrics
     key_cols = [
         "feature_tag", "features", "n_features",
+        "timesteps", "loader_mode", "d_model", "num_heads",
+        "kernel_size", "dropout",
         "F1_avg", "F1_Fixation", "F1_Saccade", "F1_Pursuit", "F1_Blink",
         "ev_F1_avg", "ev_F1_Fixation", "ev_F1_Saccade",
         "ev_F1_Pursuit", "ev_F1_Blink",
@@ -173,15 +189,15 @@ def _save_summary(df, path, dataset, model_type):
     return path
 
 
-def _already_done(tag, model_type):
+def _already_done(tag, model_type, dataset):
     """
     Check if this combo already has a metrics CSV on disk.
     A metrics CSV is only written after a combo completes successfully,
     so its presence = combo finished. Checkpoint files alone do not count.
-    Folder: results/ablation/<model_type>/features/<model_type>/
+    Folder: results/ablation/<model_type>/features/<dataset>/<model_type>/
     Pattern: *_<tag>_*_metrics.csv
     """
-    folder  = os.path.join(_ablation_dir(model_type), model_type)
+    folder  = os.path.join(_ablation_dir(model_type), dataset, model_type)
     pattern = os.path.join(folder, f"*_{tag}_*_metrics.csv")
     found   = glob.glob(pattern)
     if found:
@@ -222,7 +238,7 @@ def run(args, combos=None):
     to_run  = []
     skipped = []
     for tag, feats in selected:
-        if getattr(args, "resume", False) and _already_done(tag, args.model_type):
+        if getattr(args, "resume", False) and _already_done(tag, args.model_type, args.dataset):
             skipped.append(tag)
         else:
             to_run.append((tag, feats))
@@ -267,13 +283,14 @@ def run(args, combos=None):
 
             run_name = f"{date_str}_{tag}"
 
-            with ablation_output_dir(ablation_base):
+            with ablation_output_dir(ablation_base, dataset=args.dataset):
                 all_metrics, _, _, _, _, _ = main_kfold(
                     X=train_X,
                     Y=train_Y,
                     run_name=run_name,
                     model_type=args.model_type,
                     class_names=CLASS_NAMES,
+                    dataset=args.dataset,
                     timesteps=args.timesteps,
                     d_model=args.d_model,
                     num_heads=args.num_heads,
@@ -299,6 +316,18 @@ def run(args, combos=None):
                     "feature_tag": tag,
                     "features":    "+".join(selected_features),
                     "n_features":  train_X.shape[1],
+                    # Config metadata — NOT included in all_metrics returned
+                    # by train_model(), only logged to WandB internally.
+                    # Kept here explicitly so the local summary CSV is
+                    # self-contained and audit-able without needing to
+                    # cross-check a WandB export (see: the HMR timesteps=5
+                    # vs intended timesteps=4 mismatch found manually).
+                    "timesteps":   args.timesteps,
+                    "loader_mode": args.loader_mode,
+                    "d_model":     args.d_model,
+                    "num_heads":   args.num_heads,
+                    "kernel_size": args.kernel_size,
+                    "dropout":     args.dropout,
                 }
                 row.update({k: v for k, v in all_metrics[0].items()
                             if k != "fold"})

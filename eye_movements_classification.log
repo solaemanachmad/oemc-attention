@@ -1,0 +1,1054 @@
+2026-09-12 15:10:21,171 - OEMC-Attention - INFO - Dataset       : HMR
+2026-09-12 15:10:21,171 - OEMC-Attention - INFO - Data path     : dataset\processed\hmr_s8_f200_w1.0_o0
+2026-09-12 15:10:21,171 - OEMC-Attention - INFO - Stride        : 8
+2026-09-12 15:10:21,171 - OEMC-Attention - INFO - Run name      : 20260912_151021
+2026-09-12 15:10:21,171 - OEMC-Attention - INFO - WandB project : oemc_hmr_skip_attseqnet_20260912
+2026-09-12 15:10:21,172 - OEMC-Attention - INFO - Training config - optimizer=adam  scheduler=cosine  loss=nll  loader=lookahead
+2026-09-12 15:10:21,172 - OEMC-Attention - INFO - >>> Loading data from dataset\processed\hmr_s8_f200_w1.0_o0...
+2026-09-12 15:10:23,924 - OEMC-Attention - INFO - Loaded 26 files. Total samples: 1484759
+2026-09-12 15:10:24,891 - OEMC-Attention - INFO - >>> Total: 1484759 | Train: 1187807 | Test: 296952
+2026-09-12 15:10:25,034 - OEMC-Attention - INFO - Using GPU: AMD Radeon via DirectML
+2026-09-12 15:10:25,200 - OEMC-Attention - INFO - === Training: fold1_20260912_151021_t20_f32-16-8-8_k3_do02_lr001_b2048_skipattseqnet ===
+2026-09-12 15:10:25,200 - OEMC-Attention - INFO - optimizer=adam  scheduler=cosine  loss=nll  loader=lookahead
+2026-09-12 15:10:25,755 - OEMC-Attention - INFO - [FLOPs] None | [Params] None
+2026-09-12 15:11:12,372 - OEMC-Attention - INFO - Dataset       : HMR
+2026-09-12 15:11:12,372 - OEMC-Attention - INFO - Data path     : dataset\processed\hmr_s8_f200_w1.0_o0
+2026-09-12 15:11:12,374 - OEMC-Attention - INFO - Stride        : 8
+2026-09-12 15:11:12,374 - OEMC-Attention - INFO - Run name      : 20260912_151112
+2026-09-12 15:11:12,374 - OEMC-Attention - INFO - WandB project : oemc_hmr_skip_attseqnet_20260912
+2026-09-12 15:11:12,374 - OEMC-Attention - INFO - Training config - optimizer=adam  scheduler=cosine  loss=nll  loader=lookahead
+2026-09-12 15:11:12,374 - OEMC-Attention - INFO - >>> Loading data from dataset\processed\hmr_s8_f200_w1.0_o0...
+2026-09-12 15:11:14,241 - OEMC-Attention - INFO - Loaded 26 files. Total samples: 1484759
+2026-09-12 15:11:15,088 - OEMC-Attention - INFO - >>> Total: 1484759 | Train: 1187807 | Test: 296952
+2026-09-12 15:11:15,175 - OEMC-Attention - INFO - Using GPU: AMD Radeon via DirectML
+2026-09-12 15:11:15,326 - OEMC-Attention - INFO - === Training: fold1_20260912_151112_t200_f32-16-8-8_k3_do02_lr001_b2048_skipattseqnet ===
+2026-09-12 15:11:15,327 - OEMC-Attention - INFO - optimizer=adam  scheduler=cosine  loss=nll  loader=lookahead
+2026-09-12 15:11:15,583 - OEMC-Attention - INFO - [FLOPs] None | [Params] None
+2026-09-13 14:05:22,053 - OEMC-Attention - INFO - Dataset       : HMR
+2026-09-13 14:05:22,054 - OEMC-Attention - INFO - Data path     : dataset\processed\hmr_s8_f200_w1.0_o0
+2026-09-13 14:05:22,054 - OEMC-Attention - INFO - Stride        : 8
+2026-09-13 14:05:22,054 - OEMC-Attention - INFO - Run name      : 20260913_140522
+2026-09-13 14:05:22,054 - OEMC-Attention - INFO - WandB project : oemc_hmr_cnn_bilstm_20260913
+2026-09-13 14:05:22,054 - OEMC-Attention - INFO - Training config - optimizer=rmsprop  scheduler=elmadjian  loss=nll  loader=lookback
+2026-09-13 14:05:22,054 - OEMC-Attention - INFO - >>> Loading data from dataset\processed\hmr_s8_f200_w1.0_o0...
+2026-09-13 14:05:24,616 - OEMC-Attention - INFO - Loaded 26 files. Total samples: 1484759
+2026-09-13 14:05:25,532 - OEMC-Attention - INFO - >>> Total: 1484759 | Train: 1187807 | Test: 296952
+2026-09-13 14:05:25,664 - OEMC-Attention - INFO - Using GPU: AMD Radeon via DirectML
+2026-09-13 14:05:25,666 - OEMC-Attention - INFO - Model 'cnn_bilstm' uses nn.LSTM, which torch-directml cannot run (missing aten::_thnn_fused_lstm_cell) — switching from DirectML to CPU for this model only.
+2026-09-13 14:05:25,802 - OEMC-Attention - INFO - === Training: fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm ===
+2026-09-13 14:05:25,802 - OEMC-Attention - INFO - optimizer=rmsprop  scheduler=elmadjian  loss=nll  loader=lookback
+2026-09-13 14:05:26,052 - OEMC-Attention - INFO - [FLOPs] 239492 | [Params] 16940
+2026-09-13 14:06:31,336 - OEMC-Attention - INFO - fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 1 set: Train loss: 0.8360 | Val loss: 0.6112
+2026-09-13 14:06:31,337 - OEMC-Attention - INFO - F1 Macro Average: 67.84%
+2026-09-13 14:06:31,337 - OEMC-Attention - INFO - F1 Fixation: 86.2% | Saccade: 50.3% | Pursuit: 77.5% | Blink: 57.4%
+2026-09-13 14:07:33,107 - OEMC-Attention - INFO - fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 2 set: Train loss: 0.6083 | Val loss: 0.5454
+2026-09-13 14:07:33,107 - OEMC-Attention - INFO - F1 Macro Average: 72.11%
+2026-09-13 14:07:33,107 - OEMC-Attention - INFO - F1 Fixation: 87.8% | Saccade: 60.9% | Pursuit: 81.2% | Blink: 58.6%
+2026-09-13 14:08:33,923 - OEMC-Attention - INFO - fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 3 set: Train loss: 0.5489 | Val loss: 0.5025
+2026-09-13 14:08:33,923 - OEMC-Attention - INFO - F1 Macro Average: 74.40%
+2026-09-13 14:08:33,923 - OEMC-Attention - INFO - F1 Fixation: 88.8% | Saccade: 63.3% | Pursuit: 84.8% | Blink: 60.6%
+2026-09-13 14:09:34,143 - OEMC-Attention - INFO - fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 4 set: Train loss: 0.5244 | Val loss: 0.5065
+2026-09-13 14:09:34,143 - OEMC-Attention - INFO - F1 Macro Average: 73.52%
+2026-09-13 14:09:34,144 - OEMC-Attention - INFO - F1 Fixation: 88.8% | Saccade: 62.9% | Pursuit: 84.3% | Blink: 58.0%
+2026-09-13 14:09:34,364 - OEMC-Attention - INFO - Early stopping counter: 1/10 | Improvement: -0.0039
+2026-09-13 14:10:34,481 - OEMC-Attention - INFO - fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 5 set: Train loss: 0.5103 | Val loss: 0.4746
+2026-09-13 14:10:34,481 - OEMC-Attention - INFO - F1 Macro Average: 75.39%
+2026-09-13 14:10:34,482 - OEMC-Attention - INFO - F1 Fixation: 89.4% | Saccade: 65.2% | Pursuit: 85.7% | Blink: 61.3%
+2026-09-13 14:11:35,152 - OEMC-Attention - INFO - fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 6 set: Train loss: 0.5000 | Val loss: 0.4728
+2026-09-13 14:11:35,153 - OEMC-Attention - INFO - F1 Macro Average: 75.32%
+2026-09-13 14:11:35,153 - OEMC-Attention - INFO - F1 Fixation: 89.4% | Saccade: 65.4% | Pursuit: 85.9% | Blink: 60.6%
+2026-09-13 14:12:36,532 - OEMC-Attention - INFO - fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 7 set: Train loss: 0.4923 | Val loss: 0.4641
+2026-09-13 14:12:36,533 - OEMC-Attention - INFO - F1 Macro Average: 76.31%
+2026-09-13 14:12:36,533 - OEMC-Attention - INFO - F1 Fixation: 89.6% | Saccade: 66.7% | Pursuit: 86.2% | Blink: 62.7%
+2026-09-13 14:13:36,706 - OEMC-Attention - INFO - fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 8 set: Train loss: 0.4850 | Val loss: 0.4537
+2026-09-13 14:13:36,707 - OEMC-Attention - INFO - F1 Macro Average: 76.43%
+2026-09-13 14:13:36,707 - OEMC-Attention - INFO - F1 Fixation: 89.8% | Saccade: 66.2% | Pursuit: 87.0% | Blink: 62.7%
+2026-09-13 14:14:36,938 - OEMC-Attention - INFO - fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 9 set: Train loss: 0.4800 | Val loss: 0.4542
+2026-09-13 14:14:36,939 - OEMC-Attention - INFO - F1 Macro Average: 76.75%
+2026-09-13 14:14:36,939 - OEMC-Attention - INFO - F1 Fixation: 89.8% | Saccade: 66.1% | Pursuit: 86.9% | Blink: 64.2%
+2026-09-13 14:14:37,164 - OEMC-Attention - INFO - Early stopping counter: 1/10 | Improvement: -0.0005
+2026-09-13 14:15:37,180 - OEMC-Attention - INFO - fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 10 set: Train loss: 0.4760 | Val loss: 0.4542
+2026-09-13 14:15:37,180 - OEMC-Attention - INFO - F1 Macro Average: 76.95%
+2026-09-13 14:15:37,180 - OEMC-Attention - INFO - F1 Fixation: 89.8% | Saccade: 66.9% | Pursuit: 87.1% | Blink: 64.0%
+2026-09-13 14:15:37,398 - OEMC-Attention - INFO - Early stopping counter: 2/10 | Improvement: -0.0005
+2026-09-13 14:16:37,629 - OEMC-Attention - INFO - fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 11 set: Train loss: 0.4720 | Val loss: 0.4471
+2026-09-13 14:16:37,629 - OEMC-Attention - INFO - F1 Macro Average: 77.16%
+2026-09-13 14:16:37,630 - OEMC-Attention - INFO - F1 Fixation: 89.8% | Saccade: 67.4% | Pursuit: 87.1% | Blink: 64.4%
+2026-09-13 14:17:37,952 - OEMC-Attention - INFO - fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 12 set: Train loss: 0.4693 | Val loss: 0.4547
+2026-09-13 14:17:37,953 - OEMC-Attention - INFO - F1 Macro Average: 76.24%
+2026-09-13 14:17:37,953 - OEMC-Attention - INFO - F1 Fixation: 89.5% | Saccade: 66.1% | Pursuit: 86.3% | Blink: 63.0%
+2026-09-13 14:17:38,179 - OEMC-Attention - INFO - [fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 12: F1-macro plateaued/declined (prev=76.95%, now=76.24%) — halving LR to 0.005000 (Elmadjian et al. manual rule)
+2026-09-13 14:17:38,179 - OEMC-Attention - INFO - Early stopping counter: 1/10 | Improvement: -0.0076
+2026-09-13 14:18:37,997 - OEMC-Attention - INFO - fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 13 set: Train loss: 0.4560 | Val loss: 0.4348
+2026-09-13 14:18:37,998 - OEMC-Attention - INFO - F1 Macro Average: 77.37%
+2026-09-13 14:18:37,998 - OEMC-Attention - INFO - F1 Fixation: 90.2% | Saccade: 67.5% | Pursuit: 87.8% | Blink: 63.9%
+2026-09-13 14:19:38,185 - OEMC-Attention - INFO - fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 14 set: Train loss: 0.4538 | Val loss: 0.4315
+2026-09-13 14:19:38,185 - OEMC-Attention - INFO - F1 Macro Average: 77.41%
+2026-09-13 14:19:38,185 - OEMC-Attention - INFO - F1 Fixation: 90.2% | Saccade: 67.5% | Pursuit: 88.0% | Blink: 64.0%
+2026-09-13 14:20:38,592 - OEMC-Attention - INFO - fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 15 set: Train loss: 0.4525 | Val loss: 0.4318
+2026-09-13 14:20:38,592 - OEMC-Attention - INFO - F1 Macro Average: 77.74%
+2026-09-13 14:20:38,592 - OEMC-Attention - INFO - F1 Fixation: 90.2% | Saccade: 67.9% | Pursuit: 88.0% | Blink: 64.8%
+2026-09-13 14:20:38,811 - OEMC-Attention - INFO - Early stopping counter: 1/10 | Improvement: -0.0002
+2026-09-13 14:21:40,190 - OEMC-Attention - INFO - fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 16 set: Train loss: 0.4514 | Val loss: 0.4291
+2026-09-13 14:21:40,190 - OEMC-Attention - INFO - F1 Macro Average: 77.55%
+2026-09-13 14:21:40,190 - OEMC-Attention - INFO - F1 Fixation: 90.3% | Saccade: 67.8% | Pursuit: 88.1% | Blink: 64.1%
+2026-09-13 14:22:42,101 - OEMC-Attention - INFO - fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 17 set: Train loss: 0.4498 | Val loss: 0.4410
+2026-09-13 14:22:42,101 - OEMC-Attention - INFO - F1 Macro Average: 76.70%
+2026-09-13 14:22:42,102 - OEMC-Attention - INFO - F1 Fixation: 90.0% | Saccade: 66.7% | Pursuit: 87.4% | Blink: 62.6%
+2026-09-13 14:22:42,338 - OEMC-Attention - INFO - [fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 17: F1-macro plateaued/declined (prev=77.74%, now=76.70%) — halving LR to 0.002500 (Elmadjian et al. manual rule)
+2026-09-13 14:22:42,338 - OEMC-Attention - INFO - Early stopping counter: 1/10 | Improvement: -0.0119
+2026-09-13 14:23:44,724 - OEMC-Attention - INFO - fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 18 set: Train loss: 0.4443 | Val loss: 0.4265
+2026-09-13 14:23:44,724 - OEMC-Attention - INFO - F1 Macro Average: 77.52%
+2026-09-13 14:23:44,725 - OEMC-Attention - INFO - F1 Fixation: 90.2% | Saccade: 67.9% | Pursuit: 88.1% | Blink: 63.9%
+2026-09-13 14:23:44,950 - OEMC-Attention - INFO - [fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 18: F1-macro plateaued/declined (prev=77.55%, now=77.52%) — halving LR to 0.001250 (Elmadjian et al. manual rule)
+2026-09-13 14:24:45,079 - OEMC-Attention - INFO - fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 19 set: Train loss: 0.4413 | Val loss: 0.4207
+2026-09-13 14:24:45,079 - OEMC-Attention - INFO - F1 Macro Average: 78.05%
+2026-09-13 14:24:45,079 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.5% | Pursuit: 88.5% | Blink: 64.8%
+2026-09-13 14:25:45,362 - OEMC-Attention - INFO - fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 20 set: Train loss: 0.4407 | Val loss: 0.4210
+2026-09-13 14:25:45,363 - OEMC-Attention - INFO - F1 Macro Average: 77.99%
+2026-09-13 14:25:45,363 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.4% | Pursuit: 88.4% | Blink: 64.7%
+2026-09-13 14:25:45,584 - OEMC-Attention - INFO - Early stopping counter: 1/10 | Improvement: -0.0003
+2026-09-13 14:26:45,507 - OEMC-Attention - INFO - fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 21 set: Train loss: 0.4401 | Val loss: 0.4205
+2026-09-13 14:26:45,507 - OEMC-Attention - INFO - F1 Macro Average: 77.88%
+2026-09-13 14:26:45,507 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.3% | Pursuit: 88.5% | Blink: 64.3%
+2026-09-13 14:26:45,732 - OEMC-Attention - INFO - [fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 21: F1-macro plateaued/declined (prev=78.05%, now=77.88%) — halving LR to 0.000625 (Elmadjian et al. manual rule)
+2026-09-13 14:27:45,460 - OEMC-Attention - INFO - fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 22 set: Train loss: 0.4390 | Val loss: 0.4197
+2026-09-13 14:27:45,460 - OEMC-Attention - INFO - F1 Macro Average: 77.99%
+2026-09-13 14:27:45,460 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.4% | Pursuit: 88.5% | Blink: 64.7%
+2026-09-13 14:27:45,681 - OEMC-Attention - INFO - [fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 22: F1-macro plateaued/declined (prev=77.99%, now=77.99%) — halving LR to 0.000313 (Elmadjian et al. manual rule)
+2026-09-13 14:28:45,732 - OEMC-Attention - INFO - fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 23 set: Train loss: 0.4381 | Val loss: 0.4192
+2026-09-13 14:28:45,732 - OEMC-Attention - INFO - F1 Macro Average: 78.03%
+2026-09-13 14:28:45,733 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.4% | Pursuit: 88.5% | Blink: 64.7%
+2026-09-13 14:29:49,457 - OEMC-Attention - INFO - fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 24 set: Train loss: 0.4379 | Val loss: 0.4192
+2026-09-13 14:29:49,458 - OEMC-Attention - INFO - F1 Macro Average: 78.08%
+2026-09-13 14:29:49,458 - OEMC-Attention - INFO - F1 Fixation: 90.5% | Saccade: 68.5% | Pursuit: 88.5% | Blink: 64.8%
+2026-09-13 14:29:49,698 - OEMC-Attention - INFO - [fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 24: F1-macro plateaued/declined (prev=77.99%, now=78.08%) — halving LR to 0.000156 (Elmadjian et al. manual rule)
+2026-09-13 14:30:52,952 - OEMC-Attention - INFO - fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 25 set: Train loss: 0.4372 | Val loss: 0.4181
+2026-09-13 14:30:52,952 - OEMC-Attention - INFO - F1 Macro Average: 78.09%
+2026-09-13 14:30:52,952 - OEMC-Attention - INFO - F1 Fixation: 90.5% | Saccade: 68.4% | Pursuit: 88.6% | Blink: 64.9%
+2026-09-13 14:30:53,192 - OEMC-Attention - INFO - [fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 25: F1-macro plateaued/declined (prev=78.03%, now=78.09%) — halving LR to 0.000078 (Elmadjian et al. manual rule)
+2026-09-13 14:31:57,177 - OEMC-Attention - INFO - fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 26 set: Train loss: 0.4374 | Val loss: 0.4186
+2026-09-13 14:31:57,178 - OEMC-Attention - INFO - F1 Macro Average: 78.07%
+2026-09-13 14:31:57,178 - OEMC-Attention - INFO - F1 Fixation: 90.5% | Saccade: 68.5% | Pursuit: 88.6% | Blink: 64.8%
+2026-09-13 14:31:57,467 - OEMC-Attention - INFO - [fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 26: F1-macro plateaued/declined (prev=78.08%, now=78.07%) — halving LR to 0.000039 (Elmadjian et al. manual rule)
+2026-09-13 14:31:57,467 - OEMC-Attention - INFO - Early stopping counter: 1/10 | Improvement: -0.0005
+2026-09-13 14:33:01,406 - OEMC-Attention - INFO - fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 27 set: Train loss: 0.4370 | Val loss: 0.4188
+2026-09-13 14:33:01,406 - OEMC-Attention - INFO - F1 Macro Average: 78.05%
+2026-09-13 14:33:01,406 - OEMC-Attention - INFO - F1 Fixation: 90.5% | Saccade: 68.4% | Pursuit: 88.6% | Blink: 64.8%
+2026-09-13 14:33:01,683 - OEMC-Attention - INFO - [fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 27: F1-macro plateaued/declined (prev=78.09%, now=78.05%) — halving LR to 0.000020 (Elmadjian et al. manual rule)
+2026-09-13 14:33:01,684 - OEMC-Attention - INFO - Early stopping counter: 2/10 | Improvement: -0.0007
+2026-09-13 14:34:04,655 - OEMC-Attention - INFO - fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 28 set: Train loss: 0.4372 | Val loss: 0.4184
+2026-09-13 14:34:04,655 - OEMC-Attention - INFO - F1 Macro Average: 78.12%
+2026-09-13 14:34:04,656 - OEMC-Attention - INFO - F1 Fixation: 90.5% | Saccade: 68.6% | Pursuit: 88.6% | Blink: 64.9%
+2026-09-13 14:34:04,883 - OEMC-Attention - INFO - [fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 28: F1-macro plateaued/declined (prev=78.07%, now=78.12%) — halving LR to 0.000010 (Elmadjian et al. manual rule)
+2026-09-13 14:34:04,883 - OEMC-Attention - INFO - Early stopping counter: 3/10 | Improvement: -0.0003
+2026-09-13 14:35:05,474 - OEMC-Attention - INFO - fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 29 set: Train loss: 0.4368 | Val loss: 0.4186
+2026-09-13 14:35:05,474 - OEMC-Attention - INFO - F1 Macro Average: 78.11%
+2026-09-13 14:35:05,474 - OEMC-Attention - INFO - F1 Fixation: 90.5% | Saccade: 68.6% | Pursuit: 88.6% | Blink: 64.7%
+2026-09-13 14:35:05,701 - OEMC-Attention - INFO - [fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 29: F1-macro plateaued/declined (prev=78.05%, now=78.11%) — halving LR to 0.000005 (Elmadjian et al. manual rule)
+2026-09-13 14:35:05,702 - OEMC-Attention - INFO - Early stopping counter: 4/10 | Improvement: -0.0005
+2026-09-13 14:36:06,119 - OEMC-Attention - INFO - fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 30 set: Train loss: 0.4368 | Val loss: 0.4184
+2026-09-13 14:36:06,120 - OEMC-Attention - INFO - F1 Macro Average: 78.09%
+2026-09-13 14:36:06,120 - OEMC-Attention - INFO - F1 Fixation: 90.5% | Saccade: 68.5% | Pursuit: 88.6% | Blink: 64.8%
+2026-09-13 14:36:06,361 - OEMC-Attention - INFO - [fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 30: F1-macro plateaued/declined (prev=78.12%, now=78.09%) — halving LR to 0.000002 (Elmadjian et al. manual rule)
+2026-09-13 14:36:06,361 - OEMC-Attention - INFO - Early stopping counter: 5/10 | Improvement: -0.0003
+2026-09-13 14:37:06,519 - OEMC-Attention - INFO - fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 31 set: Train loss: 0.4373 | Val loss: 0.4185
+2026-09-13 14:37:06,519 - OEMC-Attention - INFO - F1 Macro Average: 78.05%
+2026-09-13 14:37:06,520 - OEMC-Attention - INFO - F1 Fixation: 90.5% | Saccade: 68.5% | Pursuit: 88.6% | Blink: 64.7%
+2026-09-13 14:37:06,748 - OEMC-Attention - INFO - [fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 31: F1-macro plateaued/declined (prev=78.11%, now=78.05%) — halving LR to 0.000001 (Elmadjian et al. manual rule)
+2026-09-13 14:37:06,748 - OEMC-Attention - INFO - Early stopping counter: 6/10 | Improvement: -0.0005
+2026-09-13 14:38:06,796 - OEMC-Attention - INFO - fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 32 set: Train loss: 0.4374 | Val loss: 0.4184
+2026-09-13 14:38:06,797 - OEMC-Attention - INFO - F1 Macro Average: 78.06%
+2026-09-13 14:38:06,797 - OEMC-Attention - INFO - F1 Fixation: 90.5% | Saccade: 68.5% | Pursuit: 88.6% | Blink: 64.7%
+2026-09-13 14:38:07,019 - OEMC-Attention - INFO - [fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 32: F1-macro plateaued/declined (prev=78.09%, now=78.06%) — halving LR to 0.000001 (Elmadjian et al. manual rule)
+2026-09-13 14:38:07,020 - OEMC-Attention - INFO - Early stopping counter: 7/10 | Improvement: -0.0003
+2026-09-13 14:39:07,113 - OEMC-Attention - INFO - fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 33 set: Train loss: 0.4373 | Val loss: 0.4184
+2026-09-13 14:39:07,113 - OEMC-Attention - INFO - F1 Macro Average: 78.10%
+2026-09-13 14:39:07,113 - OEMC-Attention - INFO - F1 Fixation: 90.5% | Saccade: 68.6% | Pursuit: 88.6% | Blink: 64.8%
+2026-09-13 14:39:07,336 - OEMC-Attention - INFO - [fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 33: F1-macro plateaued/declined (prev=78.05%, now=78.10%) — halving LR to 0.000000 (Elmadjian et al. manual rule)
+2026-09-13 14:39:07,336 - OEMC-Attention - INFO - Early stopping counter: 8/10 | Improvement: -0.0003
+2026-09-13 14:40:07,408 - OEMC-Attention - INFO - fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 34 set: Train loss: 0.4372 | Val loss: 0.4185
+2026-09-13 14:40:07,408 - OEMC-Attention - INFO - F1 Macro Average: 78.06%
+2026-09-13 14:40:07,408 - OEMC-Attention - INFO - F1 Fixation: 90.5% | Saccade: 68.5% | Pursuit: 88.6% | Blink: 64.8%
+2026-09-13 14:40:07,631 - OEMC-Attention - INFO - [fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 34: F1-macro plateaued/declined (prev=78.06%, now=78.06%) — halving LR to 0.000000 (Elmadjian et al. manual rule)
+2026-09-13 14:40:07,631 - OEMC-Attention - INFO - Early stopping counter: 9/10 | Improvement: -0.0004
+2026-09-13 14:41:07,655 - OEMC-Attention - INFO - fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 35 set: Train loss: 0.4368 | Val loss: 0.4188
+2026-09-13 14:41:07,656 - OEMC-Attention - INFO - F1 Macro Average: 78.00%
+2026-09-13 14:41:07,656 - OEMC-Attention - INFO - F1 Fixation: 90.5% | Saccade: 68.4% | Pursuit: 88.5% | Blink: 64.6%
+2026-09-13 14:41:07,877 - OEMC-Attention - INFO - [fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 35: F1-macro plateaued/declined (prev=78.10%, now=78.00%) — halving LR to 0.000000 (Elmadjian et al. manual rule)
+2026-09-13 14:41:07,877 - OEMC-Attention - INFO - Early stopping counter: 10/10 | Improvement: -0.0007
+2026-09-13 14:41:07,877 - OEMC-Attention - INFO - Early stopping triggered at epoch 35
+2026-09-13 14:41:07,879 - OEMC-Attention - INFO - Best model restored — F1: 0.7812
+2026-09-13 14:41:08,422 - OEMC-Attention - INFO - 
+============================================================
+2026-09-13 14:41:08,423 - OEMC-Attention - INFO - FINAL METRICS - fold1_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm FINAL BEST
+2026-09-13 14:41:08,423 - OEMC-Attention - INFO - ============================================================
+2026-09-13 14:41:08,423 - OEMC-Attention - INFO - Train Loss : 0.4372 | Val Loss : 0.4184
+2026-09-13 14:41:08,423 - OEMC-Attention - INFO - 
+[1] SAMPLE-LEVEL METRICS (per data point):
+2026-09-13 14:41:08,423 - OEMC-Attention - INFO - ------------------------------------------------------------
+2026-09-13 14:41:08,463 - OEMC-Attention - INFO -               precision    recall  f1-score   support
+2026-09-13 14:41:08,464 - OEMC-Attention - INFO -     Fixation     0.8616    0.9526    0.9048    133593
+2026-09-13 14:41:08,464 - OEMC-Attention - INFO -      Saccade     0.7518    0.6304    0.6858     15323
+2026-09-13 14:41:08,464 - OEMC-Attention - INFO -      Pursuit     0.8940    0.8776    0.8857     60693
+2026-09-13 14:41:08,464 - OEMC-Attention - INFO -        Blink     0.8450    0.5264    0.6487     27933
+2026-09-13 14:41:08,464 - OEMC-Attention - INFO -     accuracy                         0.8626    237542
+2026-09-13 14:41:08,465 - OEMC-Attention - INFO -    macro avg     0.8381    0.7468    0.7812    237542
+2026-09-13 14:41:08,465 - OEMC-Attention - INFO - weighted avg     0.8608    0.8626    0.8557    237542
+2026-09-13 14:41:08,465 - OEMC-Attention - INFO - 
+    Confusion Matrix (Sample - counts):
+2026-09-13 14:41:08,470 - OEMC-Attention - INFO -                 Fixation   Saccade   Pursuit     Blink
+2026-09-13 14:41:08,471 - OEMC-Attention - INFO -     Fixation      127267      1196      3354      1776
+2026-09-13 14:41:08,471 - OEMC-Attention - INFO -     Saccade         4893      9660       353       417
+2026-09-13 14:41:08,471 - OEMC-Attention - INFO -     Pursuit         6115       810     53263       505
+2026-09-13 14:41:08,471 - OEMC-Attention - INFO -     Blink           9439      1183      2608     14703
+2026-09-13 14:41:08,471 - OEMC-Attention - INFO - 
+2026-09-13 14:41:08,471 - OEMC-Attention - INFO - [2] EVENT-LEVEL METRICS (per movement segment):
+2026-09-13 14:41:08,471 - OEMC-Attention - INFO - ------------------------------------------------------------
+2026-09-13 14:41:08,494 - OEMC-Attention - INFO -               precision    recall  f1-score   support
+2026-09-13 14:41:08,495 - OEMC-Attention - INFO -     Fixation     0.7520    0.9777    0.8501     58486
+2026-09-13 14:41:08,495 - OEMC-Attention - INFO -      Saccade     0.8175    0.6198    0.7051     14342
+2026-09-13 14:41:08,495 - OEMC-Attention - INFO -      Pursuit     0.9214    0.8640    0.8917     45091
+2026-09-13 14:41:08,495 - OEMC-Attention - INFO -        Blink     0.9272    0.5025    0.6517     24625
+2026-09-13 14:41:08,495 - OEMC-Attention - INFO -     accuracy                         0.8236    142544
+2026-09-13 14:41:08,495 - OEMC-Attention - INFO -    macro avg     0.8545    0.7410    0.7747    142544
+2026-09-13 14:41:08,495 - OEMC-Attention - INFO - weighted avg     0.8424    0.8236    0.8144    142544
+2026-09-13 14:41:08,496 - OEMC-Attention - INFO - 
+    Confusion Matrix (Event - counts):
+2026-09-13 14:41:08,499 - OEMC-Attention - INFO -                 Fixation   Saccade   Pursuit     Blink
+2026-09-13 14:41:08,499 - OEMC-Attention - INFO -     Fixation       57182       240       708       356
+2026-09-13 14:41:08,500 - OEMC-Attention - INFO -     Saccade         4788      8889       317       348
+2026-09-13 14:41:08,500 - OEMC-Attention - INFO -     Pursuit         5190       676     38957       268
+2026-09-13 14:41:08,500 - OEMC-Attention - INFO -     Blink           8884      1068      2300     12373
+2026-09-13 14:41:08,500 - OEMC-Attention - INFO - 
+2026-09-13 14:41:08,500 - OEMC-Attention - INFO - 
+============================================================
+
+2026-09-13 14:41:12,970 - OEMC-Attention - INFO - === Training: fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm ===
+2026-09-13 14:41:12,971 - OEMC-Attention - INFO - optimizer=rmsprop  scheduler=elmadjian  loss=nll  loader=lookback
+2026-09-13 14:42:13,403 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 1 set: Train loss: 0.8025 | Val loss: 0.5912
+2026-09-13 14:42:13,403 - OEMC-Attention - INFO - F1 Macro Average: 68.63%
+2026-09-13 14:42:13,404 - OEMC-Attention - INFO - F1 Fixation: 86.5% | Saccade: 56.4% | Pursuit: 79.7% | Blink: 51.9%
+2026-09-13 14:43:14,133 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 2 set: Train loss: 0.6101 | Val loss: 0.5443
+2026-09-13 14:43:14,133 - OEMC-Attention - INFO - F1 Macro Average: 71.04%
+2026-09-13 14:43:14,134 - OEMC-Attention - INFO - F1 Fixation: 87.7% | Saccade: 57.9% | Pursuit: 82.6% | Blink: 56.0%
+2026-09-13 14:44:14,456 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 3 set: Train loss: 0.5750 | Val loss: 0.5318
+2026-09-13 14:44:14,456 - OEMC-Attention - INFO - F1 Macro Average: 70.89%
+2026-09-13 14:44:14,456 - OEMC-Attention - INFO - F1 Fixation: 88.3% | Saccade: 60.4% | Pursuit: 83.7% | Blink: 51.2%
+2026-09-13 14:45:14,790 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 4 set: Train loss: 0.5548 | Val loss: 0.5048
+2026-09-13 14:45:14,790 - OEMC-Attention - INFO - F1 Macro Average: 73.51%
+2026-09-13 14:45:14,790 - OEMC-Attention - INFO - F1 Fixation: 88.7% | Saccade: 63.1% | Pursuit: 84.3% | Blink: 58.0%
+2026-09-13 14:46:14,978 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 5 set: Train loss: 0.5352 | Val loss: 0.4838
+2026-09-13 14:46:14,979 - OEMC-Attention - INFO - F1 Macro Average: 74.38%
+2026-09-13 14:46:14,979 - OEMC-Attention - INFO - F1 Fixation: 89.1% | Saccade: 63.6% | Pursuit: 85.5% | Blink: 59.3%
+2026-09-13 14:47:14,977 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 6 set: Train loss: 0.5234 | Val loss: 0.4967
+2026-09-13 14:47:14,978 - OEMC-Attention - INFO - F1 Macro Average: 75.05%
+2026-09-13 14:47:14,978 - OEMC-Attention - INFO - F1 Fixation: 89.0% | Saccade: 64.3% | Pursuit: 85.3% | Blink: 61.6%
+2026-09-13 14:47:15,198 - OEMC-Attention - INFO - Early stopping counter: 1/10 | Improvement: -0.0130
+2026-09-13 14:48:15,439 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 7 set: Train loss: 0.5128 | Val loss: 0.4688
+2026-09-13 14:48:15,439 - OEMC-Attention - INFO - F1 Macro Average: 75.41%
+2026-09-13 14:48:15,439 - OEMC-Attention - INFO - F1 Fixation: 89.5% | Saccade: 65.5% | Pursuit: 86.3% | Blink: 60.5%
+2026-09-13 14:49:17,114 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 8 set: Train loss: 0.5024 | Val loss: 0.4605
+2026-09-13 14:49:17,115 - OEMC-Attention - INFO - F1 Macro Average: 75.78%
+2026-09-13 14:49:17,115 - OEMC-Attention - INFO - F1 Fixation: 89.7% | Saccade: 66.1% | Pursuit: 86.9% | Blink: 60.4%
+2026-09-13 14:50:18,675 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 9 set: Train loss: 0.4980 | Val loss: 0.4577
+2026-09-13 14:50:18,675 - OEMC-Attention - INFO - F1 Macro Average: 75.86%
+2026-09-13 14:50:18,675 - OEMC-Attention - INFO - F1 Fixation: 89.7% | Saccade: 64.7% | Pursuit: 86.8% | Blink: 62.3%
+2026-09-13 14:51:20,294 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 10 set: Train loss: 0.4919 | Val loss: 0.4581
+2026-09-13 14:51:20,295 - OEMC-Attention - INFO - F1 Macro Average: 75.34%
+2026-09-13 14:51:20,295 - OEMC-Attention - INFO - F1 Fixation: 89.8% | Saccade: 65.9% | Pursuit: 87.2% | Blink: 58.5%
+2026-09-13 14:51:20,518 - OEMC-Attention - INFO - [fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 10: F1-macro plateaued/declined (prev=75.78%, now=75.34%) — halving LR to 0.005000 (Elmadjian et al. manual rule)
+2026-09-13 14:51:20,518 - OEMC-Attention - INFO - Early stopping counter: 1/10 | Improvement: -0.0004
+2026-09-13 14:52:21,977 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 11 set: Train loss: 0.4744 | Val loss: 0.4458
+2026-09-13 14:52:21,977 - OEMC-Attention - INFO - F1 Macro Average: 76.32%
+2026-09-13 14:52:21,978 - OEMC-Attention - INFO - F1 Fixation: 89.9% | Saccade: 66.7% | Pursuit: 87.5% | Blink: 61.2%
+2026-09-13 14:53:23,627 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 12 set: Train loss: 0.4714 | Val loss: 0.4408
+2026-09-13 14:53:23,627 - OEMC-Attention - INFO - F1 Macro Average: 76.73%
+2026-09-13 14:53:23,627 - OEMC-Attention - INFO - F1 Fixation: 89.9% | Saccade: 67.2% | Pursuit: 87.7% | Blink: 62.1%
+2026-09-13 14:54:25,150 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 13 set: Train loss: 0.4693 | Val loss: 0.4430
+2026-09-13 14:54:25,150 - OEMC-Attention - INFO - F1 Macro Average: 76.51%
+2026-09-13 14:54:25,151 - OEMC-Attention - INFO - F1 Fixation: 90.0% | Saccade: 66.9% | Pursuit: 87.6% | Blink: 61.5%
+2026-09-13 14:54:25,372 - OEMC-Attention - INFO - Early stopping counter: 1/10 | Improvement: -0.0022
+2026-09-13 14:55:26,406 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 14 set: Train loss: 0.4676 | Val loss: 0.4344
+2026-09-13 14:55:26,406 - OEMC-Attention - INFO - F1 Macro Average: 77.03%
+2026-09-13 14:55:26,406 - OEMC-Attention - INFO - F1 Fixation: 90.1% | Saccade: 66.9% | Pursuit: 87.9% | Blink: 63.2%
+2026-09-13 14:56:28,015 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 15 set: Train loss: 0.4655 | Val loss: 0.4318
+2026-09-13 14:56:28,016 - OEMC-Attention - INFO - F1 Macro Average: 77.47%
+2026-09-13 14:56:28,016 - OEMC-Attention - INFO - F1 Fixation: 90.1% | Saccade: 67.8% | Pursuit: 88.1% | Blink: 63.8%
+2026-09-13 14:57:29,568 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 16 set: Train loss: 0.4633 | Val loss: 0.4346
+2026-09-13 14:57:29,568 - OEMC-Attention - INFO - F1 Macro Average: 77.17%
+2026-09-13 14:57:29,569 - OEMC-Attention - INFO - F1 Fixation: 90.1% | Saccade: 67.9% | Pursuit: 87.8% | Blink: 62.9%
+2026-09-13 14:57:29,790 - OEMC-Attention - INFO - Early stopping counter: 1/10 | Improvement: -0.0027
+2026-09-13 14:58:31,054 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 17 set: Train loss: 0.4621 | Val loss: 0.4287
+2026-09-13 14:58:31,054 - OEMC-Attention - INFO - F1 Macro Average: 77.50%
+2026-09-13 14:58:31,055 - OEMC-Attention - INFO - F1 Fixation: 90.2% | Saccade: 68.0% | Pursuit: 88.3% | Blink: 63.4%
+2026-09-13 14:58:31,275 - OEMC-Attention - INFO - [fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 17: F1-macro plateaued/declined (prev=77.47%, now=77.50%) — halving LR to 0.002500 (Elmadjian et al. manual rule)
+2026-09-13 14:59:32,543 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 18 set: Train loss: 0.4562 | Val loss: 0.4274
+2026-09-13 14:59:32,543 - OEMC-Attention - INFO - F1 Macro Average: 77.41%
+2026-09-13 14:59:32,544 - OEMC-Attention - INFO - F1 Fixation: 90.3% | Saccade: 68.1% | Pursuit: 88.4% | Blink: 62.8%
+2026-09-13 15:00:34,361 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 19 set: Train loss: 0.4551 | Val loss: 0.4257
+2026-09-13 15:00:34,362 - OEMC-Attention - INFO - F1 Macro Average: 77.59%
+2026-09-13 15:00:34,362 - OEMC-Attention - INFO - F1 Fixation: 90.3% | Saccade: 68.1% | Pursuit: 88.3% | Blink: 63.7%
+2026-09-13 15:00:34,579 - OEMC-Attention - INFO - [fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 19: F1-macro plateaued/declined (prev=77.50%, now=77.59%) — halving LR to 0.001250 (Elmadjian et al. manual rule)
+2026-09-13 15:01:35,957 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 20 set: Train loss: 0.4513 | Val loss: 0.4233
+2026-09-13 15:01:35,957 - OEMC-Attention - INFO - F1 Macro Average: 77.80%
+2026-09-13 15:01:35,957 - OEMC-Attention - INFO - F1 Fixation: 90.3% | Saccade: 68.5% | Pursuit: 88.5% | Blink: 63.9%
+2026-09-13 15:02:38,082 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 21 set: Train loss: 0.4513 | Val loss: 0.4222
+2026-09-13 15:02:38,082 - OEMC-Attention - INFO - F1 Macro Average: 77.76%
+2026-09-13 15:02:38,083 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.4% | Pursuit: 88.5% | Blink: 63.8%
+2026-09-13 15:03:39,598 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 22 set: Train loss: 0.4501 | Val loss: 0.4223
+2026-09-13 15:03:39,598 - OEMC-Attention - INFO - F1 Macro Average: 77.90%
+2026-09-13 15:03:39,598 - OEMC-Attention - INFO - F1 Fixation: 90.3% | Saccade: 68.5% | Pursuit: 88.5% | Blink: 64.2%
+2026-09-13 15:03:39,820 - OEMC-Attention - INFO - [fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 22: F1-macro plateaued/declined (prev=77.80%, now=77.90%) — halving LR to 0.000625 (Elmadjian et al. manual rule)
+2026-09-13 15:03:39,820 - OEMC-Attention - INFO - Early stopping counter: 1/10 | Improvement: -0.0000
+2026-09-13 15:04:41,089 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 23 set: Train loss: 0.4486 | Val loss: 0.4218
+2026-09-13 15:04:41,089 - OEMC-Attention - INFO - F1 Macro Average: 77.77%
+2026-09-13 15:04:41,089 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.7% | Pursuit: 88.5% | Blink: 63.5%
+2026-09-13 15:04:41,309 - OEMC-Attention - INFO - [fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 23: F1-macro plateaued/declined (prev=77.76%, now=77.77%) — halving LR to 0.000313 (Elmadjian et al. manual rule)
+2026-09-13 15:05:42,637 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 24 set: Train loss: 0.4479 | Val loss: 0.4208
+2026-09-13 15:05:42,637 - OEMC-Attention - INFO - F1 Macro Average: 77.90%
+2026-09-13 15:05:42,638 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.8% | Pursuit: 88.6% | Blink: 63.8%
+2026-09-13 15:05:42,902 - OEMC-Attention - INFO - [fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 24: F1-macro plateaued/declined (prev=77.90%, now=77.90%) — halving LR to 0.000156 (Elmadjian et al. manual rule)
+2026-09-13 15:06:44,150 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 25 set: Train loss: 0.4477 | Val loss: 0.4209
+2026-09-13 15:06:44,150 - OEMC-Attention - INFO - F1 Macro Average: 77.86%
+2026-09-13 15:06:44,150 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.8% | Pursuit: 88.6% | Blink: 63.7%
+2026-09-13 15:06:44,370 - OEMC-Attention - INFO - [fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 25: F1-macro plateaued/declined (prev=77.77%, now=77.86%) — halving LR to 0.000078 (Elmadjian et al. manual rule)
+2026-09-13 15:06:44,371 - OEMC-Attention - INFO - Early stopping counter: 1/10 | Improvement: -0.0001
+2026-09-13 15:07:45,501 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 26 set: Train loss: 0.4471 | Val loss: 0.4206
+2026-09-13 15:07:45,501 - OEMC-Attention - INFO - F1 Macro Average: 77.87%
+2026-09-13 15:07:45,502 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.8% | Pursuit: 88.6% | Blink: 63.7%
+2026-09-13 15:07:45,735 - OEMC-Attention - INFO - [fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 26: F1-macro plateaued/declined (prev=77.90%, now=77.87%) — halving LR to 0.000039 (Elmadjian et al. manual rule)
+2026-09-13 15:08:47,240 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 27 set: Train loss: 0.4473 | Val loss: 0.4205
+2026-09-13 15:08:47,240 - OEMC-Attention - INFO - F1 Macro Average: 77.86%
+2026-09-13 15:08:47,240 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.8% | Pursuit: 88.6% | Blink: 63.7%
+2026-09-13 15:08:47,464 - OEMC-Attention - INFO - [fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 27: F1-macro plateaued/declined (prev=77.86%, now=77.86%) — halving LR to 0.000020 (Elmadjian et al. manual rule)
+2026-09-13 15:09:48,446 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 28 set: Train loss: 0.4472 | Val loss: 0.4213
+2026-09-13 15:09:48,446 - OEMC-Attention - INFO - F1 Macro Average: 77.77%
+2026-09-13 15:09:48,446 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.7% | Pursuit: 88.6% | Blink: 63.4%
+2026-09-13 15:09:48,668 - OEMC-Attention - INFO - [fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 28: F1-macro plateaued/declined (prev=77.87%, now=77.77%) — halving LR to 0.000010 (Elmadjian et al. manual rule)
+2026-09-13 15:09:48,668 - OEMC-Attention - INFO - Early stopping counter: 1/10 | Improvement: -0.0008
+2026-09-13 15:10:49,817 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 29 set: Train loss: 0.4468 | Val loss: 0.4204
+2026-09-13 15:10:49,817 - OEMC-Attention - INFO - F1 Macro Average: 77.87%
+2026-09-13 15:10:49,818 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.8% | Pursuit: 88.6% | Blink: 63.7%
+2026-09-13 15:10:50,038 - OEMC-Attention - INFO - [fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 29: F1-macro plateaued/declined (prev=77.86%, now=77.87%) — halving LR to 0.000005 (Elmadjian et al. manual rule)
+2026-09-13 15:11:51,275 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 30 set: Train loss: 0.4474 | Val loss: 0.4205
+2026-09-13 15:11:51,275 - OEMC-Attention - INFO - F1 Macro Average: 77.89%
+2026-09-13 15:11:51,275 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.8% | Pursuit: 88.6% | Blink: 63.8%
+2026-09-13 15:11:51,494 - OEMC-Attention - INFO - Early stopping counter: 1/10 | Improvement: -0.0001
+2026-09-13 15:12:52,890 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 31 set: Train loss: 0.4471 | Val loss: 0.4206
+2026-09-13 15:12:52,890 - OEMC-Attention - INFO - F1 Macro Average: 77.87%
+2026-09-13 15:12:52,890 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.7% | Pursuit: 88.6% | Blink: 63.7%
+2026-09-13 15:12:53,111 - OEMC-Attention - INFO - [fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 31: F1-macro plateaued/declined (prev=77.87%, now=77.87%) — halving LR to 0.000002 (Elmadjian et al. manual rule)
+2026-09-13 15:12:53,111 - OEMC-Attention - INFO - Early stopping counter: 2/10 | Improvement: -0.0002
+2026-09-13 15:13:54,394 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 32 set: Train loss: 0.4463 | Val loss: 0.4205
+2026-09-13 15:13:54,394 - OEMC-Attention - INFO - F1 Macro Average: 77.89%
+2026-09-13 15:13:54,395 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.8% | Pursuit: 88.6% | Blink: 63.7%
+2026-09-13 15:13:54,614 - OEMC-Attention - INFO - [fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 32: F1-macro plateaued/declined (prev=77.89%, now=77.89%) — halving LR to 0.000001 (Elmadjian et al. manual rule)
+2026-09-13 15:13:54,614 - OEMC-Attention - INFO - Early stopping counter: 3/10 | Improvement: -0.0001
+2026-09-13 15:14:55,833 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 33 set: Train loss: 0.4471 | Val loss: 0.4209
+2026-09-13 15:14:55,833 - OEMC-Attention - INFO - F1 Macro Average: 77.83%
+2026-09-13 15:14:55,834 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.8% | Pursuit: 88.6% | Blink: 63.5%
+2026-09-13 15:14:56,052 - OEMC-Attention - INFO - [fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 33: F1-macro plateaued/declined (prev=77.87%, now=77.83%) — halving LR to 0.000001 (Elmadjian et al. manual rule)
+2026-09-13 15:14:56,052 - OEMC-Attention - INFO - Early stopping counter: 4/10 | Improvement: -0.0005
+2026-09-13 15:15:57,196 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 34 set: Train loss: 0.4467 | Val loss: 0.4206
+2026-09-13 15:15:57,196 - OEMC-Attention - INFO - F1 Macro Average: 77.86%
+2026-09-13 15:15:57,196 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.8% | Pursuit: 88.6% | Blink: 63.7%
+2026-09-13 15:15:57,418 - OEMC-Attention - INFO - [fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 34: F1-macro plateaued/declined (prev=77.89%, now=77.86%) — halving LR to 0.000000 (Elmadjian et al. manual rule)
+2026-09-13 15:15:57,418 - OEMC-Attention - INFO - Early stopping counter: 5/10 | Improvement: -0.0002
+2026-09-13 15:16:58,566 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 35 set: Train loss: 0.4463 | Val loss: 0.4203
+2026-09-13 15:16:58,566 - OEMC-Attention - INFO - F1 Macro Average: 77.91%
+2026-09-13 15:16:58,566 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.8% | Pursuit: 88.6% | Blink: 63.8%
+2026-09-13 15:16:58,790 - OEMC-Attention - INFO - [fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 35: F1-macro plateaued/declined (prev=77.83%, now=77.91%) — halving LR to 0.000000 (Elmadjian et al. manual rule)
+2026-09-13 15:17:59,932 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 36 set: Train loss: 0.4475 | Val loss: 0.4205
+2026-09-13 15:17:59,932 - OEMC-Attention - INFO - F1 Macro Average: 77.90%
+2026-09-13 15:17:59,932 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.8% | Pursuit: 88.6% | Blink: 63.8%
+2026-09-13 15:18:00,158 - OEMC-Attention - INFO - [fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 36: F1-macro plateaued/declined (prev=77.86%, now=77.90%) — halving LR to 0.000000 (Elmadjian et al. manual rule)
+2026-09-13 15:18:00,159 - OEMC-Attention - INFO - Early stopping counter: 1/10 | Improvement: -0.0001
+2026-09-13 15:19:01,272 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 37 set: Train loss: 0.4470 | Val loss: 0.4204
+2026-09-13 15:19:01,272 - OEMC-Attention - INFO - F1 Macro Average: 77.90%
+2026-09-13 15:19:01,272 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.8% | Pursuit: 88.6% | Blink: 63.8%
+2026-09-13 15:19:01,496 - OEMC-Attention - INFO - [fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 37: F1-macro plateaued/declined (prev=77.91%, now=77.90%) — halving LR to 0.000000 (Elmadjian et al. manual rule)
+2026-09-13 15:19:01,497 - OEMC-Attention - INFO - Early stopping counter: 2/10 | Improvement: -0.0001
+2026-09-13 15:20:02,547 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 38 set: Train loss: 0.4468 | Val loss: 0.4205
+2026-09-13 15:20:02,547 - OEMC-Attention - INFO - F1 Macro Average: 77.89%
+2026-09-13 15:20:02,547 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.8% | Pursuit: 88.6% | Blink: 63.7%
+2026-09-13 15:20:02,773 - OEMC-Attention - INFO - [fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 38: F1-macro plateaued/declined (prev=77.90%, now=77.89%) — halving LR to 0.000000 (Elmadjian et al. manual rule)
+2026-09-13 15:20:02,773 - OEMC-Attention - INFO - Early stopping counter: 3/10 | Improvement: -0.0002
+2026-09-13 15:21:03,898 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 39 set: Train loss: 0.4466 | Val loss: 0.4205
+2026-09-13 15:21:03,899 - OEMC-Attention - INFO - F1 Macro Average: 77.90%
+2026-09-13 15:21:03,899 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.8% | Pursuit: 88.6% | Blink: 63.8%
+2026-09-13 15:21:04,122 - OEMC-Attention - INFO - [fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 39: F1-macro plateaued/declined (prev=77.90%, now=77.90%) — halving LR to 0.000000 (Elmadjian et al. manual rule)
+2026-09-13 15:21:04,123 - OEMC-Attention - INFO - Early stopping counter: 4/10 | Improvement: -0.0001
+2026-09-13 15:22:05,261 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 40 set: Train loss: 0.4469 | Val loss: 0.4206
+2026-09-13 15:22:05,261 - OEMC-Attention - INFO - F1 Macro Average: 77.90%
+2026-09-13 15:22:05,261 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.8% | Pursuit: 88.6% | Blink: 63.8%
+2026-09-13 15:22:05,485 - OEMC-Attention - INFO - [fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 40: F1-macro plateaued/declined (prev=77.89%, now=77.90%) — halving LR to 0.000000 (Elmadjian et al. manual rule)
+2026-09-13 15:22:05,485 - OEMC-Attention - INFO - Early stopping counter: 5/10 | Improvement: -0.0002
+2026-09-13 15:23:07,285 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 41 set: Train loss: 0.4472 | Val loss: 0.4208
+2026-09-13 15:23:07,285 - OEMC-Attention - INFO - F1 Macro Average: 77.82%
+2026-09-13 15:23:07,285 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.7% | Pursuit: 88.6% | Blink: 63.5%
+2026-09-13 15:23:07,542 - OEMC-Attention - INFO - [fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 41: F1-macro plateaued/declined (prev=77.90%, now=77.82%) — halving LR to 0.000000 (Elmadjian et al. manual rule)
+2026-09-13 15:23:07,542 - OEMC-Attention - INFO - Early stopping counter: 6/10 | Improvement: -0.0004
+2026-09-13 15:24:09,050 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 42 set: Train loss: 0.4472 | Val loss: 0.4207
+2026-09-13 15:24:09,050 - OEMC-Attention - INFO - F1 Macro Average: 77.89%
+2026-09-13 15:24:09,050 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.8% | Pursuit: 88.6% | Blink: 63.7%
+2026-09-13 15:24:09,336 - OEMC-Attention - INFO - [fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 42: F1-macro plateaued/declined (prev=77.90%, now=77.89%) — halving LR to 0.000000 (Elmadjian et al. manual rule)
+2026-09-13 15:24:09,336 - OEMC-Attention - INFO - Early stopping counter: 7/10 | Improvement: -0.0004
+2026-09-13 15:25:11,138 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 43 set: Train loss: 0.4472 | Val loss: 0.4203
+2026-09-13 15:25:11,139 - OEMC-Attention - INFO - F1 Macro Average: 77.90%
+2026-09-13 15:25:11,139 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.8% | Pursuit: 88.6% | Blink: 63.8%
+2026-09-13 15:25:11,362 - OEMC-Attention - INFO - [fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 43: F1-macro plateaued/declined (prev=77.82%, now=77.90%) — halving LR to 0.000000 (Elmadjian et al. manual rule)
+2026-09-13 15:26:12,596 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 44 set: Train loss: 0.4470 | Val loss: 0.4206
+2026-09-13 15:26:12,596 - OEMC-Attention - INFO - F1 Macro Average: 77.84%
+2026-09-13 15:26:12,596 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.7% | Pursuit: 88.6% | Blink: 63.7%
+2026-09-13 15:26:12,843 - OEMC-Attention - INFO - [fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 44: F1-macro plateaued/declined (prev=77.89%, now=77.84%) — halving LR to 0.000000 (Elmadjian et al. manual rule)
+2026-09-13 15:26:12,843 - OEMC-Attention - INFO - Early stopping counter: 1/10 | Improvement: -0.0003
+2026-09-13 15:27:13,789 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 45 set: Train loss: 0.4465 | Val loss: 0.4205
+2026-09-13 15:27:13,789 - OEMC-Attention - INFO - F1 Macro Average: 77.89%
+2026-09-13 15:27:13,789 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.8% | Pursuit: 88.6% | Blink: 63.7%
+2026-09-13 15:27:14,029 - OEMC-Attention - INFO - [fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 45: F1-macro plateaued/declined (prev=77.90%, now=77.89%) — halving LR to 0.000000 (Elmadjian et al. manual rule)
+2026-09-13 15:27:14,029 - OEMC-Attention - INFO - Early stopping counter: 2/10 | Improvement: -0.0002
+2026-09-13 15:28:15,285 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 46 set: Train loss: 0.4467 | Val loss: 0.4204
+2026-09-13 15:28:15,286 - OEMC-Attention - INFO - F1 Macro Average: 77.91%
+2026-09-13 15:28:15,286 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.8% | Pursuit: 88.6% | Blink: 63.9%
+2026-09-13 15:28:15,509 - OEMC-Attention - INFO - [fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 46: F1-macro plateaued/declined (prev=77.84%, now=77.91%) — halving LR to 0.000000 (Elmadjian et al. manual rule)
+2026-09-13 15:28:15,509 - OEMC-Attention - INFO - Early stopping counter: 3/10 | Improvement: -0.0001
+2026-09-13 15:29:16,701 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 47 set: Train loss: 0.4468 | Val loss: 0.4209
+2026-09-13 15:29:16,701 - OEMC-Attention - INFO - F1 Macro Average: 77.81%
+2026-09-13 15:29:16,702 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.8% | Pursuit: 88.6% | Blink: 63.5%
+2026-09-13 15:29:16,926 - OEMC-Attention - INFO - [fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 47: F1-macro plateaued/declined (prev=77.89%, now=77.81%) — halving LR to 0.000000 (Elmadjian et al. manual rule)
+2026-09-13 15:29:16,926 - OEMC-Attention - INFO - Early stopping counter: 4/10 | Improvement: -0.0006
+2026-09-13 15:30:17,948 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 48 set: Train loss: 0.4470 | Val loss: 0.4209
+2026-09-13 15:30:17,948 - OEMC-Attention - INFO - F1 Macro Average: 77.86%
+2026-09-13 15:30:17,949 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.8% | Pursuit: 88.6% | Blink: 63.6%
+2026-09-13 15:30:18,173 - OEMC-Attention - INFO - [fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 48: F1-macro plateaued/declined (prev=77.91%, now=77.86%) — halving LR to 0.000000 (Elmadjian et al. manual rule)
+2026-09-13 15:30:18,173 - OEMC-Attention - INFO - Early stopping counter: 5/10 | Improvement: -0.0006
+2026-09-13 15:31:19,149 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 49 set: Train loss: 0.4469 | Val loss: 0.4207
+2026-09-13 15:31:19,149 - OEMC-Attention - INFO - F1 Macro Average: 77.91%
+2026-09-13 15:31:19,149 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.9% | Pursuit: 88.6% | Blink: 63.7%
+2026-09-13 15:31:19,373 - OEMC-Attention - INFO - Early stopping counter: 6/10 | Improvement: -0.0004
+2026-09-13 15:32:20,801 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 50 set: Train loss: 0.4469 | Val loss: 0.4211
+2026-09-13 15:32:20,801 - OEMC-Attention - INFO - F1 Macro Average: 77.81%
+2026-09-13 15:32:20,801 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.8% | Pursuit: 88.6% | Blink: 63.5%
+2026-09-13 15:32:21,026 - OEMC-Attention - INFO - [fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 50: F1-macro plateaued/declined (prev=77.86%, now=77.81%) — halving LR to 0.000000 (Elmadjian et al. manual rule)
+2026-09-13 15:32:21,026 - OEMC-Attention - INFO - Early stopping counter: 7/10 | Improvement: -0.0008
+2026-09-13 15:33:22,310 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 51 set: Train loss: 0.4471 | Val loss: 0.4205
+2026-09-13 15:33:22,310 - OEMC-Attention - INFO - F1 Macro Average: 77.91%
+2026-09-13 15:33:22,310 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.8% | Pursuit: 88.6% | Blink: 63.8%
+2026-09-13 15:33:22,535 - OEMC-Attention - INFO - [fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 51: F1-macro plateaued/declined (prev=77.91%, now=77.91%) — halving LR to 0.000000 (Elmadjian et al. manual rule)
+2026-09-13 15:33:22,536 - OEMC-Attention - INFO - Early stopping counter: 8/10 | Improvement: -0.0002
+2026-09-13 15:34:23,782 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 52 set: Train loss: 0.4467 | Val loss: 0.4205
+2026-09-13 15:34:23,783 - OEMC-Attention - INFO - F1 Macro Average: 77.88%
+2026-09-13 15:34:23,783 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.8% | Pursuit: 88.6% | Blink: 63.7%
+2026-09-13 15:34:24,002 - OEMC-Attention - INFO - [fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 52: F1-macro plateaued/declined (prev=77.81%, now=77.88%) — halving LR to 0.000000 (Elmadjian et al. manual rule)
+2026-09-13 15:34:24,002 - OEMC-Attention - INFO - Early stopping counter: 9/10 | Improvement: -0.0002
+2026-09-13 15:35:25,141 - OEMC-Attention - INFO - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 53 set: Train loss: 0.4472 | Val loss: 0.4204
+2026-09-13 15:35:25,141 - OEMC-Attention - INFO - F1 Macro Average: 77.91%
+2026-09-13 15:35:25,141 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.9% | Pursuit: 88.6% | Blink: 63.8%
+2026-09-13 15:35:25,362 - OEMC-Attention - INFO - [fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 53: F1-macro plateaued/declined (prev=77.91%, now=77.91%) — halving LR to 0.000000 (Elmadjian et al. manual rule)
+2026-09-13 15:35:25,363 - OEMC-Attention - INFO - Early stopping counter: 10/10 | Improvement: -0.0001
+2026-09-13 15:35:25,363 - OEMC-Attention - INFO - Early stopping triggered at epoch 53
+2026-09-13 15:35:25,363 - OEMC-Attention - INFO - Best model restored — F1: 0.7791
+2026-09-13 15:35:25,907 - OEMC-Attention - INFO - 
+============================================================
+2026-09-13 15:35:25,908 - OEMC-Attention - INFO - FINAL METRICS - fold2_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm FINAL BEST
+2026-09-13 15:35:25,908 - OEMC-Attention - INFO - ============================================================
+2026-09-13 15:35:25,908 - OEMC-Attention - INFO - Train Loss : 0.4467 | Val Loss : 0.4204
+2026-09-13 15:35:25,908 - OEMC-Attention - INFO - 
+[1] SAMPLE-LEVEL METRICS (per data point):
+2026-09-13 15:35:25,908 - OEMC-Attention - INFO - ------------------------------------------------------------
+2026-09-13 15:35:25,945 - OEMC-Attention - INFO -               precision    recall  f1-score   support
+2026-09-13 15:35:25,945 - OEMC-Attention - INFO -     Fixation     0.8597    0.9528    0.9039    133594
+2026-09-13 15:35:25,945 - OEMC-Attention - INFO -      Saccade     0.7419    0.6412    0.6879     15322
+2026-09-13 15:35:25,946 - OEMC-Attention - INFO -      Pursuit     0.8969    0.8754    0.8860     60692
+2026-09-13 15:35:25,946 - OEMC-Attention - INFO -        Blink     0.8446    0.5137    0.6388     27934
+2026-09-13 15:35:25,946 - OEMC-Attention - INFO -     accuracy                         0.8613    237542
+2026-09-13 15:35:25,946 - OEMC-Attention - INFO -    macro avg     0.8358    0.7458    0.7791    237542
+2026-09-13 15:35:25,946 - OEMC-Attention - INFO - weighted avg     0.8598    0.8613    0.8542    237542
+2026-09-13 15:35:25,946 - OEMC-Attention - INFO - 
+    Confusion Matrix (Sample - counts):
+2026-09-13 15:35:25,951 - OEMC-Attention - INFO -                 Fixation   Saccade   Pursuit     Blink
+2026-09-13 15:35:25,951 - OEMC-Attention - INFO -     Fixation      127295      1223      3276      1800
+2026-09-13 15:35:25,952 - OEMC-Attention - INFO -     Saccade         4786      9824       309       403
+2026-09-13 15:35:25,952 - OEMC-Attention - INFO -     Pursuit         6217       908     53130       437
+2026-09-13 15:35:25,952 - OEMC-Attention - INFO -     Blink           9773      1287      2525     14349
+2026-09-13 15:35:25,952 - OEMC-Attention - INFO - 
+2026-09-13 15:35:25,952 - OEMC-Attention - INFO - [2] EVENT-LEVEL METRICS (per movement segment):
+2026-09-13 15:35:25,952 - OEMC-Attention - INFO - ------------------------------------------------------------
+2026-09-13 15:35:25,976 - OEMC-Attention - INFO -               precision    recall  f1-score   support
+2026-09-13 15:35:25,976 - OEMC-Attention - INFO -     Fixation     0.7491    0.9773    0.8481     58458
+2026-09-13 15:35:25,976 - OEMC-Attention - INFO -      Saccade     0.8082    0.6305    0.7084     14332
+2026-09-13 15:35:25,976 - OEMC-Attention - INFO -      Pursuit     0.9239    0.8622    0.8920     45237
+2026-09-13 15:35:25,976 - OEMC-Attention - INFO -        Blink     0.9260    0.4890    0.6400     24669
+2026-09-13 15:35:25,977 - OEMC-Attention - INFO -     accuracy                         0.8216    142696
+2026-09-13 15:35:25,977 - OEMC-Attention - INFO -    macro avg     0.8518    0.7398    0.7721    142696
+2026-09-13 15:35:25,977 - OEMC-Attention - INFO - weighted avg     0.8410    0.8216    0.8120    142696
+2026-09-13 15:35:25,977 - OEMC-Attention - INFO - 
+    Confusion Matrix (Event - counts):
+2026-09-13 15:35:25,980 - OEMC-Attention - INFO -                 Fixation   Saccade   Pursuit     Blink
+2026-09-13 15:35:25,980 - OEMC-Attention - INFO -     Fixation       57131       264       704       359
+2026-09-13 15:35:25,980 - OEMC-Attention - INFO -     Saccade         4658      9037       275       362
+2026-09-13 15:35:25,980 - OEMC-Attention - INFO -     Pursuit         5245       744     39005       243
+2026-09-13 15:35:25,980 - OEMC-Attention - INFO -     Blink           9237      1136      2234     12062
+2026-09-13 15:35:25,981 - OEMC-Attention - INFO - 
+2026-09-13 15:35:25,981 - OEMC-Attention - INFO - 
+============================================================
+
+2026-09-13 15:35:29,702 - OEMC-Attention - INFO - === Training: fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm ===
+2026-09-13 15:35:29,702 - OEMC-Attention - INFO - optimizer=rmsprop  scheduler=elmadjian  loss=nll  loader=lookback
+2026-09-13 15:36:31,380 - OEMC-Attention - INFO - fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 1 set: Train loss: 0.8058 | Val loss: 0.6127
+2026-09-13 15:36:31,380 - OEMC-Attention - INFO - F1 Macro Average: 64.11%
+2026-09-13 15:36:31,380 - OEMC-Attention - INFO - F1 Fixation: 87.2% | Saccade: 34.5% | Pursuit: 79.0% | Blink: 55.7%
+2026-09-13 15:37:32,837 - OEMC-Attention - INFO - fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 2 set: Train loss: 0.5830 | Val loss: 0.5254
+2026-09-13 15:37:32,837 - OEMC-Attention - INFO - F1 Macro Average: 72.35%
+2026-09-13 15:37:32,838 - OEMC-Attention - INFO - F1 Fixation: 88.2% | Saccade: 61.2% | Pursuit: 83.0% | Blink: 56.9%
+2026-09-13 15:38:34,399 - OEMC-Attention - INFO - fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 3 set: Train loss: 0.5423 | Val loss: 0.5182
+2026-09-13 15:38:34,399 - OEMC-Attention - INFO - F1 Macro Average: 73.15%
+2026-09-13 15:38:34,399 - OEMC-Attention - INFO - F1 Fixation: 89.0% | Saccade: 59.1% | Pursuit: 83.0% | Blink: 61.5%
+2026-09-13 15:39:36,111 - OEMC-Attention - INFO - fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 4 set: Train loss: 0.5235 | Val loss: 0.5054
+2026-09-13 15:39:36,111 - OEMC-Attention - INFO - F1 Macro Average: 72.93%
+2026-09-13 15:39:36,111 - OEMC-Attention - INFO - F1 Fixation: 88.6% | Saccade: 59.6% | Pursuit: 83.4% | Blink: 60.1%
+2026-09-13 15:40:37,575 - OEMC-Attention - INFO - fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 5 set: Train loss: 0.5095 | Val loss: 0.4740
+2026-09-13 15:40:37,575 - OEMC-Attention - INFO - F1 Macro Average: 74.74%
+2026-09-13 15:40:37,576 - OEMC-Attention - INFO - F1 Fixation: 89.4% | Saccade: 62.3% | Pursuit: 85.2% | Blink: 62.0%
+2026-09-13 15:41:39,170 - OEMC-Attention - INFO - fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 6 set: Train loss: 0.4981 | Val loss: 0.4672
+2026-09-13 15:41:39,171 - OEMC-Attention - INFO - F1 Macro Average: 75.58%
+2026-09-13 15:41:39,171 - OEMC-Attention - INFO - F1 Fixation: 89.5% | Saccade: 64.8% | Pursuit: 85.6% | Blink: 62.3%
+2026-09-13 15:42:41,187 - OEMC-Attention - INFO - fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 7 set: Train loss: 0.4909 | Val loss: 0.4671
+2026-09-13 15:42:41,188 - OEMC-Attention - INFO - F1 Macro Average: 74.41%
+2026-09-13 15:42:41,188 - OEMC-Attention - INFO - F1 Fixation: 89.5% | Saccade: 59.9% | Pursuit: 85.4% | Blink: 62.8%
+2026-09-13 15:42:41,404 - OEMC-Attention - INFO - [fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 7: F1-macro plateaued/declined (prev=74.74%, now=74.41%) — halving LR to 0.005000 (Elmadjian et al. manual rule)
+2026-09-13 15:43:42,899 - OEMC-Attention - INFO - fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 8 set: Train loss: 0.4728 | Val loss: 0.4466
+2026-09-13 15:43:42,899 - OEMC-Attention - INFO - F1 Macro Average: 76.56%
+2026-09-13 15:43:42,899 - OEMC-Attention - INFO - F1 Fixation: 90.0% | Saccade: 66.1% | Pursuit: 87.0% | Blink: 63.1%
+2026-09-13 15:44:44,375 - OEMC-Attention - INFO - fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 9 set: Train loss: 0.4700 | Val loss: 0.4500
+2026-09-13 15:44:44,376 - OEMC-Attention - INFO - F1 Macro Average: 76.51%
+2026-09-13 15:44:44,376 - OEMC-Attention - INFO - F1 Fixation: 90.1% | Saccade: 65.2% | Pursuit: 86.8% | Blink: 64.0%
+2026-09-13 15:44:44,612 - OEMC-Attention - INFO - Early stopping counter: 1/10 | Improvement: -0.0034
+2026-09-13 15:45:46,130 - OEMC-Attention - INFO - fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 10 set: Train loss: 0.4671 | Val loss: 0.4450
+2026-09-13 15:45:46,131 - OEMC-Attention - INFO - F1 Macro Average: 76.55%
+2026-09-13 15:45:46,131 - OEMC-Attention - INFO - F1 Fixation: 90.1% | Saccade: 66.3% | Pursuit: 87.1% | Blink: 62.8%
+2026-09-13 15:45:46,349 - OEMC-Attention - INFO - [fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 10: F1-macro plateaued/declined (prev=76.56%, now=76.55%) — halving LR to 0.002500 (Elmadjian et al. manual rule)
+2026-09-13 15:46:47,504 - OEMC-Attention - INFO - fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 11 set: Train loss: 0.4594 | Val loss: 0.4388
+2026-09-13 15:46:47,505 - OEMC-Attention - INFO - F1 Macro Average: 76.99%
+2026-09-13 15:46:47,505 - OEMC-Attention - INFO - F1 Fixation: 90.2% | Saccade: 66.9% | Pursuit: 87.3% | Blink: 63.6%
+2026-09-13 15:47:49,176 - OEMC-Attention - INFO - fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 12 set: Train loss: 0.4581 | Val loss: 0.4360
+2026-09-13 15:47:49,176 - OEMC-Attention - INFO - F1 Macro Average: 77.04%
+2026-09-13 15:47:49,176 - OEMC-Attention - INFO - F1 Fixation: 90.2% | Saccade: 66.8% | Pursuit: 87.4% | Blink: 63.9%
+2026-09-13 15:48:50,912 - OEMC-Attention - INFO - fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 13 set: Train loss: 0.4562 | Val loss: 0.4371
+2026-09-13 15:48:50,912 - OEMC-Attention - INFO - F1 Macro Average: 76.71%
+2026-09-13 15:48:50,912 - OEMC-Attention - INFO - F1 Fixation: 90.1% | Saccade: 66.3% | Pursuit: 87.3% | Blink: 63.1%
+2026-09-13 15:48:51,136 - OEMC-Attention - INFO - [fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 13: F1-macro plateaued/declined (prev=76.99%, now=76.71%) — halving LR to 0.001250 (Elmadjian et al. manual rule)
+2026-09-13 15:48:51,137 - OEMC-Attention - INFO - Early stopping counter: 1/10 | Improvement: -0.0011
+2026-09-13 15:49:52,407 - OEMC-Attention - INFO - fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 14 set: Train loss: 0.4530 | Val loss: 0.4334
+2026-09-13 15:49:52,407 - OEMC-Attention - INFO - F1 Macro Average: 77.02%
+2026-09-13 15:49:52,407 - OEMC-Attention - INFO - F1 Fixation: 90.2% | Saccade: 67.0% | Pursuit: 87.5% | Blink: 63.4%
+2026-09-13 15:49:52,626 - OEMC-Attention - INFO - [fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 14: F1-macro plateaued/declined (prev=77.04%, now=77.02%) — halving LR to 0.000625 (Elmadjian et al. manual rule)
+2026-09-13 15:50:53,829 - OEMC-Attention - INFO - fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 15 set: Train loss: 0.4515 | Val loss: 0.4322
+2026-09-13 15:50:53,830 - OEMC-Attention - INFO - F1 Macro Average: 77.13%
+2026-09-13 15:50:53,830 - OEMC-Attention - INFO - F1 Fixation: 90.2% | Saccade: 66.9% | Pursuit: 87.6% | Blink: 63.7%
+2026-09-13 15:51:55,231 - OEMC-Attention - INFO - fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 16 set: Train loss: 0.4509 | Val loss: 0.4317
+2026-09-13 15:51:55,231 - OEMC-Attention - INFO - F1 Macro Average: 77.26%
+2026-09-13 15:51:55,231 - OEMC-Attention - INFO - F1 Fixation: 90.3% | Saccade: 67.2% | Pursuit: 87.6% | Blink: 64.0%
+2026-09-13 15:52:57,252 - OEMC-Attention - INFO - fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 17 set: Train loss: 0.4500 | Val loss: 0.4310
+2026-09-13 15:52:57,252 - OEMC-Attention - INFO - F1 Macro Average: 77.29%
+2026-09-13 15:52:57,252 - OEMC-Attention - INFO - F1 Fixation: 90.3% | Saccade: 67.1% | Pursuit: 87.7% | Blink: 64.1%
+2026-09-13 15:53:58,968 - OEMC-Attention - INFO - fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 18 set: Train loss: 0.4500 | Val loss: 0.4307
+2026-09-13 15:53:58,968 - OEMC-Attention - INFO - F1 Macro Average: 77.27%
+2026-09-13 15:53:58,968 - OEMC-Attention - INFO - F1 Fixation: 90.3% | Saccade: 67.2% | Pursuit: 87.6% | Blink: 64.0%
+2026-09-13 15:53:59,186 - OEMC-Attention - INFO - [fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 18: F1-macro plateaued/declined (prev=77.26%, now=77.27%) — halving LR to 0.000313 (Elmadjian et al. manual rule)
+2026-09-13 15:55:00,531 - OEMC-Attention - INFO - fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 19 set: Train loss: 0.4490 | Val loss: 0.4305
+2026-09-13 15:55:00,531 - OEMC-Attention - INFO - F1 Macro Average: 77.31%
+2026-09-13 15:55:00,531 - OEMC-Attention - INFO - F1 Fixation: 90.3% | Saccade: 67.2% | Pursuit: 87.7% | Blink: 64.0%
+2026-09-13 15:55:00,759 - OEMC-Attention - INFO - [fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 19: F1-macro plateaued/declined (prev=77.29%, now=77.31%) — halving LR to 0.000156 (Elmadjian et al. manual rule)
+2026-09-13 15:56:02,105 - OEMC-Attention - INFO - fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 20 set: Train loss: 0.4485 | Val loss: 0.4303
+2026-09-13 15:56:02,105 - OEMC-Attention - INFO - F1 Macro Average: 77.32%
+2026-09-13 15:56:02,106 - OEMC-Attention - INFO - F1 Fixation: 90.3% | Saccade: 67.3% | Pursuit: 87.7% | Blink: 64.0%
+2026-09-13 15:56:02,322 - OEMC-Attention - INFO - [fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 20: F1-macro plateaued/declined (prev=77.27%, now=77.32%) — halving LR to 0.000078 (Elmadjian et al. manual rule)
+2026-09-13 15:57:03,817 - OEMC-Attention - INFO - fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 21 set: Train loss: 0.4484 | Val loss: 0.4299
+2026-09-13 15:57:03,818 - OEMC-Attention - INFO - F1 Macro Average: 77.32%
+2026-09-13 15:57:03,818 - OEMC-Attention - INFO - F1 Fixation: 90.3% | Saccade: 67.3% | Pursuit: 87.7% | Blink: 64.1%
+2026-09-13 15:57:04,042 - OEMC-Attention - INFO - [fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 21: F1-macro plateaued/declined (prev=77.31%, now=77.32%) — halving LR to 0.000039 (Elmadjian et al. manual rule)
+2026-09-13 15:58:05,503 - OEMC-Attention - INFO - fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 22 set: Train loss: 0.4487 | Val loss: 0.4304
+2026-09-13 15:58:05,503 - OEMC-Attention - INFO - F1 Macro Average: 77.27%
+2026-09-13 15:58:05,503 - OEMC-Attention - INFO - F1 Fixation: 90.3% | Saccade: 67.2% | Pursuit: 87.7% | Blink: 64.0%
+2026-09-13 15:58:05,726 - OEMC-Attention - INFO - [fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 22: F1-macro plateaued/declined (prev=77.32%, now=77.27%) — halving LR to 0.000020 (Elmadjian et al. manual rule)
+2026-09-13 15:58:05,726 - OEMC-Attention - INFO - Early stopping counter: 1/10 | Improvement: -0.0005
+2026-09-13 15:59:07,171 - OEMC-Attention - INFO - fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 23 set: Train loss: 0.4480 | Val loss: 0.4301
+2026-09-13 15:59:07,172 - OEMC-Attention - INFO - F1 Macro Average: 77.30%
+2026-09-13 15:59:07,172 - OEMC-Attention - INFO - F1 Fixation: 90.3% | Saccade: 67.2% | Pursuit: 87.7% | Blink: 64.0%
+2026-09-13 15:59:07,390 - OEMC-Attention - INFO - [fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 23: F1-macro plateaued/declined (prev=77.32%, now=77.30%) — halving LR to 0.000010 (Elmadjian et al. manual rule)
+2026-09-13 15:59:07,390 - OEMC-Attention - INFO - Early stopping counter: 2/10 | Improvement: -0.0003
+2026-09-13 16:00:08,730 - OEMC-Attention - INFO - fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 24 set: Train loss: 0.4484 | Val loss: 0.4303
+2026-09-13 16:00:08,730 - OEMC-Attention - INFO - F1 Macro Average: 77.28%
+2026-09-13 16:00:08,730 - OEMC-Attention - INFO - F1 Fixation: 90.3% | Saccade: 67.2% | Pursuit: 87.7% | Blink: 64.0%
+2026-09-13 16:00:08,948 - OEMC-Attention - INFO - [fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 24: F1-macro plateaued/declined (prev=77.27%, now=77.28%) — halving LR to 0.000005 (Elmadjian et al. manual rule)
+2026-09-13 16:00:08,948 - OEMC-Attention - INFO - Early stopping counter: 3/10 | Improvement: -0.0005
+2026-09-13 16:01:10,288 - OEMC-Attention - INFO - fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 25 set: Train loss: 0.4476 | Val loss: 0.4299
+2026-09-13 16:01:10,289 - OEMC-Attention - INFO - F1 Macro Average: 77.32%
+2026-09-13 16:01:10,289 - OEMC-Attention - INFO - F1 Fixation: 90.3% | Saccade: 67.2% | Pursuit: 87.7% | Blink: 64.1%
+2026-09-13 16:01:10,522 - OEMC-Attention - INFO - [fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 25: F1-macro plateaued/declined (prev=77.30%, now=77.32%) — halving LR to 0.000002 (Elmadjian et al. manual rule)
+2026-09-13 16:01:10,523 - OEMC-Attention - INFO - Early stopping counter: 4/10 | Improvement: -0.0001
+2026-09-13 16:02:11,806 - OEMC-Attention - INFO - fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 26 set: Train loss: 0.4486 | Val loss: 0.4303
+2026-09-13 16:02:11,806 - OEMC-Attention - INFO - F1 Macro Average: 77.32%
+2026-09-13 16:02:11,806 - OEMC-Attention - INFO - F1 Fixation: 90.3% | Saccade: 67.3% | Pursuit: 87.7% | Blink: 64.0%
+2026-09-13 16:02:12,026 - OEMC-Attention - INFO - [fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 26: F1-macro plateaued/declined (prev=77.28%, now=77.32%) — halving LR to 0.000001 (Elmadjian et al. manual rule)
+2026-09-13 16:02:12,026 - OEMC-Attention - INFO - Early stopping counter: 5/10 | Improvement: -0.0004
+2026-09-13 16:03:13,783 - OEMC-Attention - INFO - fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 27 set: Train loss: 0.4484 | Val loss: 0.4303
+2026-09-13 16:03:13,783 - OEMC-Attention - INFO - F1 Macro Average: 77.28%
+2026-09-13 16:03:13,784 - OEMC-Attention - INFO - F1 Fixation: 90.3% | Saccade: 67.2% | Pursuit: 87.7% | Blink: 64.0%
+2026-09-13 16:03:14,005 - OEMC-Attention - INFO - [fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 27: F1-macro plateaued/declined (prev=77.32%, now=77.28%) — halving LR to 0.000001 (Elmadjian et al. manual rule)
+2026-09-13 16:03:14,006 - OEMC-Attention - INFO - Early stopping counter: 6/10 | Improvement: -0.0004
+2026-09-13 16:04:15,615 - OEMC-Attention - INFO - fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 28 set: Train loss: 0.4486 | Val loss: 0.4300
+2026-09-13 16:04:15,616 - OEMC-Attention - INFO - F1 Macro Average: 77.32%
+2026-09-13 16:04:15,616 - OEMC-Attention - INFO - F1 Fixation: 90.3% | Saccade: 67.3% | Pursuit: 87.7% | Blink: 64.0%
+2026-09-13 16:04:15,840 - OEMC-Attention - INFO - [fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 28: F1-macro plateaued/declined (prev=77.32%, now=77.32%) — halving LR to 0.000000 (Elmadjian et al. manual rule)
+2026-09-13 16:04:15,841 - OEMC-Attention - INFO - Early stopping counter: 7/10 | Improvement: -0.0001
+2026-09-13 16:05:17,351 - OEMC-Attention - INFO - fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 29 set: Train loss: 0.4482 | Val loss: 0.4300
+2026-09-13 16:05:17,351 - OEMC-Attention - INFO - F1 Macro Average: 77.31%
+2026-09-13 16:05:17,351 - OEMC-Attention - INFO - F1 Fixation: 90.3% | Saccade: 67.3% | Pursuit: 87.7% | Blink: 64.0%
+2026-09-13 16:05:17,572 - OEMC-Attention - INFO - [fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 29: F1-macro plateaued/declined (prev=77.28%, now=77.31%) — halving LR to 0.000000 (Elmadjian et al. manual rule)
+2026-09-13 16:05:17,572 - OEMC-Attention - INFO - Early stopping counter: 8/10 | Improvement: -0.0001
+2026-09-13 16:06:19,482 - OEMC-Attention - INFO - fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 30 set: Train loss: 0.4480 | Val loss: 0.4311
+2026-09-13 16:06:19,483 - OEMC-Attention - INFO - F1 Macro Average: 77.22%
+2026-09-13 16:06:19,483 - OEMC-Attention - INFO - F1 Fixation: 90.3% | Saccade: 67.1% | Pursuit: 87.7% | Blink: 63.9%
+2026-09-13 16:06:19,702 - OEMC-Attention - INFO - [fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 30: F1-macro plateaued/declined (prev=77.32%, now=77.22%) — halving LR to 0.000000 (Elmadjian et al. manual rule)
+2026-09-13 16:06:19,702 - OEMC-Attention - INFO - Early stopping counter: 9/10 | Improvement: -0.0013
+2026-09-13 16:07:21,137 - OEMC-Attention - INFO - fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 31 set: Train loss: 0.4476 | Val loss: 0.4302
+2026-09-13 16:07:21,137 - OEMC-Attention - INFO - F1 Macro Average: 77.33%
+2026-09-13 16:07:21,138 - OEMC-Attention - INFO - F1 Fixation: 90.3% | Saccade: 67.4% | Pursuit: 87.7% | Blink: 64.0%
+2026-09-13 16:07:21,355 - OEMC-Attention - INFO - [fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 31: F1-macro plateaued/declined (prev=77.31%, now=77.33%) — halving LR to 0.000000 (Elmadjian et al. manual rule)
+2026-09-13 16:07:21,355 - OEMC-Attention - INFO - Early stopping counter: 10/10 | Improvement: -0.0003
+2026-09-13 16:07:21,356 - OEMC-Attention - INFO - Early stopping triggered at epoch 31
+2026-09-13 16:07:21,356 - OEMC-Attention - INFO - Best model restored — F1: 0.7732
+2026-09-13 16:07:21,922 - OEMC-Attention - INFO - 
+============================================================
+2026-09-13 16:07:21,922 - OEMC-Attention - INFO - FINAL METRICS - fold3_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm FINAL BEST
+2026-09-13 16:07:21,922 - OEMC-Attention - INFO - ============================================================
+2026-09-13 16:07:21,922 - OEMC-Attention - INFO - Train Loss : 0.4484 | Val Loss : 0.4299
+2026-09-13 16:07:21,923 - OEMC-Attention - INFO - 
+[1] SAMPLE-LEVEL METRICS (per data point):
+2026-09-13 16:07:21,923 - OEMC-Attention - INFO - ------------------------------------------------------------
+2026-09-13 16:07:21,960 - OEMC-Attention - INFO -               precision    recall  f1-score   support
+2026-09-13 16:07:21,960 - OEMC-Attention - INFO -     Fixation     0.8581    0.9526    0.9029    133595
+2026-09-13 16:07:21,960 - OEMC-Attention - INFO -      Saccade     0.7498    0.6100    0.6727     15323
+2026-09-13 16:07:21,960 - OEMC-Attention - INFO -      Pursuit     0.8871    0.8668    0.8768     60693
+2026-09-13 16:07:21,960 - OEMC-Attention - INFO -        Blink     0.8323    0.5206    0.6405     27930
+2026-09-13 16:07:21,961 - OEMC-Attention - INFO -     accuracy                         0.8578    237541
+2026-09-13 16:07:21,961 - OEMC-Attention - INFO -    macro avg     0.8318    0.7375    0.7732    237541
+2026-09-13 16:07:21,961 - OEMC-Attention - INFO - weighted avg     0.8555    0.8578    0.8505    237541
+2026-09-13 16:07:21,961 - OEMC-Attention - INFO - 
+    Confusion Matrix (Sample - counts):
+2026-09-13 16:07:21,965 - OEMC-Attention - INFO -                 Fixation   Saccade   Pursuit     Blink
+2026-09-13 16:07:21,966 - OEMC-Attention - INFO -     Fixation      127256      1031      3499      1809
+2026-09-13 16:07:21,966 - OEMC-Attention - INFO -     Saccade         4876      9347       515       585
+2026-09-13 16:07:21,966 - OEMC-Attention - INFO -     Pursuit         6687       863     52608       535
+2026-09-13 16:07:21,966 - OEMC-Attention - INFO -     Blink           9482      1225      2683     14540
+2026-09-13 16:07:21,966 - OEMC-Attention - INFO - 
+2026-09-13 16:07:21,966 - OEMC-Attention - INFO - [2] EVENT-LEVEL METRICS (per movement segment):
+2026-09-13 16:07:21,967 - OEMC-Attention - INFO - ------------------------------------------------------------
+2026-09-13 16:07:21,990 - OEMC-Attention - INFO -               precision    recall  f1-score   support
+2026-09-13 16:07:21,990 - OEMC-Attention - INFO -     Fixation     0.7472    0.9780    0.8472     58537
+2026-09-13 16:07:21,990 - OEMC-Attention - INFO -      Saccade     0.8126    0.6009    0.6909     14380
+2026-09-13 16:07:21,990 - OEMC-Attention - INFO -      Pursuit     0.9160    0.8536    0.8837     45299
+2026-09-13 16:07:21,990 - OEMC-Attention - INFO -        Blink     0.9119    0.4948    0.6415     24596
+2026-09-13 16:07:21,990 - OEMC-Attention - INFO -     accuracy                         0.8174    142812
+2026-09-13 16:07:21,991 - OEMC-Attention - INFO -    macro avg     0.8469    0.7318    0.7658    142812
+2026-09-13 16:07:21,991 - OEMC-Attention - INFO - weighted avg     0.8357    0.8174    0.8076    142812
+2026-09-13 16:07:21,991 - OEMC-Attention - INFO - 
+    Confusion Matrix (Event - counts):
+2026-09-13 16:07:21,993 - OEMC-Attention - INFO -                 Fixation   Saccade   Pursuit     Blink
+2026-09-13 16:07:21,994 - OEMC-Attention - INFO -     Fixation       57251       205       712       369
+2026-09-13 16:07:21,994 - OEMC-Attention - INFO -     Saccade         4767      8641       449       523
+2026-09-13 16:07:21,994 - OEMC-Attention - INFO -     Pursuit         5649       697     38669       284
+2026-09-13 16:07:21,994 - OEMC-Attention - INFO -     Blink           8952      1091      2383     12170
+2026-09-13 16:07:21,994 - OEMC-Attention - INFO - 
+2026-09-13 16:07:21,994 - OEMC-Attention - INFO - 
+============================================================
+
+2026-09-13 16:07:25,692 - OEMC-Attention - INFO - === Training: fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm ===
+2026-09-13 16:07:25,692 - OEMC-Attention - INFO - optimizer=rmsprop  scheduler=elmadjian  loss=nll  loader=lookback
+2026-09-13 16:08:27,258 - OEMC-Attention - INFO - fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 1 set: Train loss: 0.8235 | Val loss: 0.6021
+2026-09-13 16:08:27,258 - OEMC-Attention - INFO - F1 Macro Average: 67.46%
+2026-09-13 16:08:27,258 - OEMC-Attention - INFO - F1 Fixation: 86.7% | Saccade: 49.1% | Pursuit: 77.3% | Blink: 56.8%
+2026-09-13 16:09:28,970 - OEMC-Attention - INFO - fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 2 set: Train loss: 0.6015 | Val loss: 0.5428
+2026-09-13 16:09:28,971 - OEMC-Attention - INFO - F1 Macro Average: 71.93%
+2026-09-13 16:09:28,971 - OEMC-Attention - INFO - F1 Fixation: 87.6% | Saccade: 60.4% | Pursuit: 81.8% | Blink: 57.8%
+2026-09-13 16:10:30,498 - OEMC-Attention - INFO - fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 3 set: Train loss: 0.5584 | Val loss: 0.5025
+2026-09-13 16:10:30,498 - OEMC-Attention - INFO - F1 Macro Average: 73.80%
+2026-09-13 16:10:30,499 - OEMC-Attention - INFO - F1 Fixation: 88.8% | Saccade: 62.5% | Pursuit: 83.9% | Blink: 60.0%
+2026-09-13 16:11:32,212 - OEMC-Attention - INFO - fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 4 set: Train loss: 0.5323 | Val loss: 0.4838
+2026-09-13 16:11:32,213 - OEMC-Attention - INFO - F1 Macro Average: 74.89%
+2026-09-13 16:11:32,213 - OEMC-Attention - INFO - F1 Fixation: 89.2% | Saccade: 63.3% | Pursuit: 84.7% | Blink: 62.4%
+2026-09-13 16:12:34,005 - OEMC-Attention - INFO - fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 5 set: Train loss: 0.5186 | Val loss: 0.4954
+2026-09-13 16:12:34,006 - OEMC-Attention - INFO - F1 Macro Average: 74.03%
+2026-09-13 16:12:34,006 - OEMC-Attention - INFO - F1 Fixation: 88.8% | Saccade: 63.2% | Pursuit: 83.9% | Blink: 60.1%
+2026-09-13 16:12:34,227 - OEMC-Attention - INFO - Early stopping counter: 1/10 | Improvement: -0.0116
+2026-09-13 16:13:36,316 - OEMC-Attention - INFO - fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 6 set: Train loss: 0.5098 | Val loss: 0.4768
+2026-09-13 16:13:36,317 - OEMC-Attention - INFO - F1 Macro Average: 75.19%
+2026-09-13 16:13:36,317 - OEMC-Attention - INFO - F1 Fixation: 89.4% | Saccade: 63.1% | Pursuit: 85.5% | Blink: 62.7%
+2026-09-13 16:14:37,787 - OEMC-Attention - INFO - fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 7 set: Train loss: 0.4999 | Val loss: 0.4586
+2026-09-13 16:14:37,787 - OEMC-Attention - INFO - F1 Macro Average: 76.15%
+2026-09-13 16:14:37,787 - OEMC-Attention - INFO - F1 Fixation: 89.7% | Saccade: 65.8% | Pursuit: 86.5% | Blink: 62.7%
+2026-09-13 16:15:39,355 - OEMC-Attention - INFO - fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 8 set: Train loss: 0.4941 | Val loss: 0.4574
+2026-09-13 16:15:39,355 - OEMC-Attention - INFO - F1 Macro Average: 75.96%
+2026-09-13 16:15:39,355 - OEMC-Attention - INFO - F1 Fixation: 89.6% | Saccade: 65.8% | Pursuit: 86.4% | Blink: 62.0%
+2026-09-13 16:16:40,874 - OEMC-Attention - INFO - fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 9 set: Train loss: 0.4884 | Val loss: 0.4620
+2026-09-13 16:16:40,875 - OEMC-Attention - INFO - F1 Macro Average: 75.46%
+2026-09-13 16:16:40,875 - OEMC-Attention - INFO - F1 Fixation: 89.5% | Saccade: 65.3% | Pursuit: 85.8% | Blink: 61.3%
+2026-09-13 16:16:41,094 - OEMC-Attention - INFO - [fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 9: F1-macro plateaued/declined (prev=76.15%, now=75.46%) — halving LR to 0.005000 (Elmadjian et al. manual rule)
+2026-09-13 16:16:41,094 - OEMC-Attention - INFO - Early stopping counter: 1/10 | Improvement: -0.0046
+2026-09-13 16:17:43,021 - OEMC-Attention - INFO - fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 10 set: Train loss: 0.4716 | Val loss: 0.4442
+2026-09-13 16:17:43,021 - OEMC-Attention - INFO - F1 Macro Average: 76.69%
+2026-09-13 16:17:43,022 - OEMC-Attention - INFO - F1 Fixation: 90.0% | Saccade: 66.7% | Pursuit: 87.1% | Blink: 63.0%
+2026-09-13 16:18:44,842 - OEMC-Attention - INFO - fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 11 set: Train loss: 0.4689 | Val loss: 0.4402
+2026-09-13 16:18:44,843 - OEMC-Attention - INFO - F1 Macro Average: 77.31%
+2026-09-13 16:18:44,843 - OEMC-Attention - INFO - F1 Fixation: 90.1% | Saccade: 67.2% | Pursuit: 87.3% | Blink: 64.7%
+2026-09-13 16:19:47,303 - OEMC-Attention - INFO - fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 12 set: Train loss: 0.4663 | Val loss: 0.4410
+2026-09-13 16:19:47,303 - OEMC-Attention - INFO - F1 Macro Average: 76.84%
+2026-09-13 16:19:47,303 - OEMC-Attention - INFO - F1 Fixation: 90.1% | Saccade: 67.0% | Pursuit: 87.0% | Blink: 63.2%
+2026-09-13 16:19:47,542 - OEMC-Attention - INFO - Early stopping counter: 1/10 | Improvement: -0.0008
+2026-09-13 16:20:49,098 - OEMC-Attention - INFO - fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 13 set: Train loss: 0.4644 | Val loss: 0.4347
+2026-09-13 16:20:49,098 - OEMC-Attention - INFO - F1 Macro Average: 77.24%
+2026-09-13 16:20:49,098 - OEMC-Attention - INFO - F1 Fixation: 90.2% | Saccade: 67.0% | Pursuit: 87.4% | Blink: 64.4%
+2026-09-13 16:20:49,315 - OEMC-Attention - INFO - [fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 13: F1-macro plateaued/declined (prev=77.31%, now=77.24%) — halving LR to 0.002500 (Elmadjian et al. manual rule)
+2026-09-13 16:21:50,669 - OEMC-Attention - INFO - fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 14 set: Train loss: 0.4582 | Val loss: 0.4305
+2026-09-13 16:21:50,670 - OEMC-Attention - INFO - F1 Macro Average: 77.31%
+2026-09-13 16:21:50,670 - OEMC-Attention - INFO - F1 Fixation: 90.3% | Saccade: 67.1% | Pursuit: 87.8% | Blink: 64.0%
+2026-09-13 16:22:52,828 - OEMC-Attention - INFO - fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 15 set: Train loss: 0.4566 | Val loss: 0.4280
+2026-09-13 16:22:52,828 - OEMC-Attention - INFO - F1 Macro Average: 77.65%
+2026-09-13 16:22:52,828 - OEMC-Attention - INFO - F1 Fixation: 90.3% | Saccade: 67.8% | Pursuit: 87.8% | Blink: 64.7%
+2026-09-13 16:23:54,705 - OEMC-Attention - INFO - fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 16 set: Train loss: 0.4552 | Val loss: 0.4281
+2026-09-13 16:23:54,705 - OEMC-Attention - INFO - F1 Macro Average: 77.60%
+2026-09-13 16:23:54,706 - OEMC-Attention - INFO - F1 Fixation: 90.3% | Saccade: 67.8% | Pursuit: 87.7% | Blink: 64.6%
+2026-09-13 16:23:54,927 - OEMC-Attention - INFO - Early stopping counter: 1/10 | Improvement: -0.0001
+2026-09-13 16:24:56,300 - OEMC-Attention - INFO - fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 17 set: Train loss: 0.4541 | Val loss: 0.4271
+2026-09-13 16:24:56,300 - OEMC-Attention - INFO - F1 Macro Average: 77.68%
+2026-09-13 16:24:56,300 - OEMC-Attention - INFO - F1 Fixation: 90.3% | Saccade: 67.8% | Pursuit: 87.9% | Blink: 64.7%
+2026-09-13 16:24:56,518 - OEMC-Attention - INFO - [fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 17: F1-macro plateaued/declined (prev=77.65%, now=77.68%) — halving LR to 0.001250 (Elmadjian et al. manual rule)
+2026-09-13 16:25:57,763 - OEMC-Attention - INFO - fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 18 set: Train loss: 0.4514 | Val loss: 0.4254
+2026-09-13 16:25:57,763 - OEMC-Attention - INFO - F1 Macro Average: 77.58%
+2026-09-13 16:25:57,764 - OEMC-Attention - INFO - F1 Fixation: 90.3% | Saccade: 67.8% | Pursuit: 88.0% | Blink: 64.2%
+2026-09-13 16:25:57,981 - OEMC-Attention - INFO - [fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 18: F1-macro plateaued/declined (prev=77.60%, now=77.58%) — halving LR to 0.000625 (Elmadjian et al. manual rule)
+2026-09-13 16:26:59,232 - OEMC-Attention - INFO - fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 19 set: Train loss: 0.4499 | Val loss: 0.4241
+2026-09-13 16:26:59,232 - OEMC-Attention - INFO - F1 Macro Average: 77.74%
+2026-09-13 16:26:59,232 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 67.8% | Pursuit: 88.0% | Blink: 64.7%
+2026-09-13 16:26:59,468 - OEMC-Attention - INFO - [fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 19: F1-macro plateaued/declined (prev=77.68%, now=77.74%) — halving LR to 0.000313 (Elmadjian et al. manual rule)
+2026-09-13 16:28:00,584 - OEMC-Attention - INFO - fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 20 set: Train loss: 0.4489 | Val loss: 0.4232
+2026-09-13 16:28:00,585 - OEMC-Attention - INFO - F1 Macro Average: 77.75%
+2026-09-13 16:28:00,585 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 67.9% | Pursuit: 88.1% | Blink: 64.6%
+2026-09-13 16:29:02,409 - OEMC-Attention - INFO - fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 21 set: Train loss: 0.4489 | Val loss: 0.4233
+2026-09-13 16:29:02,410 - OEMC-Attention - INFO - F1 Macro Average: 77.75%
+2026-09-13 16:29:02,410 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.0% | Pursuit: 88.1% | Blink: 64.5%
+2026-09-13 16:29:02,631 - OEMC-Attention - INFO - [fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 21: F1-macro plateaued/declined (prev=77.74%, now=77.75%) — halving LR to 0.000156 (Elmadjian et al. manual rule)
+2026-09-13 16:29:02,632 - OEMC-Attention - INFO - Early stopping counter: 1/10 | Improvement: -0.0001
+2026-09-13 16:30:03,707 - OEMC-Attention - INFO - fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 22 set: Train loss: 0.4483 | Val loss: 0.4231
+2026-09-13 16:30:03,707 - OEMC-Attention - INFO - F1 Macro Average: 77.79%
+2026-09-13 16:30:03,708 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 67.9% | Pursuit: 88.1% | Blink: 64.7%
+2026-09-13 16:30:03,943 - OEMC-Attention - INFO - [fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 22: F1-macro plateaued/declined (prev=77.75%, now=77.79%) — halving LR to 0.000078 (Elmadjian et al. manual rule)
+2026-09-13 16:31:05,354 - OEMC-Attention - INFO - fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 23 set: Train loss: 0.4482 | Val loss: 0.4222
+2026-09-13 16:31:05,355 - OEMC-Attention - INFO - F1 Macro Average: 77.86%
+2026-09-13 16:31:05,355 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.1% | Pursuit: 88.1% | Blink: 64.8%
+2026-09-13 16:32:06,797 - OEMC-Attention - INFO - fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 24 set: Train loss: 0.4485 | Val loss: 0.4227
+2026-09-13 16:32:06,797 - OEMC-Attention - INFO - F1 Macro Average: 77.78%
+2026-09-13 16:32:06,797 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 67.9% | Pursuit: 88.1% | Blink: 64.7%
+2026-09-13 16:32:07,018 - OEMC-Attention - INFO - [fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 24: F1-macro plateaued/declined (prev=77.79%, now=77.78%) — halving LR to 0.000039 (Elmadjian et al. manual rule)
+2026-09-13 16:32:07,018 - OEMC-Attention - INFO - Early stopping counter: 1/10 | Improvement: -0.0005
+2026-09-13 16:33:08,661 - OEMC-Attention - INFO - fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 25 set: Train loss: 0.4481 | Val loss: 0.4224
+2026-09-13 16:33:08,661 - OEMC-Attention - INFO - F1 Macro Average: 77.84%
+2026-09-13 16:33:08,662 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.0% | Pursuit: 88.1% | Blink: 64.8%
+2026-09-13 16:33:08,904 - OEMC-Attention - INFO - [fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 25: F1-macro plateaued/declined (prev=77.86%, now=77.84%) — halving LR to 0.000020 (Elmadjian et al. manual rule)
+2026-09-13 16:33:08,905 - OEMC-Attention - INFO - Early stopping counter: 2/10 | Improvement: -0.0002
+2026-09-13 16:34:10,602 - OEMC-Attention - INFO - fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 26 set: Train loss: 0.4477 | Val loss: 0.4228
+2026-09-13 16:34:10,602 - OEMC-Attention - INFO - F1 Macro Average: 77.77%
+2026-09-13 16:34:10,602 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.0% | Pursuit: 88.1% | Blink: 64.6%
+2026-09-13 16:34:10,823 - OEMC-Attention - INFO - [fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 26: F1-macro plateaued/declined (prev=77.78%, now=77.77%) — halving LR to 0.000010 (Elmadjian et al. manual rule)
+2026-09-13 16:34:10,823 - OEMC-Attention - INFO - Early stopping counter: 3/10 | Improvement: -0.0006
+2026-09-13 16:35:12,402 - OEMC-Attention - INFO - fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 27 set: Train loss: 0.4482 | Val loss: 0.4228
+2026-09-13 16:35:12,402 - OEMC-Attention - INFO - F1 Macro Average: 77.78%
+2026-09-13 16:35:12,402 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.0% | Pursuit: 88.1% | Blink: 64.6%
+2026-09-13 16:35:12,628 - OEMC-Attention - INFO - [fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 27: F1-macro plateaued/declined (prev=77.84%, now=77.78%) — halving LR to 0.000005 (Elmadjian et al. manual rule)
+2026-09-13 16:35:12,628 - OEMC-Attention - INFO - Early stopping counter: 4/10 | Improvement: -0.0006
+2026-09-13 16:36:14,050 - OEMC-Attention - INFO - fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 28 set: Train loss: 0.4478 | Val loss: 0.4237
+2026-09-13 16:36:14,050 - OEMC-Attention - INFO - F1 Macro Average: 77.75%
+2026-09-13 16:36:14,051 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 67.9% | Pursuit: 88.0% | Blink: 64.7%
+2026-09-13 16:36:14,272 - OEMC-Attention - INFO - [fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 28: F1-macro plateaued/declined (prev=77.77%, now=77.75%) — halving LR to 0.000002 (Elmadjian et al. manual rule)
+2026-09-13 16:36:14,272 - OEMC-Attention - INFO - Early stopping counter: 5/10 | Improvement: -0.0015
+2026-09-13 16:37:15,918 - OEMC-Attention - INFO - fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 29 set: Train loss: 0.4480 | Val loss: 0.4230
+2026-09-13 16:37:15,918 - OEMC-Attention - INFO - F1 Macro Average: 77.77%
+2026-09-13 16:37:15,918 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 67.9% | Pursuit: 88.1% | Blink: 64.6%
+2026-09-13 16:37:16,137 - OEMC-Attention - INFO - [fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 29: F1-macro plateaued/declined (prev=77.78%, now=77.77%) — halving LR to 0.000001 (Elmadjian et al. manual rule)
+2026-09-13 16:37:16,137 - OEMC-Attention - INFO - Early stopping counter: 6/10 | Improvement: -0.0007
+2026-09-13 16:38:17,409 - OEMC-Attention - INFO - fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 30 set: Train loss: 0.4478 | Val loss: 0.4226
+2026-09-13 16:38:17,409 - OEMC-Attention - INFO - F1 Macro Average: 77.80%
+2026-09-13 16:38:17,409 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.0% | Pursuit: 88.1% | Blink: 64.6%
+2026-09-13 16:38:17,627 - OEMC-Attention - INFO - [fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 30: F1-macro plateaued/declined (prev=77.75%, now=77.80%) — halving LR to 0.000001 (Elmadjian et al. manual rule)
+2026-09-13 16:38:17,627 - OEMC-Attention - INFO - Early stopping counter: 7/10 | Improvement: -0.0004
+2026-09-13 16:39:18,912 - OEMC-Attention - INFO - fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 31 set: Train loss: 0.4479 | Val loss: 0.4226
+2026-09-13 16:39:18,912 - OEMC-Attention - INFO - F1 Macro Average: 77.81%
+2026-09-13 16:39:18,912 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.0% | Pursuit: 88.1% | Blink: 64.7%
+2026-09-13 16:39:19,131 - OEMC-Attention - INFO - [fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 31: F1-macro plateaued/declined (prev=77.77%, now=77.81%) — halving LR to 0.000000 (Elmadjian et al. manual rule)
+2026-09-13 16:39:19,131 - OEMC-Attention - INFO - Early stopping counter: 8/10 | Improvement: -0.0004
+2026-09-13 16:40:20,400 - OEMC-Attention - INFO - fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 32 set: Train loss: 0.4477 | Val loss: 0.4224
+2026-09-13 16:40:20,401 - OEMC-Attention - INFO - F1 Macro Average: 77.82%
+2026-09-13 16:40:20,401 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.1% | Pursuit: 88.1% | Blink: 64.6%
+2026-09-13 16:40:20,619 - OEMC-Attention - INFO - [fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 32: F1-macro plateaued/declined (prev=77.80%, now=77.82%) — halving LR to 0.000000 (Elmadjian et al. manual rule)
+2026-09-13 16:40:20,619 - OEMC-Attention - INFO - Early stopping counter: 9/10 | Improvement: -0.0002
+2026-09-13 16:41:22,037 - OEMC-Attention - INFO - fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 33 set: Train loss: 0.4478 | Val loss: 0.4224
+2026-09-13 16:41:22,038 - OEMC-Attention - INFO - F1 Macro Average: 77.80%
+2026-09-13 16:41:22,038 - OEMC-Attention - INFO - F1 Fixation: 90.4% | Saccade: 68.0% | Pursuit: 88.1% | Blink: 64.6%
+2026-09-13 16:41:22,260 - OEMC-Attention - INFO - [fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 33: F1-macro plateaued/declined (prev=77.81%, now=77.80%) — halving LR to 0.000000 (Elmadjian et al. manual rule)
+2026-09-13 16:41:22,261 - OEMC-Attention - INFO - Early stopping counter: 10/10 | Improvement: -0.0002
+2026-09-13 16:41:22,261 - OEMC-Attention - INFO - Early stopping triggered at epoch 33
+2026-09-13 16:41:22,262 - OEMC-Attention - INFO - Best model restored — F1: 0.7786
+2026-09-13 16:41:22,813 - OEMC-Attention - INFO - 
+============================================================
+2026-09-13 16:41:22,813 - OEMC-Attention - INFO - FINAL METRICS - fold4_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm FINAL BEST
+2026-09-13 16:41:22,813 - OEMC-Attention - INFO - ============================================================
+2026-09-13 16:41:22,814 - OEMC-Attention - INFO - Train Loss : 0.4482 | Val Loss : 0.4222
+2026-09-13 16:41:22,814 - OEMC-Attention - INFO - 
+[1] SAMPLE-LEVEL METRICS (per data point):
+2026-09-13 16:41:22,814 - OEMC-Attention - INFO - ------------------------------------------------------------
+2026-09-13 16:41:22,850 - OEMC-Attention - INFO -               precision    recall  f1-score   support
+2026-09-13 16:41:22,851 - OEMC-Attention - INFO -     Fixation     0.8597    0.9534    0.9041    133593
+2026-09-13 16:41:22,851 - OEMC-Attention - INFO -      Saccade     0.7587    0.6175    0.6809     15321
+2026-09-13 16:41:22,851 - OEMC-Attention - INFO -      Pursuit     0.8896    0.8728    0.8811     60695
+2026-09-13 16:41:22,851 - OEMC-Attention - INFO -        Blink     0.8451    0.5257    0.6482     27932
+2026-09-13 16:41:22,852 - OEMC-Attention - INFO -     accuracy                         0.8608    237541
+2026-09-13 16:41:22,852 - OEMC-Attention - INFO -    macro avg     0.8383    0.7423    0.7786    237541
+2026-09-13 16:41:22,852 - OEMC-Attention - INFO - weighted avg     0.8591    0.8608    0.8537    237541
+2026-09-13 16:41:22,852 - OEMC-Attention - INFO - 
+    Confusion Matrix (Sample - counts):
+2026-09-13 16:41:22,857 - OEMC-Attention - INFO -                 Fixation   Saccade   Pursuit     Blink
+2026-09-13 16:41:22,857 - OEMC-Attention - INFO -     Fixation      127362      1013      3479      1739
+2026-09-13 16:41:22,857 - OEMC-Attention - INFO -     Saccade         4901      9461       408       551
+2026-09-13 16:41:22,857 - OEMC-Attention - INFO -     Pursuit         6532       789     52972       402
+2026-09-13 16:41:22,857 - OEMC-Attention - INFO -     Blink           9354      1207      2687     14684
+2026-09-13 16:41:22,857 - OEMC-Attention - INFO - 
+2026-09-13 16:41:22,857 - OEMC-Attention - INFO - [2] EVENT-LEVEL METRICS (per movement segment):
+2026-09-13 16:41:22,857 - OEMC-Attention - INFO - ------------------------------------------------------------
+2026-09-13 16:41:22,881 - OEMC-Attention - INFO -               precision    recall  f1-score   support
+2026-09-13 16:41:22,881 - OEMC-Attention - INFO -     Fixation     0.7502    0.9781    0.8492     58640
+2026-09-13 16:41:22,881 - OEMC-Attention - INFO -      Saccade     0.8187    0.6076    0.6975     14324
+2026-09-13 16:41:22,882 - OEMC-Attention - INFO -      Pursuit     0.9182    0.8599    0.8881     45177
+2026-09-13 16:41:22,882 - OEMC-Attention - INFO -        Blink     0.9218    0.5008    0.6490     24629
+2026-09-13 16:41:22,882 - OEMC-Attention - INFO -     accuracy                         0.8212    142770
+2026-09-13 16:41:22,882 - OEMC-Attention - INFO -    macro avg     0.8522    0.7366    0.7709    142770
+2026-09-13 16:41:22,882 - OEMC-Attention - INFO - weighted avg     0.8399    0.8212    0.8117    142770
+2026-09-13 16:41:22,882 - OEMC-Attention - INFO - 
+    Confusion Matrix (Event - counts):
+2026-09-13 16:41:22,885 - OEMC-Attention - INFO -                 Fixation   Saccade   Pursuit     Blink
+2026-09-13 16:41:22,885 - OEMC-Attention - INFO -     Fixation       57357       219       733       331
+2026-09-13 16:41:22,885 - OEMC-Attention - INFO -     Saccade         4779      8703       363       479
+2026-09-13 16:41:22,885 - OEMC-Attention - INFO -     Pursuit         5466       626     38849       236
+2026-09-13 16:41:22,885 - OEMC-Attention - INFO -     Blink           8849      1082      2365     12333
+2026-09-13 16:41:22,886 - OEMC-Attention - INFO - 
+2026-09-13 16:41:22,886 - OEMC-Attention - INFO - 
+============================================================
+
+2026-09-13 16:41:26,627 - OEMC-Attention - INFO - === Training: fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm ===
+2026-09-13 16:41:26,627 - OEMC-Attention - INFO - optimizer=rmsprop  scheduler=elmadjian  loss=nll  loader=lookback
+2026-09-13 16:42:28,895 - OEMC-Attention - INFO - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 1 set: Train loss: 0.7756 | Val loss: 0.5687
+2026-09-13 16:42:28,896 - OEMC-Attention - INFO - F1 Macro Average: 70.13%
+2026-09-13 16:42:28,896 - OEMC-Attention - INFO - F1 Fixation: 86.9% | Saccade: 56.9% | Pursuit: 80.8% | Blink: 55.9%
+2026-09-13 16:43:30,835 - OEMC-Attention - INFO - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 2 set: Train loss: 0.5911 | Val loss: 0.5300
+2026-09-13 16:43:30,835 - OEMC-Attention - INFO - F1 Macro Average: 72.47%
+2026-09-13 16:43:30,836 - OEMC-Attention - INFO - F1 Fixation: 88.0% | Saccade: 61.7% | Pursuit: 82.5% | Blink: 57.6%
+2026-09-13 16:44:33,037 - OEMC-Attention - INFO - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 3 set: Train loss: 0.5513 | Val loss: 0.5050
+2026-09-13 16:44:33,038 - OEMC-Attention - INFO - F1 Macro Average: 73.48%
+2026-09-13 16:44:33,038 - OEMC-Attention - INFO - F1 Fixation: 88.6% | Saccade: 63.2% | Pursuit: 83.9% | Blink: 58.2%
+2026-09-13 16:45:35,164 - OEMC-Attention - INFO - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 4 set: Train loss: 0.5334 | Val loss: 0.4942
+2026-09-13 16:45:35,165 - OEMC-Attention - INFO - F1 Macro Average: 73.74%
+2026-09-13 16:45:35,165 - OEMC-Attention - INFO - F1 Fixation: 88.9% | Saccade: 59.7% | Pursuit: 84.5% | Blink: 61.9%
+2026-09-13 16:46:36,951 - OEMC-Attention - INFO - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 5 set: Train loss: 0.5181 | Val loss: 0.4767
+2026-09-13 16:46:36,951 - OEMC-Attention - INFO - F1 Macro Average: 75.10%
+2026-09-13 16:46:36,951 - OEMC-Attention - INFO - F1 Fixation: 89.3% | Saccade: 64.0% | Pursuit: 85.4% | Blink: 61.6%
+2026-09-13 16:47:38,692 - OEMC-Attention - INFO - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 6 set: Train loss: 0.5094 | Val loss: 0.4778
+2026-09-13 16:47:38,693 - OEMC-Attention - INFO - F1 Macro Average: 74.93%
+2026-09-13 16:47:38,693 - OEMC-Attention - INFO - F1 Fixation: 89.3% | Saccade: 64.5% | Pursuit: 85.2% | Blink: 60.6%
+2026-09-13 16:47:38,910 - OEMC-Attention - INFO - Early stopping counter: 1/10 | Improvement: -0.0010
+2026-09-13 16:48:40,569 - OEMC-Attention - INFO - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 7 set: Train loss: 0.5019 | Val loss: 0.4606
+2026-09-13 16:48:40,570 - OEMC-Attention - INFO - F1 Macro Average: 75.94%
+2026-09-13 16:48:40,570 - OEMC-Attention - INFO - F1 Fixation: 89.6% | Saccade: 64.6% | Pursuit: 86.3% | Blink: 63.3%
+2026-09-13 16:49:42,615 - OEMC-Attention - INFO - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 8 set: Train loss: 0.4957 | Val loss: 0.4772
+2026-09-13 16:49:42,615 - OEMC-Attention - INFO - F1 Macro Average: 74.42%
+2026-09-13 16:49:42,615 - OEMC-Attention - INFO - F1 Fixation: 89.3% | Saccade: 64.4% | Pursuit: 85.7% | Blink: 58.3%
+2026-09-13 16:49:42,832 - OEMC-Attention - INFO - [fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 8: F1-macro plateaued/declined (prev=74.93%, now=74.42%) — halving LR to 0.005000 (Elmadjian et al. manual rule)
+2026-09-13 16:49:42,832 - OEMC-Attention - INFO - Early stopping counter: 1/10 | Improvement: -0.0166
+2026-09-13 16:50:44,417 - OEMC-Attention - INFO - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 9 set: Train loss: 0.4786 | Val loss: 0.4483
+2026-09-13 16:50:44,417 - OEMC-Attention - INFO - F1 Macro Average: 76.49%
+2026-09-13 16:50:44,417 - OEMC-Attention - INFO - F1 Fixation: 89.9% | Saccade: 66.3% | Pursuit: 87.0% | Blink: 62.8%
+2026-09-13 16:51:46,339 - OEMC-Attention - INFO - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 10 set: Train loss: 0.4751 | Val loss: 0.4451
+2026-09-13 16:51:46,340 - OEMC-Attention - INFO - F1 Macro Average: 76.66%
+2026-09-13 16:51:46,340 - OEMC-Attention - INFO - F1 Fixation: 89.9% | Saccade: 66.5% | Pursuit: 87.0% | Blink: 63.2%
+2026-09-13 16:52:48,719 - OEMC-Attention - INFO - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 11 set: Train loss: 0.4730 | Val loss: 0.4426
+2026-09-13 16:52:48,719 - OEMC-Attention - INFO - F1 Macro Average: 76.64%
+2026-09-13 16:52:48,720 - OEMC-Attention - INFO - F1 Fixation: 89.9% | Saccade: 66.6% | Pursuit: 87.2% | Blink: 62.9%
+2026-09-13 16:53:50,733 - OEMC-Attention - INFO - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 12 set: Train loss: 0.4705 | Val loss: 0.4399
+2026-09-13 16:53:50,734 - OEMC-Attention - INFO - F1 Macro Average: 77.03%
+2026-09-13 16:53:50,734 - OEMC-Attention - INFO - F1 Fixation: 90.0% | Saccade: 66.9% | Pursuit: 87.4% | Blink: 63.8%
+2026-09-13 16:54:52,778 - OEMC-Attention - INFO - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 13 set: Train loss: 0.4683 | Val loss: 0.4387
+2026-09-13 16:54:52,778 - OEMC-Attention - INFO - F1 Macro Average: 76.90%
+2026-09-13 16:54:52,778 - OEMC-Attention - INFO - F1 Fixation: 90.1% | Saccade: 66.8% | Pursuit: 87.4% | Blink: 63.4%
+2026-09-13 16:55:54,765 - OEMC-Attention - INFO - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 14 set: Train loss: 0.4668 | Val loss: 0.4422
+2026-09-13 16:55:54,765 - OEMC-Attention - INFO - F1 Macro Average: 77.11%
+2026-09-13 16:55:54,765 - OEMC-Attention - INFO - F1 Fixation: 90.0% | Saccade: 66.7% | Pursuit: 87.3% | Blink: 64.4%
+2026-09-13 16:55:54,984 - OEMC-Attention - INFO - [fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 14: F1-macro plateaued/declined (prev=77.03%, now=77.11%) — halving LR to 0.002500 (Elmadjian et al. manual rule)
+2026-09-13 16:55:54,984 - OEMC-Attention - INFO - Early stopping counter: 1/10 | Improvement: -0.0036
+2026-09-13 16:56:56,672 - OEMC-Attention - INFO - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 15 set: Train loss: 0.4594 | Val loss: 0.4328
+2026-09-13 16:56:56,673 - OEMC-Attention - INFO - F1 Macro Average: 77.25%
+2026-09-13 16:56:56,673 - OEMC-Attention - INFO - F1 Fixation: 90.1% | Saccade: 67.2% | Pursuit: 87.8% | Blink: 63.9%
+2026-09-13 16:57:58,353 - OEMC-Attention - INFO - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 16 set: Train loss: 0.4582 | Val loss: 0.4314
+2026-09-13 16:57:58,353 - OEMC-Attention - INFO - F1 Macro Average: 77.33%
+2026-09-13 16:57:58,353 - OEMC-Attention - INFO - F1 Fixation: 90.2% | Saccade: 67.3% | Pursuit: 87.9% | Blink: 64.0%
+2026-09-13 16:59:00,696 - OEMC-Attention - INFO - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 17 set: Train loss: 0.4571 | Val loss: 0.4319
+2026-09-13 16:59:00,696 - OEMC-Attention - INFO - F1 Macro Average: 77.12%
+2026-09-13 16:59:00,696 - OEMC-Attention - INFO - F1 Fixation: 90.1% | Saccade: 66.9% | Pursuit: 87.7% | Blink: 63.7%
+2026-09-13 16:59:00,917 - OEMC-Attention - INFO - [fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 17: F1-macro plateaued/declined (prev=77.25%, now=77.12%) — halving LR to 0.001250 (Elmadjian et al. manual rule)
+2026-09-13 16:59:00,917 - OEMC-Attention - INFO - Early stopping counter: 1/10 | Improvement: -0.0005
+2026-09-13 17:00:02,447 - OEMC-Attention - INFO - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 18 set: Train loss: 0.4536 | Val loss: 0.4296
+2026-09-13 17:00:02,448 - OEMC-Attention - INFO - F1 Macro Average: 77.40%
+2026-09-13 17:00:02,448 - OEMC-Attention - INFO - F1 Fixation: 90.2% | Saccade: 67.8% | Pursuit: 87.9% | Blink: 63.7%
+2026-09-13 17:00:02,666 - OEMC-Attention - INFO - [fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 18: F1-macro plateaued/declined (prev=77.33%, now=77.40%) — halving LR to 0.000625 (Elmadjian et al. manual rule)
+2026-09-13 17:01:04,386 - OEMC-Attention - INFO - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 19 set: Train loss: 0.4524 | Val loss: 0.4288
+2026-09-13 17:01:04,386 - OEMC-Attention - INFO - F1 Macro Average: 77.39%
+2026-09-13 17:01:04,386 - OEMC-Attention - INFO - F1 Fixation: 90.2% | Saccade: 67.5% | Pursuit: 87.9% | Blink: 63.9%
+2026-09-13 17:02:06,012 - OEMC-Attention - INFO - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 20 set: Train loss: 0.4520 | Val loss: 0.4283
+2026-09-13 17:02:06,012 - OEMC-Attention - INFO - F1 Macro Average: 77.42%
+2026-09-13 17:02:06,013 - OEMC-Attention - INFO - F1 Fixation: 90.2% | Saccade: 67.4% | Pursuit: 88.0% | Blink: 64.1%
+2026-09-13 17:02:06,229 - OEMC-Attention - INFO - [fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 20: F1-macro plateaued/declined (prev=77.40%, now=77.42%) — halving LR to 0.000313 (Elmadjian et al. manual rule)
+2026-09-13 17:03:08,223 - OEMC-Attention - INFO - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 21 set: Train loss: 0.4513 | Val loss: 0.4279
+2026-09-13 17:03:08,223 - OEMC-Attention - INFO - F1 Macro Average: 77.45%
+2026-09-13 17:03:08,223 - OEMC-Attention - INFO - F1 Fixation: 90.2% | Saccade: 67.6% | Pursuit: 88.0% | Blink: 64.0%
+2026-09-13 17:03:08,442 - OEMC-Attention - INFO - [fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 21: F1-macro plateaued/declined (prev=77.39%, now=77.45%) — halving LR to 0.000156 (Elmadjian et al. manual rule)
+2026-09-13 17:04:10,072 - OEMC-Attention - INFO - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 22 set: Train loss: 0.4512 | Val loss: 0.4275
+2026-09-13 17:04:10,072 - OEMC-Attention - INFO - F1 Macro Average: 77.49%
+2026-09-13 17:04:10,073 - OEMC-Attention - INFO - F1 Fixation: 90.2% | Saccade: 67.6% | Pursuit: 88.0% | Blink: 64.1%
+2026-09-13 17:04:10,292 - OEMC-Attention - INFO - [fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 22: F1-macro plateaued/declined (prev=77.42%, now=77.49%) — halving LR to 0.000078 (Elmadjian et al. manual rule)
+2026-09-13 17:05:11,912 - OEMC-Attention - INFO - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 23 set: Train loss: 0.4511 | Val loss: 0.4275
+2026-09-13 17:05:11,912 - OEMC-Attention - INFO - F1 Macro Average: 77.49%
+2026-09-13 17:05:11,913 - OEMC-Attention - INFO - F1 Fixation: 90.2% | Saccade: 67.6% | Pursuit: 88.0% | Blink: 64.1%
+2026-09-13 17:05:12,128 - OEMC-Attention - INFO - [fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 23: F1-macro plateaued/declined (prev=77.45%, now=77.49%) — halving LR to 0.000039 (Elmadjian et al. manual rule)
+2026-09-13 17:06:13,739 - OEMC-Attention - INFO - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 24 set: Train loss: 0.4508 | Val loss: 0.4278
+2026-09-13 17:06:13,740 - OEMC-Attention - INFO - F1 Macro Average: 77.43%
+2026-09-13 17:06:13,740 - OEMC-Attention - INFO - F1 Fixation: 90.2% | Saccade: 67.6% | Pursuit: 88.0% | Blink: 63.9%
+2026-09-13 17:06:13,961 - OEMC-Attention - INFO - [fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 24: F1-macro plateaued/declined (prev=77.49%, now=77.43%) — halving LR to 0.000020 (Elmadjian et al. manual rule)
+2026-09-13 17:06:13,962 - OEMC-Attention - INFO - Early stopping counter: 1/10 | Improvement: -0.0004
+2026-09-13 17:07:15,614 - OEMC-Attention - INFO - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 25 set: Train loss: 0.4509 | Val loss: 0.4274
+2026-09-13 17:07:15,615 - OEMC-Attention - INFO - F1 Macro Average: 77.49%
+2026-09-13 17:07:15,615 - OEMC-Attention - INFO - F1 Fixation: 90.2% | Saccade: 67.6% | Pursuit: 88.0% | Blink: 64.1%
+2026-09-13 17:07:15,834 - OEMC-Attention - INFO - [fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 25: F1-macro plateaued/declined (prev=77.49%, now=77.49%) — halving LR to 0.000010 (Elmadjian et al. manual rule)
+2026-09-13 17:08:17,313 - OEMC-Attention - INFO - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 26 set: Train loss: 0.4503 | Val loss: 0.4274
+2026-09-13 17:08:17,313 - OEMC-Attention - INFO - F1 Macro Average: 77.52%
+2026-09-13 17:08:17,313 - OEMC-Attention - INFO - F1 Fixation: 90.2% | Saccade: 67.7% | Pursuit: 88.0% | Blink: 64.2%
+2026-09-13 17:08:17,548 - OEMC-Attention - INFO - [fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 26: F1-macro plateaued/declined (prev=77.43%, now=77.52%) — halving LR to 0.000005 (Elmadjian et al. manual rule)
+2026-09-13 17:09:18,997 - OEMC-Attention - INFO - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 27 set: Train loss: 0.4514 | Val loss: 0.4280
+2026-09-13 17:09:18,997 - OEMC-Attention - INFO - F1 Macro Average: 77.45%
+2026-09-13 17:09:18,997 - OEMC-Attention - INFO - F1 Fixation: 90.2% | Saccade: 67.6% | Pursuit: 88.0% | Blink: 64.0%
+2026-09-13 17:09:19,216 - OEMC-Attention - INFO - [fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 27: F1-macro plateaued/declined (prev=77.49%, now=77.45%) — halving LR to 0.000002 (Elmadjian et al. manual rule)
+2026-09-13 17:09:19,216 - OEMC-Attention - INFO - Early stopping counter: 1/10 | Improvement: -0.0006
+2026-09-13 17:10:20,813 - OEMC-Attention - INFO - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 28 set: Train loss: 0.4504 | Val loss: 0.4273
+2026-09-13 17:10:20,813 - OEMC-Attention - INFO - F1 Macro Average: 77.49%
+2026-09-13 17:10:20,813 - OEMC-Attention - INFO - F1 Fixation: 90.2% | Saccade: 67.6% | Pursuit: 88.0% | Blink: 64.1%
+2026-09-13 17:10:21,041 - OEMC-Attention - INFO - [fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 28: F1-macro plateaued/declined (prev=77.52%, now=77.49%) — halving LR to 0.000001 (Elmadjian et al. manual rule)
+2026-09-13 17:11:22,643 - OEMC-Attention - INFO - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 29 set: Train loss: 0.4504 | Val loss: 0.4272
+2026-09-13 17:11:22,643 - OEMC-Attention - INFO - F1 Macro Average: 77.52%
+2026-09-13 17:11:22,643 - OEMC-Attention - INFO - F1 Fixation: 90.2% | Saccade: 67.6% | Pursuit: 88.0% | Blink: 64.2%
+2026-09-13 17:11:22,862 - OEMC-Attention - INFO - [fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 29: F1-macro plateaued/declined (prev=77.45%, now=77.52%) — halving LR to 0.000001 (Elmadjian et al. manual rule)
+2026-09-13 17:12:24,637 - OEMC-Attention - INFO - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 30 set: Train loss: 0.4508 | Val loss: 0.4274
+2026-09-13 17:12:24,637 - OEMC-Attention - INFO - F1 Macro Average: 77.49%
+2026-09-13 17:12:24,637 - OEMC-Attention - INFO - F1 Fixation: 90.2% | Saccade: 67.6% | Pursuit: 88.0% | Blink: 64.1%
+2026-09-13 17:12:24,854 - OEMC-Attention - INFO - [fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 30: F1-macro plateaued/declined (prev=77.49%, now=77.49%) — halving LR to 0.000000 (Elmadjian et al. manual rule)
+2026-09-13 17:12:24,855 - OEMC-Attention - INFO - Early stopping counter: 1/10 | Improvement: -0.0002
+2026-09-13 17:13:26,506 - OEMC-Attention - INFO - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 31 set: Train loss: 0.4504 | Val loss: 0.4276
+2026-09-13 17:13:26,506 - OEMC-Attention - INFO - F1 Macro Average: 77.47%
+2026-09-13 17:13:26,507 - OEMC-Attention - INFO - F1 Fixation: 90.2% | Saccade: 67.6% | Pursuit: 88.0% | Blink: 64.1%
+2026-09-13 17:13:26,723 - OEMC-Attention - INFO - [fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 31: F1-macro plateaued/declined (prev=77.52%, now=77.47%) — halving LR to 0.000000 (Elmadjian et al. manual rule)
+2026-09-13 17:13:26,723 - OEMC-Attention - INFO - Early stopping counter: 2/10 | Improvement: -0.0004
+2026-09-13 17:14:28,101 - OEMC-Attention - INFO - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 32 set: Train loss: 0.4506 | Val loss: 0.4277
+2026-09-13 17:14:28,101 - OEMC-Attention - INFO - F1 Macro Average: 77.43%
+2026-09-13 17:14:28,102 - OEMC-Attention - INFO - F1 Fixation: 90.2% | Saccade: 67.5% | Pursuit: 88.0% | Blink: 64.0%
+2026-09-13 17:14:28,334 - OEMC-Attention - INFO - [fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 32: F1-macro plateaued/declined (prev=77.49%, now=77.43%) — halving LR to 0.000000 (Elmadjian et al. manual rule)
+2026-09-13 17:14:28,335 - OEMC-Attention - INFO - Early stopping counter: 3/10 | Improvement: -0.0005
+2026-09-13 17:15:29,966 - OEMC-Attention - INFO - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 33 set: Train loss: 0.4500 | Val loss: 0.4277
+2026-09-13 17:15:29,966 - OEMC-Attention - INFO - F1 Macro Average: 77.46%
+2026-09-13 17:15:29,967 - OEMC-Attention - INFO - F1 Fixation: 90.2% | Saccade: 67.6% | Pursuit: 88.0% | Blink: 64.0%
+2026-09-13 17:15:30,191 - OEMC-Attention - INFO - [fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 33: F1-macro plateaued/declined (prev=77.47%, now=77.46%) — halving LR to 0.000000 (Elmadjian et al. manual rule)
+2026-09-13 17:15:30,191 - OEMC-Attention - INFO - Early stopping counter: 4/10 | Improvement: -0.0005
+2026-09-13 17:16:31,842 - OEMC-Attention - INFO - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 34 set: Train loss: 0.4498 | Val loss: 0.4280
+2026-09-13 17:16:31,842 - OEMC-Attention - INFO - F1 Macro Average: 77.46%
+2026-09-13 17:16:31,842 - OEMC-Attention - INFO - F1 Fixation: 90.2% | Saccade: 67.6% | Pursuit: 88.0% | Blink: 64.0%
+2026-09-13 17:16:32,064 - OEMC-Attention - INFO - [fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 34: F1-macro plateaued/declined (prev=77.43%, now=77.46%) — halving LR to 0.000000 (Elmadjian et al. manual rule)
+2026-09-13 17:16:32,064 - OEMC-Attention - INFO - Early stopping counter: 5/10 | Improvement: -0.0008
+2026-09-13 17:17:33,586 - OEMC-Attention - INFO - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 35 set: Train loss: 0.4504 | Val loss: 0.4279
+2026-09-13 17:17:33,586 - OEMC-Attention - INFO - F1 Macro Average: 77.46%
+2026-09-13 17:17:33,586 - OEMC-Attention - INFO - F1 Fixation: 90.2% | Saccade: 67.6% | Pursuit: 88.0% | Blink: 64.1%
+2026-09-13 17:17:33,805 - OEMC-Attention - INFO - [fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 35: F1-macro plateaued/declined (prev=77.46%, now=77.46%) — halving LR to 0.000000 (Elmadjian et al. manual rule)
+2026-09-13 17:17:33,805 - OEMC-Attention - INFO - Early stopping counter: 6/10 | Improvement: -0.0007
+2026-09-13 17:18:35,232 - OEMC-Attention - INFO - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 36 set: Train loss: 0.4502 | Val loss: 0.4277
+2026-09-13 17:18:35,232 - OEMC-Attention - INFO - F1 Macro Average: 77.43%
+2026-09-13 17:18:35,233 - OEMC-Attention - INFO - F1 Fixation: 90.2% | Saccade: 67.5% | Pursuit: 88.0% | Blink: 64.0%
+2026-09-13 17:18:35,449 - OEMC-Attention - INFO - [fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 36: F1-macro plateaued/declined (prev=77.46%, now=77.43%) — halving LR to 0.000000 (Elmadjian et al. manual rule)
+2026-09-13 17:18:35,450 - OEMC-Attention - INFO - Early stopping counter: 7/10 | Improvement: -0.0005
+2026-09-13 17:19:37,178 - OEMC-Attention - INFO - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 37 set: Train loss: 0.4505 | Val loss: 0.4281
+2026-09-13 17:19:37,178 - OEMC-Attention - INFO - F1 Macro Average: 77.45%
+2026-09-13 17:19:37,179 - OEMC-Attention - INFO - F1 Fixation: 90.2% | Saccade: 67.6% | Pursuit: 88.0% | Blink: 64.0%
+2026-09-13 17:19:37,398 - OEMC-Attention - INFO - [fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 37: F1-macro plateaued/declined (prev=77.46%, now=77.45%) — halving LR to 0.000000 (Elmadjian et al. manual rule)
+2026-09-13 17:19:37,398 - OEMC-Attention - INFO - Early stopping counter: 8/10 | Improvement: -0.0009
+2026-09-13 17:20:38,857 - OEMC-Attention - INFO - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 38 set: Train loss: 0.4503 | Val loss: 0.4276
+2026-09-13 17:20:38,857 - OEMC-Attention - INFO - F1 Macro Average: 77.45%
+2026-09-13 17:20:38,857 - OEMC-Attention - INFO - F1 Fixation: 90.2% | Saccade: 67.6% | Pursuit: 88.0% | Blink: 64.0%
+2026-09-13 17:20:39,077 - OEMC-Attention - INFO - [fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 38: F1-macro plateaued/declined (prev=77.43%, now=77.45%) — halving LR to 0.000000 (Elmadjian et al. manual rule)
+2026-09-13 17:20:39,077 - OEMC-Attention - INFO - Early stopping counter: 9/10 | Improvement: -0.0004
+2026-09-13 17:21:40,588 - OEMC-Attention - INFO - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm Epoch 39 set: Train loss: 0.4511 | Val loss: 0.4277
+2026-09-13 17:21:40,588 - OEMC-Attention - INFO - F1 Macro Average: 77.43%
+2026-09-13 17:21:40,588 - OEMC-Attention - INFO - F1 Fixation: 90.2% | Saccade: 67.5% | Pursuit: 88.0% | Blink: 64.0%
+2026-09-13 17:21:40,814 - OEMC-Attention - INFO - [fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm] Epoch 39: F1-macro plateaued/declined (prev=77.45%, now=77.43%) — halving LR to 0.000000 (Elmadjian et al. manual rule)
+2026-09-13 17:21:40,814 - OEMC-Attention - INFO - Early stopping counter: 10/10 | Improvement: -0.0005
+2026-09-13 17:21:40,814 - OEMC-Attention - INFO - Early stopping triggered at epoch 39
+2026-09-13 17:21:40,815 - OEMC-Attention - INFO - Best model restored — F1: 0.7752
+2026-09-13 17:21:41,375 - OEMC-Attention - INFO - 
+============================================================
+2026-09-13 17:21:41,375 - OEMC-Attention - INFO - FINAL METRICS - fold5_20260913_140522_t20_blstm2_f32-16-8_k3_do25_lr01_b2048_cnnbilstm FINAL BEST
+2026-09-13 17:21:41,375 - OEMC-Attention - INFO - ============================================================
+2026-09-13 17:21:41,375 - OEMC-Attention - INFO - Train Loss : 0.4504 | Val Loss : 0.4272
+2026-09-13 17:21:41,376 - OEMC-Attention - INFO - 
+[1] SAMPLE-LEVEL METRICS (per data point):
+2026-09-13 17:21:41,376 - OEMC-Attention - INFO - ------------------------------------------------------------
+2026-09-13 17:21:41,411 - OEMC-Attention - INFO -               precision    recall  f1-score   support
+2026-09-13 17:21:41,411 - OEMC-Attention - INFO -     Fixation     0.8583    0.9513    0.9024    133596
+2026-09-13 17:21:41,411 - OEMC-Attention - INFO -      Saccade     0.7324    0.6283    0.6764     15323
+2026-09-13 17:21:41,411 - OEMC-Attention - INFO -      Pursuit     0.8938    0.8667    0.8801     60694
+2026-09-13 17:21:41,411 - OEMC-Attention - INFO -        Blink     0.8341    0.5220    0.6421     27928
+2026-09-13 17:21:41,411 - OEMC-Attention - INFO -     accuracy                         0.8583    237541
+2026-09-13 17:21:41,412 - OEMC-Attention - INFO -    macro avg     0.8297    0.7421    0.7752    237541
+2026-09-13 17:21:41,412 - OEMC-Attention - INFO - weighted avg     0.8564    0.8583    0.8515    237541
+2026-09-13 17:21:41,412 - OEMC-Attention - INFO - 
+    Confusion Matrix (Sample - counts):
+2026-09-13 17:21:41,416 - OEMC-Attention - INFO -                 Fixation   Saccade   Pursuit     Blink
+2026-09-13 17:21:41,416 - OEMC-Attention - INFO -     Fixation      127085      1299      3345      1867
+2026-09-13 17:21:41,416 - OEMC-Attention - INFO -     Saccade         4780      9627       313       603
+2026-09-13 17:21:41,416 - OEMC-Attention - INFO -     Pursuit         6699       963     52602       430
+2026-09-13 17:21:41,416 - OEMC-Attention - INFO -     Blink           9505      1255      2589     14579
+2026-09-13 17:21:41,416 - OEMC-Attention - INFO - 
+2026-09-13 17:21:41,416 - OEMC-Attention - INFO - [2] EVENT-LEVEL METRICS (per movement segment):
+2026-09-13 17:21:41,417 - OEMC-Attention - INFO - ------------------------------------------------------------
+2026-09-13 17:21:41,441 - OEMC-Attention - INFO -               precision    recall  f1-score   support
+2026-09-13 17:21:41,441 - OEMC-Attention - INFO -     Fixation     0.7472    0.9777    0.8471     58445
+2026-09-13 17:21:41,441 - OEMC-Attention - INFO -      Saccade     0.8027    0.6196    0.6994     14358
+2026-09-13 17:21:41,441 - OEMC-Attention - INFO -      Pursuit     0.9226    0.8516    0.8857     45212
+2026-09-13 17:21:41,442 - OEMC-Attention - INFO -        Blink     0.9138    0.4960    0.6430     24671
+2026-09-13 17:21:41,442 - OEMC-Attention - INFO -     accuracy                         0.8184    142686
+2026-09-13 17:21:41,442 - OEMC-Attention - INFO -    macro avg     0.8466    0.7362    0.7688    142686
+2026-09-13 17:21:41,442 - OEMC-Attention - INFO - weighted avg     0.8372    0.8184    0.8091    142686
+2026-09-13 17:21:41,442 - OEMC-Attention - INFO - 
+    Confusion Matrix (Event - counts):
+2026-09-13 17:21:41,445 - OEMC-Attention - INFO -                 Fixation   Saccade   Pursuit     Blink
+2026-09-13 17:21:41,445 - OEMC-Attention - INFO -     Fixation       57144       261       654       386
+2026-09-13 17:21:41,445 - OEMC-Attention - INFO -     Saccade         4666      8896       274       522
+2026-09-13 17:21:41,445 - OEMC-Attention - INFO -     Pursuit         5678       784     38504       246
+2026-09-13 17:21:41,445 - OEMC-Attention - INFO -     Blink           8991      1141      2303     12236
+2026-09-13 17:21:41,445 - OEMC-Attention - INFO - 
+2026-09-13 17:21:41,445 - OEMC-Attention - INFO - 
+============================================================
+

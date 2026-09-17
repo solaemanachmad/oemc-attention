@@ -13,10 +13,31 @@ from utils.logger import logger
 _DEVICE_LOGGED = False
 
 
-def get_device():
+def is_directml_device(device):
+    """
+    True only if `device` is a torch-directml device — NOT cuda, NOT
+    mps, NOT plain cpu. Used to decide whether an LSTM-based model
+    needs to be force-moved to CPU (DirectML lacks the fused LSTM
+    kernel; CUDA/MPS/CPU all support it natively).
+    """
+    return device is not None and device.type not in ("cuda", "cpu", "mps")
+
+
+def get_device(force_cpu=False):
     global _DEVICE_LOGGED
-    device = None
     is_main_process = multiprocessing.current_process().name == 'MainProcess'
+
+    if force_cpu:
+        if not _DEVICE_LOGGED and is_main_process:
+            logger.info(
+                "Using CPU (forced) — this model type is not supported "
+                "on the detected GPU backend (e.g. torch-directml lacks "
+                "the fused LSTM kernel: aten::_thnn_fused_lstm_cell)."
+            )
+        _DEVICE_LOGGED = True
+        return torch.device('cpu')
+
+    device = None
 
     if torch.cuda.is_available():
         if not _DEVICE_LOGGED and is_main_process:
@@ -168,6 +189,11 @@ def build_config_tag(model_type=None, timesteps=None,
             parts.append("f" + "-".join(str(f) for f in conv_filters))
         if kernel_size      is not None: parts.append(f"k{kernel_size}")
 
+    elif model_type == "skip_attseqnet":
+        if conv_filters     is not None:
+            parts.append("f" + "-".join(str(f) for f in conv_filters))
+        if kernel_size      is not None: parts.append(f"k{kernel_size}")
+
     if dropout    is not None: parts.append(f"do{_do_str(dropout)}")
     if lr         is not None: parts.append(f"lr{_lr_str(lr)}")
     if batch_size is not None: parts.append(f"b{batch_size}")
@@ -202,13 +228,13 @@ def set_prefix(fold_idx=None, run_name=None, model_type=None,
 # ------------------------------------------------------------------ #
 
 def set_folder_path(use_kfold=False, fold_idx=None,
-                    base_dir="results", model_type=None):
+                    base_dir="results", model_type=None, dataset=None):
     if use_kfold:
-        folder_path = os.path.join(base_dir, "kfold", model_type or "")
+        folder_path = os.path.join(base_dir, "kfold", dataset or "", model_type or "")
         if fold_idx is not None:
             folder_path = os.path.join(folder_path, f"fold_{fold_idx + 1}")
     else:
-        folder_path = os.path.join(base_dir, "single", model_type or "")
+        folder_path = os.path.join(base_dir, "single", dataset or "", model_type or "")
     os.makedirs(folder_path, exist_ok=True)
     return folder_path
 
@@ -219,24 +245,25 @@ def set_folder_path(use_kfold=False, fold_idx=None,
 # ------------------------------------------------------------------ #
 
 def save_model(model, prefix, use_kfold=False, fold_idx=None,
-               base_dir="results", model_type=None):
-    folder = set_folder_path(use_kfold, fold_idx, base_dir, model_type)
+               base_dir="results", model_type=None, dataset=None):
+    folder = set_folder_path(use_kfold, fold_idx, base_dir, model_type, dataset)
     path   = os.path.join(folder, f"{prefix}_model.pt")
     torch.save(model.state_dict(), path)
     return path
 
 
 def save_results(results_dict, prefix, use_kfold=False, fold_idx=None,
-                 base_dir="results", model_type=None):
-    folder = set_folder_path(use_kfold, fold_idx, base_dir, model_type)
+                 base_dir="results", model_type=None, dataset=None):
+    folder = set_folder_path(use_kfold, fold_idx, base_dir, model_type, dataset)
     path   = os.path.join(folder, f"{prefix}_results.pt")
     torch.save(results_dict, path)
     return path
 
 
 def save_checkpoint(model, optimizer, epoch, prefix, use_kfold=False,
-                    fold_idx=None, base_dir="results", model_type=None):
-    folder = set_folder_path(use_kfold, fold_idx, base_dir, model_type)
+                    fold_idx=None, base_dir="results", model_type=None,
+                    dataset=None):
+    folder = set_folder_path(use_kfold, fold_idx, base_dir, model_type, dataset)
     path   = os.path.join(folder, f"{prefix}_ckpt_epoch{epoch}.pt")
     torch.save({
         'model_state_dict':     model.state_dict(),
@@ -248,17 +275,17 @@ def save_checkpoint(model, optimizer, epoch, prefix, use_kfold=False,
 
 
 def save_csv(all_metrics, prefix, use_kfold=False, fold_idx=None,
-             base_dir="results", model_type=None):
+             base_dir="results", model_type=None, dataset=None):
     import pandas as pd
-    folder = set_folder_path(use_kfold, fold_idx, base_dir, model_type)
+    folder = set_folder_path(use_kfold, fold_idx, base_dir, model_type, dataset)
     path   = os.path.join(folder, f"{prefix}_metrics.csv")
     pd.DataFrame(all_metrics).to_csv(path, index=False)
     return path
 
 
 def save_json(epoch_logs, prefix, use_kfold=False, fold_idx=None,
-              base_dir="results", model_type=None):
-    folder = set_folder_path(use_kfold, fold_idx, base_dir, model_type)
+              base_dir="results", model_type=None, dataset=None):
+    folder = set_folder_path(use_kfold, fold_idx, base_dir, model_type, dataset)
     path   = os.path.join(folder, f"{prefix}_epoch_logs.json")
     with open(path, "w") as f:
         json.dump({"prefix": prefix, "epochs": epoch_logs}, f, indent=4)
@@ -270,9 +297,9 @@ def save_json(epoch_logs, prefix, use_kfold=False, fold_idx=None,
 # ------------------------------------------------------------------ #
 
 def log_config(wandb_config, prefix, use_kfold, model_type,
-               base_dir="results"):
+               base_dir="results", dataset=None):
     folder = set_folder_path(use_kfold=use_kfold, model_type=model_type,
-                             base_dir=base_dir)
+                             base_dir=base_dir, dataset=dataset)
     path = os.path.join(folder, f"{prefix}_config.json")
     with open(path, "w") as f:
         json.dump(wandb_config, f, indent=4)
@@ -283,14 +310,14 @@ def log_config(wandb_config, prefix, use_kfold, model_type,
 
 
 def log_flops(model, prefix, model_type, use_kfold, input_shape,
-              base_dir="results", fold_idx=0):
+              base_dir="results", fold_idx=0, dataset=None):
     if fold_idx > 0:
         return
     try:
         import warnings
         from ptflops import get_model_complexity_info
         folder = set_folder_path(use_kfold=use_kfold, model_type=model_type,
-                                 base_dir=base_dir)
+                                 base_dir=base_dir, dataset=dataset)
         with warnings.catch_warnings():
             warnings.filterwarnings("ignore")
             macs, params = get_model_complexity_info(

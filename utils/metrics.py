@@ -327,9 +327,9 @@ def _draw_cm(ax, cm, class_names, fmt, cmap, vmin=None, vmax=None,
 def plot_cmcount(
     prefix, y_true, y_pred, class_names,
     use_kfold=False, fold_idx=None, base_dir="results",
-    wandb_run=None, model_type=None,
+    wandb_run=None, model_type=None, dataset=None,
 ):
-    folder   = set_folder_path(use_kfold, fold_idx, base_dir, model_type)
+    folder   = set_folder_path(use_kfold, fold_idx, base_dir, model_type, dataset)
     out_base = os.path.join(folder, f"{prefix}_cmcount")
 
     y_true_np = y_true.cpu().numpy() if torch.is_tensor(y_true) else np.array(y_true)
@@ -344,7 +344,7 @@ def plot_cmcount(
     vmax = max(cm_sample.max(), cm_event.max())
 
     fig, axes = plt.subplots(1, 2, figsize=_FIG_DOUBLE)
-    fig.subplots_adjust(wspace=0.45)
+    fig.subplots_adjust(wspace=0.85)
 
     _draw_cm(axes[0], cm_sample, class_names, fmt="d",
              cmap="Blues", vmin=0, vmax=vmax,
@@ -365,9 +365,9 @@ def plot_cmcount(
 def plot_cmpercent(
     prefix, y_true, y_pred, class_names,
     use_kfold=False, fold_idx=None, base_dir="results",
-    wandb_run=None, model_type=None,
+    wandb_run=None, model_type=None, dataset=None,
 ):
-    folder   = set_folder_path(use_kfold, fold_idx, base_dir, model_type)
+    folder   = set_folder_path(use_kfold, fold_idx, base_dir, model_type, dataset)
     out_base = os.path.join(folder, f"{prefix}_cmpercent")
 
     y_true_np = y_true.cpu().numpy() if torch.is_tensor(y_true) else np.array(y_true)
@@ -386,7 +386,7 @@ def plot_cmpercent(
     )
 
     fig, axes = plt.subplots(1, 2, figsize=_FIG_DOUBLE)
-    fig.subplots_adjust(wspace=0.45)
+    fig.subplots_adjust(wspace=0.85)
 
     _draw_cm(axes[0], cm_sample, class_names, fmt=".2f",
              cmap="Blues", vmin=0.0, vmax=1.0,
@@ -407,9 +407,9 @@ def plot_cmpercent(
 def plot_roc(
     prefix, labels, probs, class_names,
     use_kfold=False, fold_idx=None, base_dir="results",
-    wandb_run=None, model_type=None,
+    wandb_run=None, model_type=None, dataset=None,
 ):
-    folder   = set_folder_path(use_kfold, fold_idx, base_dir, model_type)
+    folder   = set_folder_path(use_kfold, fold_idx, base_dir, model_type, dataset)
     out_base = os.path.join(folder, f"{prefix}_roc")
 
     n_classes = len(class_names)
@@ -478,13 +478,13 @@ def plot_roc(
 def plot_pr(
     prefix, labels, probs, class_names,
     use_kfold=False, fold_idx=None, base_dir="results",
-    wandb_run=None, model_type=None,
+    wandb_run=None, model_type=None, dataset=None,
 ):
     """
     Precision-Recall curves — useful for class-imbalanced datasets.
     Saved as PNG + PDF alongside the ROC curve.
     """
-    folder   = set_folder_path(use_kfold, fold_idx, base_dir, model_type)
+    folder   = set_folder_path(use_kfold, fold_idx, base_dir, model_type, dataset)
     out_base = os.path.join(folder, f"{prefix}_pr")
 
     n_classes = len(class_names)

@@ -21,9 +21,14 @@ from utils.helpers import (EarlyStopping, log_flops, log_env,
                            build_config_tag)
 from utils.metrics import (print_scores, plot_cmcount,
                            plot_cmpercent, plot_roc, plot_pr, _get_event)
-from utils.helpers import get_device
+from utils.helpers import get_device, is_directml_device
 
-device = get_device()
+# NOTE: `device` is no longer computed once at module level. Some model
+# types (cnn_lstm, cnn_bilstm) use nn.LSTM, which is unsupported on
+# torch-directml (missing aten::_thnn_fused_lstm_cell). `device` is now
+# computed per-call inside train_model(), forcing CPU for those model
+# types specifically while other models (tcn, conv_attention) still use
+# the detected GPU backend. See get_device(force_cpu=...) in helpers.py.
 
 
 # ------------------------------------------------------------------ #
@@ -39,15 +44,27 @@ device = get_device()
 # Override any of these via CLI flags (--optimizer, --scheduler, --loss).
 # ------------------------------------------------------------------ #
 _MODEL_DEFAULTS = {
-    #                  optimizer    scheduler  loss
-    # Source paper (main.py get_optimizer):
-    #   TCN          -> Adamax
+    #                  optimizer    scheduler          loss
+    # Source paper (Elmadjian et al. 2023, main.py get_optimizer):
+    #   TCN             -> Adamax
     #   CNN_LSTM/BiLSTM -> RMSprop
-    # Scheduler: paper uses manual lr/=2 on plateau — closest is "plateau"
-    "conv_attention":  ("adamw",    "cosine",  "nll"),   # proposed model, not in paper
-    "cnn_lstm":        ("rmsprop",  "plateau", "nll"),   # matches source paper
-    "cnn_bilstm":      ("rmsprop",  "plateau", "nll"),   # matches source paper
-    "tcn":             ("adamax",   "plateau", "nll"),   # matches source paper
+    # Scheduler: paper's exact rule (per github.com/elmadjian/OEMC/main.py):
+    #   if len(scores) >= 3 and (abs(scores[-1]-scores[-3]) < 0.1
+    #                             or scores[-1] < scores[-3]): lr /= 2
+    #   Replicated exactly via "elmadjian" (see _elmadjian_lr_step).
+    #   "plateau" (PyTorch ReduceLROnPlateau) remains available as an
+    #   approximation for models/experiments that don't need exact
+    #   replication of the original rule.
+    "conv_attention":  ("adamw",    "cosine",           "nll"),   # proposed model, not in paper
+    "cnn_lstm":        ("rmsprop",  "elmadjian", "nll"),   # matches source paper exactly
+    "cnn_bilstm":      ("rmsprop",  "elmadjian", "nll"),   # matches source paper exactly
+    "tcn":             ("adamax",   "elmadjian", "nll"),   # matches source paper exactly
+    # Wang et al. 2025 (BSPC) Table 3: optimizer=Adam, lr=0.001. No LR
+    # scheduler / decay rule is reported in the paper, so we default to
+    # "cosine" (this project's general-purpose scheduler) rather than
+    # inventing an unreported rule. No public code exists for this
+    # model — see skip_attseqnet.py docstring for reimplementation notes.
+    "skip_attseqnet":  ("adam",     "cosine",           "nll"),   # best-effort reimplementation, no public code
 }
 
 
@@ -62,12 +79,21 @@ def _resolve(value, model_type, key):
 # Train / eval steps
 # ------------------------------------------------------------------ #
 
-def train_step(model, optimizer, criterion, x, y):
+def train_step(model, optimizer, criterion, x, y, max_grad_norm=1.0):
     model.train()
     optimizer.zero_grad()
     output = model(x)
     loss   = criterion(output, y)
     loss.backward()
+    # Gradient clipping — stabilizes training for RNN/LSTM-based models
+    # (cnn_lstm, cnn_bilstm, skip_attseqnet), which can otherwise suffer
+    # exploding gradients and collapse to predicting only the majority
+    # class (observed empirically: some folds converged to Recall=1.0
+    # for Fixation and 0.0 for every other class). This is a no-op for
+    # already-stable gradients (norm < max_grad_norm), so it does not
+    # change behavior for models/folds that were already training
+    # normally.
+    torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=max_grad_norm)
     optimizer.step()
     return loss.item()
 
@@ -86,6 +112,17 @@ def eval_step(model, x, y):
 # Factories
 # ------------------------------------------------------------------ #
 
+# num_workers=4 crashes on Windows for large in-memory tensors: Windows'
+# spawn-based multiprocessing must pickle the whole dataset to send to
+# each worker process, which fails with "OSError: [Errno 22] Invalid
+# argument" / "pickle data was truncated" for datasets of this size
+# (millions of samples). Linux (Kaggle, most servers) uses fork instead,
+# which shares memory via copy-on-write and doesn't hit this limit, so
+# workers stay enabled there for speed.
+import platform
+_NUM_WORKERS = 0 if platform.system() == "Windows" else 4
+
+
 def _make_loader(X, Y, timesteps, stride, batch_size, shuffle,
                  loader_mode="lookback"):
     """
@@ -97,28 +134,46 @@ def _make_loader(X, Y, timesteps, stride, batch_size, shuffle,
                          f"Choose from: {list(LOADER_REGISTRY.keys())}")
     dataset = LOADER_REGISTRY[loader_mode](X, Y, timesteps=timesteps, stride=stride)
     return DataLoader(dataset, batch_size=batch_size,
-                      shuffle=shuffle, num_workers=4)
+                      shuffle=shuffle, num_workers=_NUM_WORKERS)
 
 
 def _make_optimizer(model, optimizer_type, lr):
     """
     adamw   : AdamW + weight_decay=1e-4  (default)
     adamax  : Adamax — TCN paper default
-    rmsprop : RMSprop — legacy option
+    rmsprop : RMSprop — CNN-LSTM/CNN-BiLSTM paper default
+    adam    : plain Adam, no weight decay — Skip-AttSeqNet paper default
     """
     if optimizer_type == "adamax":
         return torch.optim.Adamax(model.parameters(), lr=lr)
     elif optimizer_type == "rmsprop":
         return torch.optim.RMSprop(model.parameters(), lr=lr)
+    elif optimizer_type == "adam":
+        return torch.optim.Adam(model.parameters(), lr=lr)
     return torch.optim.AdamW(model.parameters(), lr=lr, weight_decay=1e-4)
 
 
 def _make_scheduler(optimizer, scheduler_type, epochs):
     """
-    cosine  : CosineAnnealingLR    — step()
-    plateau : ReduceLROnPlateau    — step(metric)
-    step    : StepLR every 10 ep   — step()
+    cosine            : CosineAnnealingLR    — step()
+    plateau           : ReduceLROnPlateau    — step(metric); approximates
+                         the paper's manual rule via PyTorch's built-in
+                         cumulative-patience mechanism (factor=0.5 matches
+                         the paper's lr/=2, but the trigger condition
+                         differs — see 'elmadjian' for an exact
+                         replication of the original rule).
+    step              : StepLR every 10 ep   — step()
+    elmadjian  : No-op here — this scheduler type is handled
+                         entirely inside the training loop (see
+                         _elmadjian_lr_step below), since the original
+                         rule needs a 3-epoch lookback over validation
+                         F1-macro history, which doesn't fit PyTorch's
+                         standard scheduler.step(metric) interface.
+                         Returns None; the optimizer's lr is mutated
+                         in-place by _elmadjian_lr_step each epoch.
     """
+    if scheduler_type == "elmadjian":
+        return None
     if scheduler_type == "plateau":
         return torch.optim.lr_scheduler.ReduceLROnPlateau(
             optimizer, mode='max', factor=0.5, patience=3, min_lr=1e-6
@@ -128,6 +183,38 @@ def _make_scheduler(optimizer, scheduler_type, epochs):
             optimizer, step_size=10, gamma=0.5
         )
     return CosineAnnealingLR(optimizer, T_max=epochs)
+
+
+def _elmadjian_lr_step(optimizer, f1_history, prefix, epoch):
+    """
+    Exact replication of the manual LR decay rule from the original
+    OEMC codebase (github.com/elmadjian/OEMC/blob/main/main.py):
+
+        if len(scores) >= 3 and (abs(scores[-1]-scores[-3]) < 0.1
+                                  or scores[-1] < scores[-3]):
+            lr /= 2
+
+    where `scores` is the running list of validation F1-macro values
+    IN PERCENTAGE SCALE (e.g. 85.3, not 0.853) — the 0.1 threshold is
+    calibrated to that scale in the original code, so f1_history must
+    also be passed in percentage scale to match behaviour exactly.
+
+    Called once per epoch, after f1_macro for the current epoch has
+    been appended to f1_history.
+    """
+    if len(f1_history) < 3:
+        return
+    plateaued = abs(f1_history[-1] - f1_history[-3]) < 0.1
+    declined  = f1_history[-1] < f1_history[-3]
+    if plateaued or declined:
+        for param_group in optimizer.param_groups:
+            param_group["lr"] /= 2
+        logger.info(
+            f"[{prefix}] Epoch {epoch}: F1-macro plateaued/declined "
+            f"(prev={f1_history[-3]:.2f}%, now={f1_history[-1]:.2f}%) "
+            f"— halving LR to {optimizer.param_groups[0]['lr']:.6f} "
+            f"(Elmadjian et al. manual rule)"
+        )
 
 
 def _make_criterion(loss_type):
@@ -158,12 +245,29 @@ def train_model(
     wandb_project=None, run_name=None, checkpoint=True,
     plot_result=True, save_model_artifact=True,
     use_wandb=True, resume_path=None,
-    base_dir="results",
+    base_dir="results", dataset=None, grad_clip_norm=1.0, warmup_epochs=1,
 ):
     eff_optimizer = _resolve(optimizer_type, model_type, "optimizer")
     eff_scheduler = _resolve(scheduler_type, model_type, "scheduler")
     eff_loss      = _resolve(loss_type,      model_type, "loss")
     eff_loader    = loader_mode
+
+    # cnn_lstm / cnn_bilstm / skip_attseqnet all use nn.LSTM (the latter
+    # via its BLSTM decoder). torch-directml specifically cannot run
+    # nn.LSTM (missing aten::_thnn_fused_lstm_cell) — CUDA, MPS, and
+    # plain CPU all support it natively. So we only override to CPU
+    # when the *actually detected* device is DirectML, not just
+    # because the model_type is LSTM-based (fixes a bug where this
+    # used to force CPU unconditionally for these model types even on
+    # CUDA machines like Kaggle's T4, wasting the GPU for no reason).
+    device = get_device()
+    if model_type in ("cnn_lstm", "cnn_bilstm", "skip_attseqnet") and is_directml_device(device):
+        logger.info(
+            f"Model '{model_type}' uses nn.LSTM, which torch-directml "
+            f"cannot run (missing aten::_thnn_fused_lstm_cell) — "
+            f"switching from DirectML to CPU for this model only."
+        )
+        device = torch.device("cpu")
 
     wandb_config = dict(
         timesteps=timesteps, epochs=epochs, batch_size=batch_size, lr=lr,
@@ -214,9 +318,13 @@ def train_model(
             # tcn
             tcn_channel_size=tcn_channel_size if model_type == "tcn" else None,
             tcn_num_levels=tcn_num_levels if model_type == "tcn" else None,
-            # cnn_lstm / cnn_bilstm
+            # cnn_lstm / cnn_bilstm / skip_attseqnet
             lstm_layers=2 if model_type in ("cnn_lstm", "cnn_bilstm") else None,
-            conv_filters=(32, 16, 8) if model_type in ("cnn_lstm", "cnn_bilstm") else None,
+            conv_filters=(
+                (32, 16, 8) if model_type in ("cnn_lstm", "cnn_bilstm")
+                else (32, 16, 8, 8) if model_type == "skip_attseqnet"
+                else None
+            ),
             # shared
             dropout=dropout,
             lr=lr,
@@ -255,17 +363,6 @@ def train_model(
         if "input_size" not in params:
             params["input_size"] = input_size
         params["output_size"] = len(class_names)
-        # conv_attention needs the actual window length to correctly size
-        # its learnable positional_encoding. This is injected here (not
-        # earlier in model_params) because model_params is also spread
-        # into wandb_config via **model_params alongside an explicit
-        # timesteps=timesteps kwarg — adding it there causes
-        # "dict() got multiple values for keyword argument 'timesteps'".
-        # Without this injection, Conv_Attention silently falls back to
-        # its constructor default (timesteps=5) for any other window
-        # length, causing a size mismatch (or a silently wrong encoding).
-        if model_type == "conv_attention" and "timesteps" not in params:
-            params["timesteps"] = timesteps
 
         model = get_model(model_type, params).to(device)
         if model_type == "cnn_bilstm":
@@ -274,7 +371,7 @@ def train_model(
         # input_shape for FLOPs: all models receive (timesteps, features)
         # TCN transposes internally in forward()
         log_flops(model, prefix, model_type, use_kfold,
-                  (timesteps, input_size), fold_idx=fold_idx)
+                  (timesteps, input_size), fold_idx=fold_idx, dataset=dataset)
         print_summary(model, model_type, input_size, timesteps)
 
         # Optimizer & Scheduler
@@ -297,9 +394,30 @@ def train_model(
         best_model_state = None
         best_val_loss = best_train_loss = None
         best_metrics     = {}
+        # F1-macro history in PERCENTAGE scale, used only by
+        # eff_scheduler == "elmadjian" (see _elmadjian_lr_step).
+        f1_history_pct   = []
 
         for epoch in range(1, epochs + 1):
             epoch_start = time.time()
+
+            # Linear LR warmup: for the first `warmup_epochs`, override the
+            # optimizer's LR to ramp up linearly from a small fraction of
+            # the target LR. Adaptive optimizers (RMSprop especially) start
+            # with a zero running average of squared gradients, so early
+            # updates can take an effectively huge step even with a
+            # "normal" raw gradient (unlike exploding gradients, this is
+            # NOT caught by gradient-norm clipping). This can push an
+            # LSTM's gates into saturation before it has learned anything,
+            # from which it may never recover (observed empirically:
+            # collapse to predicting only the majority class, fold-
+            # dependent since each fold's model gets a different random
+            # initialization). The scheduler is intentionally not
+            # stepped during warmup — its schedule begins once warmup ends.
+            if warmup_epochs > 0 and epoch <= warmup_epochs:
+                warmup_lr = lr * epoch / (warmup_epochs + 1)
+                for param_group in optimizer.param_groups:
+                    param_group["lr"] = warmup_lr
 
             # Train
             model.train()
@@ -311,7 +429,8 @@ def train_model(
                 X_batch = X_batch.to(device)
                 Y_batch = Y_batch.to(device)
                 train_loss += train_step(model, optimizer, criterion,
-                                         X_batch, Y_batch)
+                                         X_batch, Y_batch,
+                                         max_grad_norm=grad_clip_norm)
 
             # Validate
             model.eval()
@@ -351,8 +470,17 @@ def train_model(
             ev_f1_avg = sk_f1(ev_labels, ev_preds, average='macro', zero_division=0)
             ev_f1 = list(ev_f1) + [0] * (4 - len(ev_f1))  # pad if needed
 
-            # ReduceLROnPlateau requires a metric; CosineAnnealingLR does not
-            if eff_scheduler == "plateau":
+            # ReduceLROnPlateau requires a metric; CosineAnnealingLR does not;
+            # elmadjian mutates optimizer lr directly (no scheduler object).
+            # During warmup, the scheduler is intentionally NOT stepped —
+            # its schedule (and elmadjian's plateau-history) starts fresh
+            # once warmup ends, rather than being offset by warmup epochs.
+            if warmup_epochs > 0 and epoch <= warmup_epochs:
+                pass
+            elif eff_scheduler == "elmadjian":
+                f1_history_pct.append(f1_macro * 100)
+                _elmadjian_lr_step(optimizer, f1_history_pct, prefix, epoch)
+            elif eff_scheduler == "plateau":
                 scheduler.step(f1_macro)
             else:
                 scheduler.step()
@@ -474,7 +602,8 @@ def train_model(
 
             if checkpoint:
                 save_checkpoint(model, optimizer, epoch, prefix,
-                                use_kfold, fold_idx, base_dir, model_type)
+                                use_kfold, fold_idx, base_dir, model_type,
+                                dataset=dataset)
 
         # Post-fold
         if best_model_state is not None:
@@ -489,11 +618,12 @@ def train_model(
 
         results_dict = {"preds": best_preds, "labels": best_labels,
                         "probs": best_probs}
-        model_path   = save_model(model, prefix, use_kfold, fold_idx, base_dir, model_type)
+        model_path   = save_model(model, prefix, use_kfold, fold_idx, base_dir,
+                                  model_type, dataset=dataset)
         results_path = save_results(results_dict, prefix, use_kfold, fold_idx,
-                                    base_dir, model_type)
+                                    base_dir, model_type, dataset=dataset)
         json_path    = save_json(epoch_logs, prefix, use_kfold, fold_idx,
-                                 base_dir, model_type)
+                                 base_dir, model_type, dataset=dataset)
 
         all_metrics.append({
             "fold":         fold_idx + 1 if use_kfold else 0,
@@ -503,7 +633,7 @@ def train_model(
             **best_metrics,   # all per-class metrics from best epoch
         })
         csv_path = save_csv(all_metrics, prefix, use_kfold, fold_idx,
-                            base_dir, model_type)
+                            base_dir, model_type, dataset=dataset)
 
         # Upload artifacts to WandB
         if use_wandb and wandb.run is not None:
@@ -532,16 +662,20 @@ def train_model(
         if plot_result:
             plot_cmcount(
                 prefix, best_labels, best_preds, class_names,
-                use_kfold, fold_idx, base_dir, wandb.run, model_type)
+                use_kfold, fold_idx, base_dir, wandb.run, model_type,
+                dataset=dataset)
             plot_cmpercent(
                 prefix, best_labels, best_preds, class_names,
-                use_kfold, fold_idx, base_dir, wandb.run, model_type)
+                use_kfold, fold_idx, base_dir, wandb.run, model_type,
+                dataset=dataset)
             plot_roc(
                 prefix, best_labels, best_probs, class_names,
-                use_kfold, fold_idx, base_dir, wandb.run, model_type)
+                use_kfold, fold_idx, base_dir, wandb.run, model_type,
+                dataset=dataset)
             plot_pr(
                 prefix, best_labels, best_probs, class_names,
-                use_kfold, fold_idx, base_dir, wandb.run, model_type)
+                use_kfold, fold_idx, base_dir, wandb.run, model_type,
+                dataset=dataset)
 
         del model, optimizer, scheduler, criterion
         torch.cuda.empty_cache()
@@ -566,12 +700,14 @@ def main_kfold(
     run_name=None, timesteps=5, d_model=256, dropout=0.3,
     lr=0.001, num_heads=4, kernel_size=3,
     tcn_kernel_size=5, tcn_channel_size=30, tcn_num_levels=4,
+    skip_cnn_dropout=0.2, skip_rnn_dropout=0.3,
     optimizer_type=None, scheduler_type=None, loss_type=None,
     loader_mode="lookahead",
     batch_size=2048, epochs=20, patience=10,
     wandb_project="oemc", checkpoint=True, plot_result=True,
     close_wandb=True, use_kfold=True, n_splits=5,
-    start_fold=0, max_folds=5, use_wandb=True,
+    start_fold=0, max_folds=5, use_wandb=True, dataset=None,
+    grad_clip_norm=1.0, warmup_epochs=1,
 ):
     if run_name is None:
         run_name = f"{model_type}_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}"
@@ -625,6 +761,23 @@ def main_kfold(
             "blstm_layers":  2,
             "conv_filters":  (32, 16, 8),
         }
+    elif model_type == "skip_attseqnet":
+        # Wang et al. 2025 (BSPC), Table 3 — best-effort reimplementation,
+        # no public code available (see skip_attseqnet.py docstring).
+        # input_size here is used only to validate that timesteps is
+        # long enough to survive 4 VALID-padding conv layers (kernel=3
+        # each removes 2 steps -> 8 total; timesteps must be > 8).
+        model_params = {
+            "input_size":   timesteps,
+            "output_size":  len(class_names),
+            "features":     X.shape[1],
+            "conv_filters": (32, 16, 8, 8),
+            "kernel_size":  kernel_size,
+            "cnn_dropout":  skip_cnn_dropout,
+            "rnn_hidden":   16,
+            "rnn_layers":   2,
+            "rnn_dropout":  skip_rnn_dropout,
+        }
 
     if use_wandb and wandb.run is not None:
         wandb_config = {"model_type": model_type, "epochs": epochs,
@@ -634,7 +787,7 @@ def main_kfold(
                         "loader_mode": loader_mode}
         wandb_config.update(model_params)
         wandb.config.update(wandb_config)
-        log_config(wandb_config, run_name, use_kfold, model_type)
+        log_config(wandb_config, run_name, use_kfold, model_type, dataset=dataset)
 
     return train_model(
         X=X, Y=Y, resume_path=resume_path, class_names=class_names,
@@ -650,5 +803,6 @@ def main_kfold(
         close_wandb=close_wandb, use_kfold=use_kfold,
         n_splits=n_splits, start_fold=start_fold, max_folds=max_folds,
         model_type=model_type, model_params=model_params,
-        run_name=run_name, use_wandb=use_wandb,
+        run_name=run_name, use_wandb=use_wandb, dataset=dataset,
+        grad_clip_norm=grad_clip_norm, warmup_epochs=warmup_epochs,
     )

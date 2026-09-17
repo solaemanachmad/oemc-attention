@@ -6,6 +6,7 @@ Run from project root:
 
     python ablation/run_ablation.py feature -d gazecom
     python ablation/run_ablation.py timestep -d gazecom
+    python ablation/run_ablation.py architecture -d gazecom
 
 See --help for each ablation type.
 """
@@ -111,8 +112,10 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Ablation types:
-  feature   — compare different feature combinations (speed, direction, stddev, displacement)
-  timestep  — compare different timestep values [1, 5, 10, 15, 20, 25]
+  feature      — compare different feature combinations (speed, direction, stddev, displacement)
+  timestep     — compare different timestep/context-length values
+  architecture — compare Conv-Attention components on/off (attention,
+                 positional encoding, conv refinement depth)
 
 Examples:
   # Run all feature combos on GazeCom
@@ -131,6 +134,13 @@ Examples:
 
   # Include the full-window anchor point (~1000 ms) alongside short contexts
   python ablation/run_ablation.py timestep -d gazecom --values 5 25 250
+
+  # Run all 8 architecture variants on GazeCom (at the chosen timesteps)
+  python ablation/run_ablation.py architecture -d gazecom --timesteps 5
+
+  # Run only specific architecture variants
+  python ablation/run_ablation.py architecture -d gazecom --timesteps 5 \\
+      --variants full no_attention no_pos_encoding cnn_attention_pos
 
   # With kfold and WandB
   python ablation/run_ablation.py feature -d gazecom --use_kfold --use_wandb
@@ -175,6 +185,26 @@ Examples:
         )
     )
 
+    # ── architecture ablation ────────────────────────────────────────
+    arch_parser = subparsers.add_parser(
+        "architecture",
+        help="Conv-Attention component ablation study (attention, "
+             "positional encoding, conv refinement depth)"
+    )
+    add_shared_args(arch_parser)
+    arch_parser.add_argument(
+        "--variants", type=str, nargs="+", default=None, metavar="TAG",
+        help=(
+            "Run only specific variants by tag. "
+            "E.g. --variants full no_attention no_pos_encoding. "
+            "If omitted, runs all 9 variants: "
+            "cnn, cnn_attention, cnn_attention_pos, full "
+            "(cumulative build-up), no_attention, no_pos_encoding, "
+            "no_attn_no_pos (leave-one-out from full), encoder_1layer, "
+            "encoder_2layer (encoder depth sweep)."
+        )
+    )
+
     args = parser.parse_args()
 
     if args.ablation_type == "feature":
@@ -184,6 +214,10 @@ Examples:
     elif args.ablation_type == "timestep":
         from ablation.timestep_ablation import run
         run(args, timesteps=args.values)
+
+    elif args.ablation_type == "architecture":
+        from ablation.architecture_ablation import run
+        run(args, variants=args.variants)
 
 
 if __name__ == "__main__":

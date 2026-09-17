@@ -4,22 +4,25 @@ from torchinfo import summary
 
 from .conv_attention import Conv_Attention
 from .tcn import TCN
-from .baselines import CNN, BiLSTM, CNN_LSTM, CNN_BiLSTM, CNN_Transformer
+from .cnn_lstm import CNN_LSTM
+from .cnn_bilstm import CNN_BiLSTM
+from .skip_attseqnet import SkipAttSeqNet
 
 
 # ------------------------------------------------------------------ #
 # Model registry
+#
+# Matches configs/args.py's --model_type choices exactly:
+# ["conv_attention", "tcn", "cnn_lstm", "cnn_bilstm", "skip_attseqnet"].
 # ------------------------------------------------------------------ #
 
 def get_model(model_type, model_params):
     registry = {
         "conv_attention":  Conv_Attention,
-        "cnn":             CNN,
-        "bilstm":          BiLSTM,
         "cnn_lstm":        CNN_LSTM,
         "cnn_bilstm":      CNN_BiLSTM,
         "tcn":             TCN,
-        "cnn_transformer": CNN_Transformer,
+        "skip_attseqnet":  SkipAttSeqNet,
     }
     if model_type not in registry:
         raise ValueError(f"Unknown model type: '{model_type}'. "

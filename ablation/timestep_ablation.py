@@ -102,17 +102,26 @@ def _tag(t, ms_per_step):
 # ------------------------------------------------------------------ #
 
 @contextmanager
-def ablation_output_dir(base_dir):
+def ablation_output_dir(base_dir, dataset=None):
+    """
+    IMPORTANT: incoming base_dir/dataset from callers (train.py always
+    passes train_model()'s own base_dir="results" positionally) are
+    deliberately IGNORED — captured as plain closure variables instead
+    of default parameter values, so they cannot be overridden.
+    """
+    _ablation_base    = base_dir
+    _ablation_dataset = dataset
     original_fn = _helpers.set_folder_path
 
-    def _patched(use_kfold=False, fold_idx=None,
-                 base_dir=base_dir, model_type=None):
+    def _patched(use_kfold=False, fold_idx=None, base_dir=None, model_type=None,
+                 dataset=None):
+        path = os.path.join(_ablation_base, _ablation_dataset or "")
         if use_kfold:
-            path = os.path.join(base_dir, "kfold", model_type or "")
+            path = os.path.join(path, "kfold", model_type or "")
             if fold_idx is not None:
                 path = os.path.join(path, f"fold_{fold_idx + 1}")
         else:
-            path = os.path.join(base_dir, model_type or "")
+            path = os.path.join(path, model_type or "")
         os.makedirs(path, exist_ok=True)
         return path
 
@@ -162,6 +171,7 @@ def _save_summary(df, path):
 
     key_cols = [
         "timestep_tag", "timesteps", "context_ms",
+        "loader_mode", "d_model", "num_heads", "kernel_size", "dropout",
         "F1_avg", "F1_Fixation", "F1_Saccade", "F1_Pursuit", "F1_Blink",
         "ev_F1_avg", "ev_F1_Fixation", "ev_F1_Saccade",
         "ev_F1_Pursuit", "ev_F1_Blink",
@@ -176,13 +186,13 @@ def _save_summary(df, path):
     return path
 
 
-def _already_done(tag, model_type):
+def _already_done(tag, model_type, dataset):
     """
     Check if this timestep value already has a metrics CSV on disk.
-    Folder: results/ablation/<model_type>/timesteps/<model_type>/
+    Folder: results/ablation/<model_type>/timesteps/<dataset>/<model_type>/
     Pattern: *_<tag>_*_metrics.csv
     """
-    folder  = os.path.join(_ablation_dir(model_type), model_type)
+    folder  = os.path.join(_ablation_dir(model_type), dataset, model_type)
     pattern = os.path.join(folder, f"*_{tag}_*_metrics.csv")
     found   = glob.glob(pattern)
     if found:
@@ -237,7 +247,7 @@ def run(args, timesteps=None):
     skipped = []
     for t in selected:
         tag = _tag(t, ms_per_step)
-        if getattr(args, "resume", False) and _already_done(tag, args.model_type):
+        if getattr(args, "resume", False) and _already_done(tag, args.model_type, args.dataset):
             skipped.append(tag)
         else:
             to_run.append(t)
@@ -287,13 +297,14 @@ def run(args, timesteps=None):
         run_name = f"{date_str}_{tag}"
 
         try:
-            with ablation_output_dir(ablation_base):
+            with ablation_output_dir(ablation_base, dataset=args.dataset):
                 all_metrics, _, _, _, _, _ = main_kfold(
                     X=train_X,
                     Y=train_Y,
                     run_name=run_name,
                     model_type=args.model_type,
                     class_names=CLASS_NAMES,
+                    dataset=args.dataset,
                     timesteps=t,
                     d_model=args.d_model,
                     num_heads=args.num_heads,
@@ -319,6 +330,14 @@ def run(args, timesteps=None):
                     "timestep_tag": tag,
                     "timesteps":    t,
                     "context_ms":   context_ms,
+                    # Config metadata — see feature_ablation.py for why
+                    # this is kept explicit here rather than relying on
+                    # WandB alone.
+                    "loader_mode": args.loader_mode,
+                    "d_model":     args.d_model,
+                    "num_heads":   args.num_heads,
+                    "kernel_size": args.kernel_size,
+                    "dropout":     args.dropout,
                 }
                 row.update({k: v for k, v in all_metrics[0].items()
                             if k != "fold"})

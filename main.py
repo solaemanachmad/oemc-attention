@@ -8,7 +8,7 @@ load_dotenv()
 
 from configs.args import get_args, data_defaults
 from data.preprocessor import Preprocessor
-from train import main_kfold
+from train import main_kfold, _resolve
 from utils.logger import logger
 from utils.helpers import set_randomness
 
@@ -30,6 +30,12 @@ def main():
         else f"oemc_{args.dataset}_{args.model_type}_{datetime.datetime.now().strftime('%Y%m%d')}"
     )
 
+    # Resolve None -> actual model-family default (e.g. tcn -> adamax/plateau/nll)
+    # so the log shows what is really used, not a placeholder.
+    eff_optimizer = _resolve(args.optimizer, args.model_type, "optimizer")
+    eff_scheduler = _resolve(args.scheduler, args.model_type, "scheduler")
+    eff_loss      = _resolve(args.loss,      args.model_type, "loss")
+
     logger.info(f"Dataset       : {args.dataset.upper()}")
     logger.info(f"Data path     : {data_path}")
     logger.info(f"Stride        : {stride}")
@@ -37,9 +43,9 @@ def main():
     logger.info(f"WandB project : {wandb_project}")
     logger.info(
         f"Training config - "
-        f"optimizer={args.optimizer or 'model-default'}  "
-        f"scheduler={args.scheduler or 'model-default'}  "
-        f"loss={args.loss or 'model-default'}  "
+        f"optimizer={eff_optimizer}  "
+        f"scheduler={eff_scheduler}  "
+        f"loss={eff_loss}  "
         f"loader={args.loader_mode}"
     )
 
@@ -60,6 +66,7 @@ def main():
         run_name=run_name,
         model_type=args.model_type,
         class_names=class_names,
+        dataset=args.dataset,
 
         # Shared hyperparams
         timesteps=args.timesteps,
@@ -69,11 +76,17 @@ def main():
         epochs=args.epochs,
         batch_size=args.batch_size,
         patience=args.patience,
+        grad_clip_norm=args.grad_clip_norm,
+        warmup_epochs=args.warmup_epochs,
 
         # TCN-specific
         tcn_kernel_size=args.tcn_kernel_size,
         tcn_channel_size=args.tcn_channel_size,
         tcn_num_levels=args.tcn_num_levels,
+
+        # Skip-AttSeqNet-specific
+        skip_cnn_dropout=args.skip_cnn_dropout,
+        skip_rnn_dropout=args.skip_rnn_dropout,
 
         # Training config (None = use model-family default)
         optimizer_type=args.optimizer,
